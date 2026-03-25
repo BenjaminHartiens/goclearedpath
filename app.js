@@ -1,4 +1,4 @@
-// ClearedPath — App JS
+// ClearedPath — App JS (Overhauled)
 // All state stored in memory variables (no browser storage APIs used).
 
 (function() {
@@ -23,7 +23,8 @@
   };
 
   // ============================================================
-  // JOB DATA
+  // JOB DATA (with new fields: contractType, contractDuration,
+  //   contractTimeLeft, contractTotalYears, rootSource)
   // ============================================================
   const jobs = [
     {
@@ -41,7 +42,12 @@
       realPct: 85,
       sources: ['linkedin', 'clearancejobs', 'company'],
       badges: ['verified', 'hot', 'multi'],
-      locationKey: 'dc'
+      locationKey: 'dc',
+      contractType: 'prime',
+      contractDuration: '5yr base + 3yr option',
+      contractTimeLeft: 4.2,
+      contractTotalYears: 8,
+      rootSource: 'boozallen.com/careers'
     },
     {
       id: 2,
@@ -58,7 +64,12 @@
       realPct: 67,
       sources: ['clearancejobs', 'indeed', 'linkedin'],
       badges: ['verified', 'multi'],
-      locationKey: 'dc'
+      locationKey: 'dc',
+      contractType: 'prime',
+      contractDuration: '5yr base + 5yr option',
+      contractTimeLeft: 6.1,
+      contractTotalYears: 10,
+      rootSource: 'caci.com/careers'
     },
     {
       id: 3,
@@ -75,7 +86,12 @@
       realPct: 79,
       sources: ['linkedin', 'clearancejobs'],
       badges: ['verified'],
-      locationKey: 'dc'
+      locationKey: 'dc',
+      contractType: 'sub',
+      contractDuration: '3yr base + 2yr option',
+      contractTimeLeft: 1.8,
+      contractTotalYears: 5,
+      rootSource: 'leidos.com/careers'
     },
     {
       id: 4,
@@ -92,7 +108,12 @@
       realPct: 95,
       sources: ['linkedin', 'clearancejobs', 'indeed', 'company'],
       badges: ['verified', 'hot', 'multi'],
-      locationKey: 'dc'
+      locationKey: 'dc',
+      contractType: 'prime',
+      contractDuration: '10yr IDIQ',
+      contractTimeLeft: 7.5,
+      contractTotalYears: 10,
+      rootSource: 'northropgrumman.com/careers'
     },
     {
       id: 5,
@@ -109,7 +130,12 @@
       realPct: 53,
       sources: ['clearancejobs', 'indeed'],
       badges: [],
-      locationKey: 'colorado'
+      locationKey: 'colorado',
+      contractType: 'sub',
+      contractDuration: '5yr base + 2yr option',
+      contractTimeLeft: 0.8,
+      contractTotalYears: 7,
+      rootSource: 'gdit.com/careers'
     },
     {
       id: 6,
@@ -126,7 +152,12 @@
       realPct: 62,
       sources: ['linkedin', 'clearancejobs'],
       badges: ['verified'],
-      locationKey: 'dc'
+      locationKey: 'dc',
+      contractType: 'prime',
+      contractDuration: '5yr base + 5yr option',
+      contractTimeLeft: 3.4,
+      contractTotalYears: 10,
+      rootSource: 'mantech.com/careers'
     },
     {
       id: 7,
@@ -143,7 +174,12 @@
       realPct: 77,
       sources: ['linkedin', 'clearancejobs', 'indeed', 'company'],
       badges: ['verified', 'multi'],
-      locationKey: 'texas'
+      locationKey: 'texas',
+      contractType: 'prime',
+      contractDuration: '5yr base',
+      contractTimeLeft: 2.1,
+      contractTotalYears: 5,
+      rootSource: 'saic.com/careers'
     },
     {
       id: 8,
@@ -160,7 +196,12 @@
       realPct: 72,
       sources: ['clearancejobs', 'linkedin'],
       badges: ['verified'],
-      locationKey: 'dc'
+      locationKey: 'dc',
+      contractType: 'sub',
+      contractDuration: '3yr base + 2yr option',
+      contractTimeLeft: 1.2,
+      contractTotalYears: 5,
+      rootSource: 'rtx.com/careers'
     }
   ];
 
@@ -171,6 +212,15 @@
     company: 'Company',
     glassdoor: 'Glassdoor',
     usajobs: 'USAJobs'
+  };
+
+  const sourceColors = {
+    linkedin: '#0077b5',
+    clearancejobs: '#22c55e',
+    indeed: '#e8483b',
+    company: '#a855f7',
+    glassdoor: '#f59e0b',
+    usajobs: '#94a3b8'
   };
 
   // ============================================================
@@ -301,7 +351,7 @@
   // SCROLL REVEAL
   // ============================================================
   function setupReveal() {
-    const elements = document.querySelectorAll('.reveal');
+    const elements = document.querySelectorAll('.reveal:not(.visible)');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -314,28 +364,37 @@
   }
 
   // ============================================================
-  // WAITLIST FORM
+  // WAITLIST FORM — Shared Handler (all forms)
   // ============================================================
   function handleWaitlistSubmit(e) {
     e.preventDefault();
-    const input = document.getElementById('waitlist-email');
+    const form = e.target;
+    const input = form.querySelector('input[type="email"]');
     if (!input) return;
     const email = input.value.trim();
     if (!email || !email.includes('@')) return;
+
     waitlistEmails.push(email);
     waitlistCount++;
-    const form = document.getElementById('waitlist-form');
-    const success = document.getElementById('waitlist-success');
-    const counter = document.getElementById('waitlist-counter');
-    if (form) form.style.display = 'none';
-    if (success) success.classList.add('show');
-    if (counter) {
-      counter.querySelector('.count').textContent = waitlistCount;
+
+    // Update all counters on page
+    document.querySelectorAll('.waitlist-counter .count').forEach(el => {
+      el.textContent = waitlistCount;
+    });
+
+    // Show success for this specific form
+    const successEl = form.nextElementSibling;
+    if (successEl && successEl.classList.contains('waitlist-success')) {
+      form.style.display = 'none';
+      successEl.classList.add('show');
+    } else {
+      // Inline form — replace with success message
+      form.innerHTML = '<div class="inline-waitlist-success"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> You\'re on the list! We\'ll notify you when access is ready.</div>';
     }
   }
 
   // ============================================================
-  // JOB CARDS
+  // JOB CARDS — Ground News Style
   // ============================================================
   function getScoreColor(score) {
     if (score >= 80) return '#22c55e';
@@ -347,6 +406,82 @@
     return 2 * Math.PI * r;
   }
 
+  function getContractTimeColor(timeLeft) {
+    if (timeLeft >= 3) return '#22c55e';
+    if (timeLeft >= 1) return '#f59e0b';
+    return '#ef4444';
+  }
+
+  function getContractTimeLabel(timeLeft) {
+    if (timeLeft >= 3) return 'Stable';
+    if (timeLeft >= 1) return 'Watch';
+    return 'Volatile';
+  }
+
+  function buildSourceFusionBar(job) {
+    // Ground News style segmented bar
+    const total = job.sources.length;
+    const segmentPct = 100 / total;
+
+    const segments = job.sources.map((s, i) => {
+      const color = sourceColors[s];
+      const isLast = i === total - 1;
+      const borderRadius = i === 0 ? '4px 0 0 4px' : (isLast ? '0 4px 4px 0' : '0');
+      return `<a href="#" class="source-segment" data-tooltip="${sourceLabels[s]}" style="width:${segmentPct}%;background:${color};border-radius:${borderRadius};" onclick="event.preventDefault()"></a>`;
+    }).join('');
+
+    const sourceLinks = job.sources.map(s => {
+      const color = sourceColors[s];
+      return `<a href="#" class="source-link-tag" style="color:${color};" onclick="event.preventDefault()">${sourceLabels[s]}</a>`;
+    }).join('');
+
+    return `
+      <div class="source-fusion">
+        <div class="source-fusion-header">
+          <span class="sources-label">Source Fusion <span class="info-tooltip" data-tip="Like Ground News: see which platforms posted this job and where it originally came from.">&#9432;</span></span>
+          <span class="source-count">${total} source${total > 1 ? 's' : ''}</span>
+        </div>
+        <div class="source-fusion-bar">${segments}</div>
+        <div class="source-fusion-links">${sourceLinks}</div>
+        <div class="root-source">Hired by: <strong>${job.rootSource}</strong></div>
+      </div>
+    `;
+  }
+
+  function buildContractInfo(job) {
+    const pct = ((job.contractTotalYears - job.contractTimeLeft) / job.contractTotalYears) * 100;
+    const remainPct = 100 - pct;
+    const color = getContractTimeColor(job.contractTimeLeft);
+    const label = getContractTimeLabel(job.contractTimeLeft);
+    const typeClass = job.contractType === 'prime' ? 'contract-prime' : 'contract-sub';
+    const typeLabel = job.contractType === 'prime' ? 'PRIME' : 'SUB';
+    const typeTip = job.contractType === 'prime'
+      ? 'Prime = hired directly by the winning contractor.'
+      : 'Sub = hired through a subcontractor under the prime.';
+
+    return `
+      <div class="contract-info">
+        <div class="contract-tags">
+          <span class="contract-type-tag ${typeClass}" data-tip="${typeTip}">${typeLabel} <span class="info-tooltip">&#9432;</span></span>
+          <span class="contract-duration-label">${job.contractDuration}</span>
+        </div>
+        <div class="contract-time">
+          <div class="contract-time-header">
+            <span class="contract-time-text">~${job.contractTimeLeft} yrs remaining</span>
+            <span class="contract-stability-badge" style="color:${color};border-color:${color};">
+              ${label}
+              <span class="info-tooltip" data-tip="Estimated time remaining on this government contract. More time = more stability.">&#9432;</span>
+            </span>
+          </div>
+          <div class="contract-progress-track">
+            <div class="contract-progress-elapsed" style="width:${pct}%;"></div>
+            <div class="contract-progress-remaining" style="width:${remainPct}%;background:${color};"></div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
   function buildJobCard(job) {
     const scoreColor = getScoreColor(job.score);
     const r = 22;
@@ -354,9 +489,6 @@
     const offset = circ - (job.score / 100) * circ;
 
     const clearanceClass = `clearance-${job.clearanceClass}`;
-    const sourcesHTML = job.sources.map(s =>
-      `<span class="source-dot ${s}">${sourceLabels[s]}</span>`
-    ).join('');
 
     const badgesHTML = [
       job.badges.includes('verified') ? '<span class="job-badge badge-verified"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Verified Clearance</span>' : '',
@@ -365,6 +497,8 @@
     ].filter(Boolean).join('');
 
     const salaryPct = job.realPct;
+    const sourceFusionHTML = buildSourceFusionBar(job);
+    const contractHTML = buildContractInfo(job);
 
     return `
       <div class="job-card reveal" data-id="${job.id}" data-clearance="${job.clearanceClass}" data-location="${job.locationKey}" data-score="${job.score}">
@@ -385,7 +519,7 @@
           </div>
           <div class="job-score-section">
             <div class="score-badge">
-              <div class="score-ring">
+              <div class="score-ring" data-tip="ClearedPath Score rates this posting's transparency and reliability out of 100.">
                 <svg width="56" height="56" viewBox="0 0 56 56">
                   <circle class="score-ring-track" cx="28" cy="28" r="${r}"/>
                   <circle class="score-ring-fill" cx="28" cy="28" r="${r}"
@@ -395,15 +529,13 @@
                 </svg>
                 <div class="score-ring-num">${job.score}</div>
               </div>
-              <div class="score-label">CP Score</div>
+              <div class="score-label">CP Score <span class="info-tooltip" data-tip="Our proprietary score (0-100) measuring job transparency, salary accuracy, source reliability, and clearance verification.">&#9432;</span></div>
             </div>
           </div>
         </div>
 
-        <div class="job-sources">
-          <div class="sources-label">Found On</div>
-          <div class="sources-bar">${sourcesHTML}</div>
-        </div>
+        ${sourceFusionHTML}
+        ${contractHTML}
 
         <div class="salary-panel">
           <div class="salary-panel-row">
@@ -411,7 +543,7 @@
             <span class="salary-posted-val">${job.postedSalary}</span>
           </div>
           <div class="salary-panel-row">
-            <span class="salary-row-label">Real Median</span>
+            <span class="salary-row-label">Real Median <span class="info-tooltip" data-tip="Based on actual reported salaries from cleared professionals, not just the posted range.">&#9432;</span></span>
             <span class="salary-real-val">${job.realSalary} median</span>
           </div>
           <div class="salary-comparison-track">
@@ -432,9 +564,16 @@
     setupReveal();
   }
 
+  function getUniqueSourceCount() {
+    const allSources = new Set();
+    jobs.forEach(job => job.sources.forEach(s => allSources.add(s)));
+    return allSources.size;
+  }
+
   function updateJobsCount(count) {
     const el = document.getElementById('jobs-count');
-    if (el) el.innerHTML = `Showing <span>${count}</span> cleared positions`;
+    const sourceCount = getUniqueSourceCount();
+    if (el) el.innerHTML = `Showing <span>${count}</span> cleared positions from <span>${sourceCount}</span> sources`;
   }
 
   // ============================================================
@@ -569,6 +708,15 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
   }
 
   // ============================================================
+  // SETUP ALL WAITLIST FORMS
+  // ============================================================
+  function setupWaitlistForms() {
+    document.querySelectorAll('.waitlist-form').forEach(form => {
+      form.addEventListener('submit', handleWaitlistSubmit);
+    });
+  }
+
+  // ============================================================
   // INIT
   // ============================================================
   function init() {
@@ -588,9 +736,8 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
       link.addEventListener('click', closeMobileNav);
     });
 
-    // Waitlist
-    const form = document.getElementById('waitlist-form');
-    if (form) form.addEventListener('submit', handleWaitlistSubmit);
+    // All waitlist forms
+    setupWaitlistForms();
 
     // Jobs
     renderJobs();
@@ -660,18 +807,6 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
       }
 
       resultDiv.classList.add('visible');
-    });
-  }
-
-  // Final CTA form handler
-  const finalForm = document.getElementById('final-waitlist-form');
-  if (finalForm) {
-    finalForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const emailInput = this.querySelector('input[type="email"]');
-      if (emailInput && emailInput.value) {
-        this.innerHTML = '<div style="padding:var(--space-4);color:var(--accent-green);font-weight:600;display:flex;align-items:center;gap:var(--space-2);justify-content:center;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> You\'re on the list! We\'ll be in touch.</div>';
-      }
     });
   }
 })();
