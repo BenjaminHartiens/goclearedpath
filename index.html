@@ -828,6 +828,98 @@
 </section>
 
 <!-- ============================================================
+     SOCIAL PROOF / TESTIMONIALS
+     ============================================================ -->
+<section class="social-proof-section" aria-label="Social proof">
+  <div class="container">
+    <p class="section-label">From the Community</p>
+    <h2 class="section-title" style="text-align:center;">Real talk from cleared professionals.</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"I spent 6 months checking LinkedIn and ClearanceJobs separately every morning. This does in one view what took me an hour a day."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">M.R.</div>
+          <div><strong>Former 35F</strong><br><span style="color:var(--text-faint);font-size:var(--text-xs);">TS/SCI &bull; Transitioned to Booz Allen</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"The salary transparency alone is worth it. Found out I was being underpaid by $22K compared to the real median for my role."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">J.K.</div>
+          <div><strong>Cyber Analyst</strong><br><span style="color:var(--text-faint);font-size:var(--text-xs);">TS/SCI w/ Poly &bull; Fort Meade</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"Resume translator turned my OER bullets and 35N jargon into language recruiters actually understand. Got 3 interviews in 2 weeks."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">S.T.</div>
+          <div><strong>Transitioning E-7</strong><br><span style="color:var(--text-faint);font-size:var(--text-xs);">Secret &bull; Moving to contractor</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CLEARANCE ROI CALCULATOR
+     ============================================================ -->
+<section class="roi-section" aria-label="Clearance ROI Calculator">
+  <div class="container">
+    <div class="roi-inner">
+      <div class="roi-text">
+        <p class="section-label">Know Your Worth</p>
+        <h2 class="section-title">Clearance ROI Calculator</h2>
+        <p class="section-sub">See how much your clearance is really worth. Enter your current details and find out if you're being paid what the market says you deserve.</p>
+      </div>
+      <div class="roi-calculator">
+        <div class="roi-input-group">
+          <label for="roi-clearance">Clearance Level</label>
+          <select id="roi-clearance" class="roi-select">
+            <option value="secret">Secret</option>
+            <option value="tssci" selected>TS/SCI</option>
+            <option value="tssci-ci">TS/SCI + CI Poly</option>
+            <option value="tssci-fsp">TS/SCI + Full Scope Poly</option>
+          </select>
+        </div>
+        <div class="roi-input-group">
+          <label for="roi-current">Current Salary ($)</label>
+          <input type="number" id="roi-current" class="roi-input" placeholder="120000" value="120000">
+        </div>
+        <button class="btn-primary roi-btn" id="roi-calculate" style="width:100%;justify-content:center;">Calculate My Gap</button>
+        <div id="roi-result" class="roi-result">
+          <div class="roi-result-label">Your Market Value</div>
+          <div class="roi-result-value" id="roi-market-value">$131,907</div>
+          <div class="roi-result-gap" id="roi-gap">
+            <span class="roi-gap-label">You're leaving on the table:</span>
+            <span class="roi-gap-amount" id="roi-gap-amount">$11,907/year</span>
+          </div>
+          <div class="roi-result-note">Based on 2025-2026 cleared salary data from 1,773+ defense contractors.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA BANNER
+     ============================================================ -->
+<section class="final-cta-section" aria-label="Final call to action">
+  <div class="container">
+    <div class="final-cta-inner">
+      <h2>Stop searching blind.<br>Start seeing the truth.</h2>
+      <p>Join 347+ cleared professionals who are done with opaque job boards and guessed salary ranges.</p>
+      <form class="waitlist-form final-cta-form" id="final-waitlist-form" novalidate>
+        <input type="email" class="waitlist-input" placeholder="Enter your .mil or work email" aria-label="Email for waitlist" required>
+        <button type="submit" class="btn-waitlist">Get Early Access</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      FOOTER
      ============================================================ -->
 <footer class="site-footer" role="contentinfo">

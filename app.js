@@ -1,5 +1,5 @@
 // ClearedPath — App JS
-// No localStorage. All state in memory.
+// All state stored in memory variables (no browser storage APIs used).
 
 (function() {
   'use strict';
@@ -619,4 +619,59 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
     init();
   }
 
+})();
+
+// ============================================================
+// ROI Calculator
+// ============================================================
+(function() {
+  const salaryData = {
+    secret: 93748,
+    tssci: 131907,
+    'tssci-ci': 135442,
+    'tssci-fsp': 148314
+  };
+
+  const calcBtn = document.getElementById('roi-calculate');
+  const resultDiv = document.getElementById('roi-result');
+
+  if (calcBtn) {
+    calcBtn.addEventListener('click', function() {
+      const clearance = document.getElementById('roi-clearance').value;
+      const current = parseInt(document.getElementById('roi-current').value) || 0;
+      const marketValue = salaryData[clearance] || 131907;
+      const gap = marketValue - current;
+
+      document.getElementById('roi-market-value').textContent = '$' + marketValue.toLocaleString();
+
+      const gapEl = document.getElementById('roi-gap-amount');
+      if (gap > 0) {
+        gapEl.textContent = '$' + gap.toLocaleString() + '/year';
+        gapEl.style.color = 'var(--accent-amber)';
+        document.querySelector('.roi-gap-label').textContent = "You're leaving on the table:";
+      } else if (gap < 0) {
+        gapEl.textContent = '+$' + Math.abs(gap).toLocaleString() + '/year above median';
+        gapEl.style.color = 'var(--accent-green)';
+        document.querySelector('.roi-gap-label').textContent = "You're earning above market:";
+      } else {
+        gapEl.textContent = 'Right at market median';
+        gapEl.style.color = 'var(--accent-cyan)';
+        document.querySelector('.roi-gap-label').textContent = '';
+      }
+
+      resultDiv.classList.add('visible');
+    });
+  }
+
+  // Final CTA form handler
+  const finalForm = document.getElementById('final-waitlist-form');
+  if (finalForm) {
+    finalForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const emailInput = this.querySelector('input[type="email"]');
+      if (emailInput && emailInput.value) {
+        this.innerHTML = '<div style="padding:var(--space-4);color:var(--accent-green);font-weight:600;display:flex;align-items:center;gap:var(--space-2);justify-content:center;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> You\'re on the list! We\'ll be in touch.</div>';
+      }
+    });
+  }
 })();
