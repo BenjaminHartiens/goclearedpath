@@ -1,4 +1,4 @@
-// ClearedPath — App JS (Overhauled + Pathways + EPA/BRAG + Job Codes)
+// ClearedPath — App JS (Polished + Source Fusion Circles + Auth + Interview Prep + Network Intel)
 // All state stored in memory variables (no browser storage APIs used).
 
 (function() {
@@ -15,6 +15,7 @@
   let resumeTranslating = false;
   let mobileNavOpen = false;
   let currentScoreMin = 0;
+  let isLoggedIn = false;
 
   const activeFilters = {
     clearance: new Set(),
@@ -23,7 +24,44 @@
   };
 
   // ============================================================
-  // JOB DATA
+  // SOURCE CONFIG
+  // ============================================================
+  const sourceLabels = {
+    linkedin: 'LinkedIn',
+    clearancejobs: 'ClearanceJobs',
+    indeed: 'Indeed',
+    company: 'Company Site',
+    glassdoor: 'Glassdoor',
+    usajobs: 'USAJobs',
+    dice: 'Dice',
+    ziprecruiter: 'ZipRecruiter',
+    simplyhired: 'SimplyHired',
+    monster: 'Monster',
+    govtjobs: 'GovtJobs',
+    military: 'Military.com',
+    clearancejobsblog: 'CJ Blog',
+    veteranjobs: 'VeteranJobs'
+  };
+
+  const sourceColors = {
+    linkedin: '#0077b5',
+    clearancejobs: '#22c55e',
+    indeed: '#e8483b',
+    company: '#a855f7',
+    glassdoor: '#f59e0b',
+    usajobs: '#94a3b8',
+    dice: '#036',
+    ziprecruiter: '#6fbe44',
+    simplyhired: '#0061ff',
+    monster: '#6e45a5',
+    govtjobs: '#2c5282',
+    military: '#4b5320',
+    clearancejobsblog: '#22c55e',
+    veteranjobs: '#f97316'
+  };
+
+  // ============================================================
+  // JOB DATA (updated source counts per spec)
   // ============================================================
   const jobs = [
     {
@@ -39,8 +77,8 @@
       realSalaryNum: 172,
       postedPct: 72,
       realPct: 85,
-      sources: ['linkedin', 'clearancejobs', 'company'],
-      badges: ['verified', 'hot', 'multi'],
+      sources: ['linkedin', 'clearancejobs', 'indeed', 'company', 'glassdoor', 'usajobs', 'dice', 'ziprecruiter', 'simplyhired', 'monster', 'govtjobs', 'military'],
+      badges: ['verified', 'hot'],
       locationKey: 'dc',
       contractType: 'prime',
       contractDuration: '5yr base + 3yr option',
@@ -61,8 +99,8 @@
       realSalaryNum: 138,
       postedPct: 58,
       realPct: 67,
-      sources: ['clearancejobs', 'indeed', 'linkedin'],
-      badges: ['verified', 'multi'],
+      sources: ['clearancejobs', 'indeed', 'linkedin', 'company', 'dice', 'glassdoor'],
+      badges: ['verified'],
       locationKey: 'dc',
       contractType: 'prime',
       contractDuration: '5yr base + 5yr option',
@@ -105,8 +143,8 @@
       realSalaryNum: 195,
       postedPct: 82,
       realPct: 95,
-      sources: ['linkedin', 'clearancejobs', 'indeed', 'company'],
-      badges: ['verified', 'hot', 'multi'],
+      sources: ['linkedin', 'clearancejobs', 'indeed', 'company', 'usajobs', 'glassdoor', 'dice', 'ziprecruiter', 'simplyhired', 'govtjobs', 'military', 'monster', 'clearancejobsblog', 'veteranjobs'],
+      badges: ['verified', 'hot'],
       locationKey: 'dc',
       contractType: 'prime',
       contractDuration: '10yr IDIQ',
@@ -149,7 +187,7 @@
       realSalaryNum: 128,
       postedPct: 54,
       realPct: 62,
-      sources: ['linkedin', 'clearancejobs'],
+      sources: ['linkedin', 'clearancejobs', 'indeed'],
       badges: ['verified'],
       locationKey: 'dc',
       contractType: 'prime',
@@ -171,8 +209,8 @@
       realSalaryNum: 158,
       postedPct: 66,
       realPct: 77,
-      sources: ['linkedin', 'clearancejobs', 'indeed', 'company'],
-      badges: ['verified', 'multi'],
+      sources: ['linkedin', 'clearancejobs', 'indeed', 'company', 'glassdoor', 'usajobs', 'dice', 'ziprecruiter'],
+      badges: ['verified'],
       locationKey: 'texas',
       contractType: 'prime',
       contractDuration: '5yr base',
@@ -193,7 +231,7 @@
       realSalaryNum: 148,
       postedPct: 62,
       realPct: 72,
-      sources: ['clearancejobs', 'linkedin'],
+      sources: ['clearancejobs', 'linkedin', 'company', 'dice'],
       badges: ['verified'],
       locationKey: 'dc',
       contractType: 'sub',
@@ -203,24 +241,6 @@
       rootSource: 'rtx.com/careers'
     }
   ];
-
-  const sourceLabels = {
-    linkedin: 'LinkedIn',
-    clearancejobs: 'ClearanceJobs',
-    indeed: 'Indeed',
-    company: 'Company',
-    glassdoor: 'Glassdoor',
-    usajobs: 'USAJobs'
-  };
-
-  const sourceColors = {
-    linkedin: '#0077b5',
-    clearancejobs: '#22c55e',
-    indeed: '#e8483b',
-    company: '#a855f7',
-    glassdoor: '#f59e0b',
-    usajobs: '#94a3b8'
-  };
 
   // ============================================================
   // MILITARY JOB CODE DATABASE
@@ -307,201 +327,21 @@
   ];
 
   const careerRecommendations = [
-    {
-      title: 'Senior SIGINT Analyst',
-      salary: '$130K–$165K',
-      requiredSkills: ['sigint'],
-      bonusSkills: ['intel', 'leadership', 'crypto'],
-      baseMatch: 80,
-      companies: ['Booz Allen', 'CACI', 'Northrop Grumman', 'NSA (GS-13)'],
-      reasons: [
-        'Direct SIGINT experience maps to senior analyst positions',
-        'Intelligence reporting background is core to this role',
-        'TS/SCI clearance is typically required'
-      ]
-    },
-    {
-      title: 'Intelligence Operations Manager',
-      salary: '$140K–$180K',
-      requiredSkills: ['leadership'],
-      bonusSkills: ['intel', 'sigint', 'opsec'],
-      baseMatch: 75,
-      companies: ['Leidos', 'ManTech', 'SAIC', 'Raytheon'],
-      reasons: [
-        'Team management experience translates to ops management',
-        'Multi-INT coordination is highly valued',
-        'Operational leadership is the core requirement'
-      ]
-    },
-    {
-      title: 'Cyber Threat Intelligence Analyst',
-      salary: '$125K–$170K',
-      requiredSkills: ['cyber'],
-      bonusSkills: ['sigint', 'intel', 'opsec'],
-      baseMatch: 78,
-      companies: ['CrowdStrike', 'Mandiant (Google)', 'Palo Alto Networks', 'Microsoft'],
-      reasons: [
-        'Cyber + intelligence background is the ideal CTI combination',
-        'Real-time analysis skills translate directly to threat hunting',
-        'Security certifications strengthen this match'
-      ]
-    },
-    {
-      title: 'Collection Manager',
-      salary: '$120K–$155K',
-      requiredSkills: ['intel'],
-      bonusSkills: ['sigint', 'humint', 'leadership'],
-      baseMatch: 72,
-      companies: ['CACI', 'Booz Allen', 'NSA (GS-12/13)'],
-      reasons: [
-        'Collection operations experience maps to this role',
-        'Multi-source intelligence background is valuable',
-        'Management experience accelerates career trajectory'
-      ]
-    },
-    {
-      title: 'Program Manager (Intelligence)',
-      salary: '$145K–$195K',
-      requiredSkills: ['leadership'],
-      bonusSkills: ['intel', 'opsec', 'sigint'],
-      baseMatch: 68,
-      companies: ['Leidos', 'SAIC', 'Booz Allen'],
-      reasons: [
-        'Budget and equipment management translate to PM skills',
-        'Team leadership is the primary qualification',
-        'Intelligence domain expertise adds significant value'
-      ]
-    },
-    {
-      title: 'Cybersecurity Engineer',
-      salary: '$120K–$175K',
-      requiredSkills: ['cyber'],
-      bonusSkills: ['opsec', 'comms'],
-      baseMatch: 76,
-      companies: ['Microsoft', 'AWS', 'CrowdStrike', 'Palo Alto Networks'],
-      reasons: [
-        'Network security and cyber defense skills directly apply',
-        'SIEM and IDS/IPS experience is core to this role',
-        'Security certifications strengthen candidacy'
-      ]
-    },
-    {
-      title: 'GEOINT Analyst',
-      salary: '$95K–$150K',
-      requiredSkills: ['geoint'],
-      bonusSkills: ['intel', 'sigint'],
-      baseMatch: 82,
-      companies: ['NGA', 'Maxar', 'BAE Systems', 'Leidos'],
-      reasons: [
-        'Geospatial and imagery analysis directly maps',
-        'GIS and mapping tools experience is essential',
-        'Intelligence fusion experience adds value'
-      ]
-    },
-    {
-      title: 'HUMINT Operations Officer',
-      salary: '$110K–$165K',
-      requiredSkills: ['humint'],
-      bonusSkills: ['leadership', 'intel', 'ci'],
-      baseMatch: 80,
-      companies: ['CACI', 'Booz Allen', 'DIA', 'CIA (contractor)'],
-      reasons: [
-        'Source handling and debriefing directly transfer',
-        'Human intelligence collection is a specialized skill',
-        'CI awareness strengthens this profile'
-      ]
-    },
-    {
-      title: 'Counterintelligence Analyst',
-      salary: '$105K–$160K',
-      requiredSkills: ['ci'],
-      bonusSkills: ['opsec', 'intel', 'leadership'],
-      baseMatch: 78,
-      companies: ['FBI (contractor)', 'Booz Allen', 'SAIC', 'Leidos'],
-      reasons: [
-        'CI experience directly maps to insider threat roles',
-        'Security investigation background is valuable',
-        'OPSEC knowledge is critical for this role'
-      ]
-    },
-    {
-      title: 'Cryptologic Language Analyst',
-      salary: '$95K–$150K',
-      requiredSkills: ['crypto'],
-      bonusSkills: ['sigint', 'intel'],
-      baseMatch: 80,
-      companies: ['NSA', 'CACI', 'Booz Allen', 'ManTech'],
-      reasons: [
-        'Cryptologic and language skills are highly specialized',
-        'SIGINT experience enhances translation work',
-        'Active clearance is essential for these roles'
-      ]
-    },
-    {
-      title: 'SOC Analyst / Incident Responder',
-      salary: '$95K–$140K',
-      requiredSkills: ['cyber'],
-      bonusSkills: ['opsec'],
-      baseMatch: 70,
-      companies: ['ManTech', 'Leidos', 'GDIT', 'Booz Allen'],
-      reasons: [
-        'Network monitoring and defense skills apply directly',
-        'Security compliance experience is valuable',
-        'Cleared SOC positions command premium salaries'
-      ]
-    },
-    {
-      title: 'Cloud Security Architect',
-      salary: '$150K–$230K',
-      requiredSkills: ['cyber', 'opsec'],
-      bonusSkills: ['leadership', 'comms'],
-      baseMatch: 65,
-      companies: ['AWS', 'Microsoft', 'Google Cloud', 'Cloudflare'],
-      reasons: [
-        'Security + network knowledge maps to cloud security',
-        'Compliance experience translates to cloud governance',
-        'Cleared cloud roles are in extremely high demand'
-      ]
-    },
-    {
-      title: 'Red Team Operator',
-      salary: '$130K–$200K',
-      requiredSkills: ['cyber'],
-      bonusSkills: ['sigint', 'intel'],
-      baseMatch: 70,
-      companies: ['CrowdStrike', 'Mandiant', 'Booz Allen', 'MITRE'],
-      reasons: [
-        'Offensive cyber skills directly transfer to red teaming',
-        'Intelligence background enhances threat emulation',
-        'Pen testing experience is the core requirement'
-      ]
-    },
-    {
-      title: 'Communications Security Engineer',
-      salary: '$100K–$155K',
-      requiredSkills: ['comms'],
-      bonusSkills: ['opsec', 'cyber'],
-      baseMatch: 75,
-      companies: ['L3Harris', 'Raytheon', 'Northrop Grumman'],
-      reasons: [
-        'SATCOM and RF experience directly apply',
-        'Communications security is a specialized niche',
-        'Military comms experience is highly valued'
-      ]
-    },
-    {
-      title: 'Vulnerability Analyst',
-      salary: '$110K–$160K',
-      requiredSkills: ['cyber'],
-      bonusSkills: ['opsec', 'intel'],
-      baseMatch: 72,
-      companies: ['Tenable', 'CrowdStrike', 'Fortinet', 'CISA'],
-      reasons: [
-        'Security assessment skills map directly',
-        'Vulnerability management is a growing field',
-        'Intelligence analysis enhances threat context'
-      ]
-    }
+    { title: 'Senior SIGINT Analyst', salary: '$130K–$165K', requiredSkills: ['sigint'], bonusSkills: ['intel', 'leadership', 'crypto'], baseMatch: 80, companies: ['Booz Allen', 'CACI', 'Northrop Grumman', 'NSA (GS-13)'], reasons: ['Direct SIGINT experience maps to senior analyst positions', 'Intelligence reporting background is core to this role', 'TS/SCI clearance is typically required'] },
+    { title: 'Intelligence Operations Manager', salary: '$140K–$180K', requiredSkills: ['leadership'], bonusSkills: ['intel', 'sigint', 'opsec'], baseMatch: 75, companies: ['Leidos', 'ManTech', 'SAIC', 'Raytheon'], reasons: ['Team management experience translates to ops management', 'Multi-INT coordination is highly valued', 'Operational leadership is the core requirement'] },
+    { title: 'Cyber Threat Intelligence Analyst', salary: '$125K–$170K', requiredSkills: ['cyber'], bonusSkills: ['sigint', 'intel', 'opsec'], baseMatch: 78, companies: ['CrowdStrike', 'Mandiant (Google)', 'Palo Alto Networks', 'Microsoft'], reasons: ['Cyber + intelligence background is the ideal CTI combination', 'Real-time analysis skills translate directly to threat hunting', 'Security certifications strengthen this match'] },
+    { title: 'Collection Manager', salary: '$120K–$155K', requiredSkills: ['intel'], bonusSkills: ['sigint', 'humint', 'leadership'], baseMatch: 72, companies: ['CACI', 'Booz Allen', 'NSA (GS-12/13)'], reasons: ['Collection operations experience maps to this role', 'Multi-source intelligence background is valuable', 'Management experience accelerates career trajectory'] },
+    { title: 'Program Manager (Intelligence)', salary: '$145K–$195K', requiredSkills: ['leadership'], bonusSkills: ['intel', 'opsec', 'sigint'], baseMatch: 68, companies: ['Leidos', 'SAIC', 'Booz Allen'], reasons: ['Budget and equipment management translate to PM skills', 'Team leadership is the primary qualification', 'Intelligence domain expertise adds significant value'] },
+    { title: 'Cybersecurity Engineer', salary: '$120K–$175K', requiredSkills: ['cyber'], bonusSkills: ['opsec', 'comms'], baseMatch: 76, companies: ['Microsoft', 'AWS', 'CrowdStrike', 'Palo Alto Networks'], reasons: ['Network security and cyber defense skills directly apply', 'SIEM and IDS/IPS experience is core to this role', 'Security certifications strengthen candidacy'] },
+    { title: 'GEOINT Analyst', salary: '$95K–$150K', requiredSkills: ['geoint'], bonusSkills: ['intel', 'sigint'], baseMatch: 82, companies: ['NGA', 'Maxar', 'BAE Systems', 'Leidos'], reasons: ['Geospatial and imagery analysis directly maps', 'GIS and mapping tools experience is essential', 'Intelligence fusion experience adds value'] },
+    { title: 'HUMINT Operations Officer', salary: '$110K–$165K', requiredSkills: ['humint'], bonusSkills: ['leadership', 'intel', 'ci'], baseMatch: 80, companies: ['CACI', 'Booz Allen', 'DIA', 'CIA (contractor)'], reasons: ['Source handling and debriefing directly transfer', 'Human intelligence collection is a specialized skill', 'CI awareness strengthens this profile'] },
+    { title: 'Counterintelligence Analyst', salary: '$105K–$160K', requiredSkills: ['ci'], bonusSkills: ['opsec', 'intel', 'leadership'], baseMatch: 78, companies: ['FBI (contractor)', 'Booz Allen', 'SAIC', 'Leidos'], reasons: ['CI experience directly maps to insider threat roles', 'Security investigation background is valuable', 'OPSEC knowledge is critical for this role'] },
+    { title: 'Cryptologic Language Analyst', salary: '$95K–$150K', requiredSkills: ['crypto'], bonusSkills: ['sigint', 'intel'], baseMatch: 80, companies: ['NSA', 'CACI', 'Booz Allen', 'ManTech'], reasons: ['Cryptologic and language skills are highly specialized', 'SIGINT experience enhances translation work', 'Active clearance is essential for these roles'] },
+    { title: 'SOC Analyst / Incident Responder', salary: '$95K–$140K', requiredSkills: ['cyber'], bonusSkills: ['opsec'], baseMatch: 70, companies: ['ManTech', 'Leidos', 'GDIT', 'Booz Allen'], reasons: ['Network monitoring and defense skills apply directly', 'Security compliance experience is valuable', 'Cleared SOC positions command premium salaries'] },
+    { title: 'Cloud Security Architect', salary: '$150K–$230K', requiredSkills: ['cyber', 'opsec'], bonusSkills: ['leadership', 'comms'], baseMatch: 65, companies: ['AWS', 'Microsoft', 'Google Cloud', 'Cloudflare'], reasons: ['Security + network knowledge maps to cloud security', 'Compliance experience translates to cloud governance', 'Cleared cloud roles are in extremely high demand'] },
+    { title: 'Red Team Operator', salary: '$130K–$200K', requiredSkills: ['cyber'], bonusSkills: ['sigint', 'intel'], baseMatch: 70, companies: ['CrowdStrike', 'Mandiant', 'Booz Allen', 'MITRE'], reasons: ['Offensive cyber skills directly transfer to red teaming', 'Intelligence background enhances threat emulation', 'Pen testing experience is the core requirement'] },
+    { title: 'Communications Security Engineer', salary: '$100K–$155K', requiredSkills: ['comms'], bonusSkills: ['opsec', 'cyber'], baseMatch: 75, companies: ['L3Harris', 'Raytheon', 'Northrop Grumman'], reasons: ['SATCOM and RF experience directly apply', 'Communications security is a specialized niche', 'Military comms experience is highly valued'] },
+    { title: 'Vulnerability Analyst', salary: '$110K–$160K', requiredSkills: ['cyber'], bonusSkills: ['opsec', 'intel'], baseMatch: 72, companies: ['Tenable', 'CrowdStrike', 'Fortinet', 'CISA'], reasons: ['Security assessment skills map directly', 'Vulnerability management is a growing field', 'Intelligence analysis enhances threat context'] }
   ];
 
   const demoBragSheet = `BRAG SHEET - Evaluation Period: OCT 2024 - SEP 2025
@@ -520,11 +360,9 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
 - Pursuing B.S. in Cybersecurity (75% complete)`;
 
   function analyzeEPA(text) {
-    const upperText = text.toUpperCase();
     const foundSkills = {};
     const skillTags = [];
 
-    // Detect skills
     for (const [category, keywords] of Object.entries(skillKeywords)) {
       for (const keyword of keywords) {
         if (text.toLowerCase().includes(keyword.toLowerCase())) {
@@ -535,16 +373,11 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
       }
     }
 
-    // Detect clearance
     let detectedClearance = null;
     for (const { pattern, label } of clearanceKeywords) {
-      if (pattern.test(text)) {
-        detectedClearance = label;
-        break;
-      }
+      if (pattern.test(text)) { detectedClearance = label; break; }
     }
 
-    // Detect experience level
     let experienceLevel = 'Mid-Level';
     const numberManaged = text.match(/(?:supervised|managed|led|directed)\s+(\d+)/i);
     if (numberManaged) {
@@ -556,59 +389,28 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
     if (/(?:director|chief|commander|O-[5-9])/i.test(text)) experienceLevel = 'Executive';
     else if (/(?:senior|E-[7-9]|chief|master|warrant|above center of mass|most qualified)/i.test(text)) experienceLevel = 'Senior';
 
-    // Score and rank recommendations
     const recommendations = [];
     for (const rec of careerRecommendations) {
       let matchScore = 0;
       let hasRequired = false;
-
-      // Check required skills
       for (const req of rec.requiredSkills) {
-        if (foundSkills[req]) {
-          hasRequired = true;
-          matchScore += 30;
-        }
+        if (foundSkills[req]) { hasRequired = true; matchScore += 30; }
       }
-
       if (!hasRequired) continue;
-
-      // Check bonus skills
       for (const bonus of rec.bonusSkills) {
-        if (foundSkills[bonus]) {
-          matchScore += 10;
-        }
+        if (foundSkills[bonus]) matchScore += 10;
       }
-
-      // Clearance bonus
       if (detectedClearance) matchScore += 8;
-
-      // Experience level bonus
       if (experienceLevel === 'Senior' || experienceLevel === 'Executive') matchScore += 6;
-
-      // Compute final match from base + bonus
       const finalMatch = Math.min(98, rec.baseMatch + matchScore - 30);
-
-      recommendations.push({
-        ...rec,
-        matchScore: finalMatch
-      });
+      recommendations.push({ ...rec, matchScore: finalMatch });
     }
-
-    // Sort by match score
     recommendations.sort((a, b) => b.matchScore - a.matchScore);
 
-    // Skill label map
     const skillLabelMap = {
-      sigint: 'SIGINT',
-      humint: 'HUMINT',
-      cyber: 'Cybersecurity',
-      intel: 'Intelligence Analysis',
-      geoint: 'GEOINT',
-      leadership: 'Team Leadership',
-      comms: 'Communications',
-      opsec: 'OPSEC / InfoSec',
-      ci: 'Counterintelligence',
-      crypto: 'Cryptologic / Linguist'
+      sigint: 'SIGINT', humint: 'HUMINT', cyber: 'Cybersecurity', intel: 'Intelligence Analysis',
+      geoint: 'GEOINT', leadership: 'Team Leadership', comms: 'Communications',
+      opsec: 'OPSEC / InfoSec', ci: 'Counterintelligence', crypto: 'Cryptologic / Linguist'
     };
 
     return {
@@ -622,73 +424,35 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
   function renderEPAResults(results) {
     const container = document.getElementById('epa-results');
     if (!container) return;
-
-    let html = '';
-
-    // Profile Analysis
-    html += '<div class="epa-profile">';
+    let html = '<div class="epa-profile">';
     html += '<div class="epa-profile-title">Your Profile Analysis</div>';
-
-    // Skills
     html += '<div class="epa-skills-tags">';
-    results.skills.forEach(skill => {
-      html += `<span class="epa-skill-tag">${skill}</span>`;
-    });
+    results.skills.forEach(skill => { html += `<span class="epa-skill-tag">${skill}</span>`; });
     html += '</div>';
-
-    // Meta badges
     html += '<div class="epa-meta-row">';
     html += `<span class="epa-meta-badge level-badge">${results.experienceLevel}</span>`;
-    if (results.clearance) {
-      html += `<span class="epa-meta-badge clearance-detected">🔒 ${results.clearance}</span>`;
-    }
-    html += '</div>';
-    html += '</div>';
-
-    // Recommendations
+    if (results.clearance) html += `<span class="epa-meta-badge clearance-detected">\u{1F512} ${results.clearance}</span>`;
+    html += '</div></div>';
     html += '<div class="epa-recommendations-title">Recommended Career Paths</div>';
-
     results.recommendations.forEach(rec => {
-      html += `<div class="epa-rec-card">`;
-      html += `<div class="epa-rec-header">`;
-      html += `<div class="epa-rec-title">${rec.title}</div>`;
-      html += `<div class="epa-rec-match">${rec.matchScore}% match</div>`;
-      html += `</div>`;
-      html += `<div class="epa-rec-salary">${rec.salary}</div>`;
-      html += `<ul class="epa-rec-reasons">`;
-      rec.reasons.forEach(r => {
-        html += `<li>${r}</li>`;
-      });
-      html += `</ul>`;
-      html += `<div class="epa-rec-companies">`;
-      rec.companies.forEach(c => {
-        html += `<span class="epa-company-badge">${c}</span>`;
-      });
-      html += `</div>`;
-      html += `<button class="btn-rec-translate" onclick="window._cpSwitchToTranslate('${rec.title}')">`;
-      html += `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`;
-      html += `Translate for this role`;
-      html += `</button>`;
-      html += `</div>`;
+      html += `<div class="epa-rec-card"><div class="epa-rec-header"><div class="epa-rec-title">${rec.title}</div><div class="epa-rec-match">${rec.matchScore}% match</div></div>`;
+      html += `<div class="epa-rec-salary">${rec.salary}</div><ul class="epa-rec-reasons">`;
+      rec.reasons.forEach(r => { html += `<li>${r}</li>`; });
+      html += `</ul><div class="epa-rec-companies">`;
+      rec.companies.forEach(c => { html += `<span class="epa-company-badge">${c}</span>`; });
+      html += `</div><button class="btn-rec-translate" onclick="window._cpSwitchToTranslate('${rec.title}')"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Translate for this role</button></div>`;
     });
-
     container.innerHTML = html;
   }
 
-  // Expose function to switch to translate tab
   window._cpSwitchToTranslate = function(roleTitle) {
-    // Switch to translate tab
     document.querySelectorAll('.resume-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.resume-tab-content').forEach(c => c.classList.remove('active'));
     document.querySelector('[data-tab="translate"]').classList.add('active');
     document.getElementById('tab-translate').classList.add('active');
-
-    // Update the input with context
     const inputEl = document.getElementById('resume-input');
     const epaInput = document.getElementById('epa-input');
-    if (inputEl && epaInput && epaInput.value) {
-      inputEl.value = epaInput.value;
-    }
+    if (inputEl && epaInput && epaInput.value) inputEl.value = epaInput.value;
   };
 
   // ============================================================
@@ -700,13 +464,8 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
     const moonIcon = document.getElementById('theme-icon-moon');
     const sunIcon = document.getElementById('theme-icon-sun');
     if (moonIcon && sunIcon) {
-      if (t === 'light') {
-        moonIcon.style.display = 'none';
-        sunIcon.style.display = 'block';
-      } else {
-        moonIcon.style.display = 'block';
-        sunIcon.style.display = 'none';
-      }
+      if (t === 'light') { moonIcon.style.display = 'none'; sunIcon.style.display = 'block'; }
+      else { moonIcon.style.display = 'block'; sunIcon.style.display = 'none'; }
     }
   }
 
@@ -717,30 +476,22 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
     mobileNavOpen = !mobileNavOpen;
     const nav = document.getElementById('mobile-nav');
     if (nav) {
-      if (mobileNavOpen) {
-        nav.classList.add('active');
-        setTimeout(() => nav.classList.add('open'), 10);
-      } else {
-        nav.classList.remove('open');
-        setTimeout(() => nav.classList.remove('active'), 300);
-      }
+      if (mobileNavOpen) { nav.classList.add('active'); setTimeout(() => nav.classList.add('open'), 10); }
+      else { nav.classList.remove('open'); setTimeout(() => nav.classList.remove('active'), 300); }
     }
   }
 
   function closeMobileNav() {
     mobileNavOpen = false;
     const nav = document.getElementById('mobile-nav');
-    if (nav) {
-      nav.classList.remove('open');
-      setTimeout(() => nav.classList.remove('active'), 300);
-    }
+    if (nav) { nav.classList.remove('open'); setTimeout(() => nav.classList.remove('active'), 300); }
   }
 
   // ============================================================
   // ACTIVE NAV on SCROLL
   // ============================================================
   function updateActiveNav() {
-    const sections = ['home', 'jobs', 'resume', 'salary', 'pathways', 'pricing'];
+    const sections = ['home', 'jobs', 'resume', 'salary', 'pathways', 'interview-prep', 'network-intel', 'pricing'];
     const scrollPos = window.scrollY + 80;
     let current = 'home';
     sections.forEach(id => {
@@ -757,16 +508,12 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
   // ANIMATED COUNTERS
   // ============================================================
   function animateCounter(el, end, duration, suffix, prefix) {
-    suffix = suffix || '';
-    prefix = prefix || '';
+    suffix = suffix || ''; prefix = prefix || '';
     let start = 0;
     const step = end / (duration / 16);
     function tick() {
       start += step;
-      if (start >= end) {
-        el.textContent = prefix + Math.round(end).toLocaleString() + suffix;
-        return;
-      }
+      if (start >= end) { el.textContent = prefix + Math.round(end).toLocaleString() + suffix; return; }
       el.textContent = prefix + Math.round(start).toLocaleString() + suffix;
       requestAnimationFrame(tick);
     }
@@ -780,13 +527,12 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
     const rect = statsSection.getBoundingClientRect();
     if (rect.top < window.innerHeight - 50) {
       countersAnimated = true;
-      const counters = [
+      [
         { id: 'counter-jobs', end: 55, suffix: 'K+', prefix: '' },
         { id: 'counter-sources', end: 6, suffix: '+', prefix: '' },
         { id: 'counter-salary', end: 131, suffix: 'K', prefix: '$' },
         { id: 'counter-speed', end: 47, suffix: 's', prefix: '' }
-      ];
-      counters.forEach(c => {
+      ].forEach(c => {
         const el = document.getElementById(c.id);
         if (el) animateCounter(el, c.end, 1200, c.suffix, c.prefix);
       });
@@ -824,10 +570,7 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
     const elements = document.querySelectorAll('.reveal:not(.visible)');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     elements.forEach(el => observer.observe(el));
@@ -843,21 +586,66 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
     if (!input) return;
     const email = input.value.trim();
     if (!email || !email.includes('@')) return;
-
     waitlistEmails.push(email);
     waitlistCount++;
-
-    document.querySelectorAll('.waitlist-counter .count').forEach(el => {
-      el.textContent = waitlistCount;
-    });
-
+    document.querySelectorAll('.waitlist-counter .count').forEach(el => { el.textContent = waitlistCount; });
     const successEl = form.nextElementSibling;
     if (successEl && successEl.classList.contains('waitlist-success')) {
-      form.style.display = 'none';
-      successEl.classList.add('show');
+      form.style.display = 'none'; successEl.classList.add('show');
     } else {
       form.innerHTML = '<div class="inline-waitlist-success"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> You\'re on the list! We\'ll notify you when access is ready.</div>';
     }
+  }
+
+  // ============================================================
+  // SOURCE FUSION CIRCLES
+  // ============================================================
+  function getHeatInfo(sourceCount) {
+    if (sourceCount >= 12) return { label: 'Trending', class: 'heat-trending', color: '#ef4444' };
+    if (sourceCount >= 8) return { label: 'Hot', class: 'heat-hot', color: '#f59e0b' };
+    if (sourceCount >= 4) return { label: 'Active', class: 'heat-active', color: '#00d4ff' };
+    return { label: '', class: '', color: '' };
+  }
+
+  function buildSourceCircles(job) {
+    const total = job.sources.length;
+    const maxShow = 8;
+    const shown = job.sources.slice(0, maxShow);
+    const extra = total - maxShow;
+    const heat = getHeatInfo(total);
+
+    let circlesHTML = '<div class="source-circles">';
+    shown.forEach(s => {
+      const color = sourceColors[s] || '#94a3b8';
+      const label = sourceLabels[s] || s;
+      circlesHTML += `<span class="source-circle" style="background:${color};" data-tip="${label}"></span>`;
+    });
+    if (extra > 0) {
+      circlesHTML += `<span class="source-circle source-circle-extra">+${extra}</span>`;
+    }
+    circlesHTML += '</div>';
+
+    let heatHTML = '';
+    if (heat.label) {
+      heatHTML = `<span class="heat-badge ${heat.class}">${heat.label}</span>`;
+    }
+
+    const sourceLinks = job.sources.slice(0, 5).map(s => {
+      const color = sourceColors[s] || '#94a3b8';
+      return `<a href="#" class="source-link-tag" style="color:${color};" onclick="event.preventDefault()">${sourceLabels[s] || s}</a>`;
+    }).join('');
+    const moreLinks = total > 5 ? `<span class="source-link-tag" style="color:var(--text-faint);">+${total - 5} more</span>` : '';
+
+    return `
+      <div class="source-fusion-compact">
+        <div class="source-fusion-row">
+          ${circlesHTML}
+          <span class="source-fusion-count">Found on ${total} source${total > 1 ? 's' : ''}</span>
+          ${heatHTML}
+        </div>
+        <div class="source-fusion-links">${sourceLinks}${moreLinks}</div>
+      </div>
+    `;
   }
 
   // ============================================================
@@ -869,9 +657,7 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
     return '#ef4444';
   }
 
-  function getCircumference(r) {
-    return 2 * Math.PI * r;
-  }
+  function getCircumference(r) { return 2 * Math.PI * r; }
 
   function getContractTimeColor(timeLeft) {
     if (timeLeft >= 3) return '#22c55e';
@@ -883,32 +669,6 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
     if (timeLeft >= 3) return 'Stable';
     if (timeLeft >= 1) return 'Watch';
     return 'Volatile';
-  }
-
-  function buildSourceFusionBar(job) {
-    const total = job.sources.length;
-    const segmentPct = 100 / total;
-    const segments = job.sources.map((s, i) => {
-      const color = sourceColors[s];
-      const isLast = i === total - 1;
-      const borderRadius = i === 0 ? '4px 0 0 4px' : (isLast ? '0 4px 4px 0' : '0');
-      return `<a href="#" class="source-segment" data-tooltip="${sourceLabels[s]}" style="width:${segmentPct}%;background:${color};border-radius:${borderRadius};" onclick="event.preventDefault()"></a>`;
-    }).join('');
-    const sourceLinks = job.sources.map(s => {
-      const color = sourceColors[s];
-      return `<a href="#" class="source-link-tag" style="color:${color};" onclick="event.preventDefault()">${sourceLabels[s]}</a>`;
-    }).join('');
-    return `
-      <div class="source-fusion">
-        <div class="source-fusion-header">
-          <span class="sources-label">Source Fusion <span class="info-tooltip" data-tip="Like Ground News: see which platforms posted this job and where it originally came from.">&#9432;</span></span>
-          <span class="source-count">${total} source${total > 1 ? 's' : ''}</span>
-        </div>
-        <div class="source-fusion-bar">${segments}</div>
-        <div class="source-fusion-links">${sourceLinks}</div>
-        <div class="root-source">Hired by: <strong>${job.rootSource}</strong></div>
-      </div>
-    `;
   }
 
   function buildContractInfo(job) {
@@ -951,13 +711,21 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
     const offset = circ - (job.score / 100) * circ;
     const clearanceClass = `clearance-${job.clearanceClass}`;
     const badgesHTML = [
-      job.badges.includes('verified') ? '<span class="job-badge badge-verified"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Verified Clearance</span>' : '',
-      job.badges.includes('hot') ? '<span class="job-badge badge-hot"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>Active &lt;24hrs</span>' : '',
-      job.badges.includes('multi') ? '<span class="job-badge badge-multi">Multiple Sources</span>' : ''
+      job.badges.includes('verified') ? '<span class="job-badge badge-verified"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Verified</span>' : '',
+      job.badges.includes('hot') ? '<span class="job-badge badge-hot"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>Active &lt;24hrs</span>' : ''
     ].filter(Boolean).join('');
     const salaryPct = job.realPct;
-    const sourceFusionHTML = buildSourceFusionBar(job);
+    const sourcesHTML = buildSourceCircles(job);
     const contractHTML = buildContractInfo(job);
+
+    const loggedInExtras = isLoggedIn ? `
+      <div class="job-card-actions">
+        <button class="job-action-btn" onclick="event.stopPropagation()"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg> Save</button>
+        <button class="job-action-btn" onclick="event.stopPropagation()"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Practice Interview</button>
+        <button class="job-action-btn" onclick="event.stopPropagation()"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg> Network</button>
+      </div>
+    ` : '';
+
     return `
       <div class="job-card reveal" data-id="${job.id}" data-clearance="${job.clearanceClass}" data-location="${job.locationKey}" data-score="${job.score}">
         <div class="job-card-header">
@@ -987,11 +755,11 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
                 </svg>
                 <div class="score-ring-num">${job.score}</div>
               </div>
-              <div class="score-label">CP Score <span class="info-tooltip" data-tip="Our proprietary score (0-100) measuring job transparency, salary accuracy, source reliability, and clearance verification.">&#9432;</span></div>
+              <div class="score-label">CP Score</div>
             </div>
           </div>
         </div>
-        ${sourceFusionHTML}
+        ${sourcesHTML}
         ${contractHTML}
         <div class="salary-panel">
           <div class="salary-panel-row">
@@ -999,7 +767,7 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
             <span class="salary-posted-val">${job.postedSalary}</span>
           </div>
           <div class="salary-panel-row">
-            <span class="salary-row-label">Real Median <span class="info-tooltip" data-tip="Based on actual reported salaries from cleared professionals, not just the posted range.">&#9432;</span></span>
+            <span class="salary-row-label">Real Median</span>
             <span class="salary-real-val">${job.realSalary} median</span>
           </div>
           <div class="salary-comparison-track">
@@ -1007,6 +775,7 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
           </div>
         </div>
         ${badgesHTML ? `<div class="job-badges">${badgesHTML}</div>` : ''}
+        ${loggedInExtras}
       </div>
     `;
   }
@@ -1048,12 +817,8 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
       if (clearanceFilters.length > 0 && !clearanceFilters.includes(job.clearanceClass)) show = false;
       if (locationFilters.length > 0 && !locationFilters.includes(job.locationKey)) show = false;
       if (job.score < scoreMin) show = false;
-      if (show) {
-        card.classList.remove('hidden');
-        visible++;
-      } else {
-        card.classList.add('hidden');
-      }
+      if (show) { card.classList.remove('hidden'); visible++; }
+      else { card.classList.add('hidden'); }
     });
     updateJobsCount(visible);
     const scoreValEl = document.getElementById('filter-score-val');
@@ -1065,9 +830,7 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
       cb.addEventListener('change', applyFilters);
     });
     const scoreSlider = document.getElementById('filter-score');
-    if (scoreSlider) {
-      scoreSlider.addEventListener('input', applyFilters);
-    }
+    if (scoreSlider) scoreSlider.addEventListener('input', applyFilters);
     const resetBtn = document.getElementById('reset-filters');
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
@@ -1098,14 +861,8 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
     el.classList.add('typing');
     let i = 0;
     function type() {
-      if (i < text.length) {
-        el.textContent += text[i];
-        i++;
-        setTimeout(type, speed);
-      } else {
-        el.classList.remove('typing');
-        if (onDone) onDone();
-      }
+      if (i < text.length) { el.textContent += text[i]; i++; setTimeout(type, speed); }
+      else { el.classList.remove('typing'); if (onDone) onDone(); }
     }
     type();
   }
@@ -1115,9 +872,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
     const outputEl = document.getElementById('resume-output');
     const translateBtn = document.getElementById('translate-btn');
     const timeEl = document.getElementById('translate-time');
-
     if (inputEl) inputEl.value = militaryInput;
-
     if (translateBtn && outputEl) {
       translateBtn.addEventListener('click', () => {
         if (resumeTranslating) return;
@@ -1129,10 +884,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
           typeText(outputEl, contractorOutput, 12, () => {
             resumeTranslating = false;
             translateBtn.classList.remove('loading');
-            translateBtn.innerHTML = `
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-              Translate Again
-            `;
+            translateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> Translate Again';
             if (timeEl) {
               const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
               timeEl.innerHTML = `Translated in <span>${elapsed}s</span>`;
@@ -1149,14 +901,11 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
   function setupResumeTabs() {
     const tabs = document.querySelectorAll('.resume-tab');
     const contents = document.querySelectorAll('.resume-tab-content');
-
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         const target = tab.getAttribute('data-tab');
-
         tabs.forEach(t => t.classList.remove('active'));
         contents.forEach(c => c.classList.remove('active'));
-
         tab.classList.add('active');
         const content = document.getElementById('tab-' + target);
         if (content) content.classList.add('active');
@@ -1171,45 +920,35 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
     const analyzeBtn = document.getElementById('epa-analyze-btn');
     const demoBtn = document.getElementById('epa-demo-btn');
     const epaInput = document.getElementById('epa-input');
-
     if (demoBtn && epaInput) {
       demoBtn.addEventListener('click', () => {
         epaInput.value = demoBragSheet;
-        // Auto-select BRAG Sheet type
         const typeSelect = document.getElementById('epa-type-select');
         if (typeSelect) typeSelect.value = 'brag';
       });
     }
-
     if (analyzeBtn && epaInput) {
       analyzeBtn.addEventListener('click', () => {
         const text = epaInput.value.trim();
         if (!text) return;
-
         analyzeBtn.classList.add('loading');
         analyzeBtn.textContent = 'Analyzing...';
-
         setTimeout(() => {
           const results = analyzeEPA(text);
           renderEPAResults(results);
-
           analyzeBtn.classList.remove('loading');
-          analyzeBtn.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            Re-Analyze
-          `;
+          analyzeBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Re-Analyze';
         }, 600);
       });
     }
   }
 
   // ============================================================
-  // MILITARY JOB CODES — Branch Tabs + Grid
+  // MILITARY JOB CODES
   // ============================================================
   function renderJobCodes(branch) {
     const grid = document.getElementById('jobcode-grid');
     if (!grid) return;
-
     const codes = jobCodeDatabase[branch] || [];
     grid.innerHTML = codes.map(jc => `
       <div class="jobcode-card">
@@ -1218,7 +957,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
           <span class="jobcode-salary">${jc.salary}</span>
         </div>
         <div class="jobcode-mil-title">${jc.title}</div>
-        <div class="jobcode-arrow">→ Contractor Equivalent</div>
+        <div class="jobcode-arrow">\u2192 Contractor Equivalent</div>
         <div class="jobcode-civ-title">${jc.civTitle}</div>
         <div class="jobcode-skills">
           ${jc.skills.map(s => `<span class="jobcode-skill-tag">${s}</span>`).join('')}
@@ -1236,8 +975,6 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
         renderJobCodes(tab.getAttribute('data-branch'));
       });
     });
-
-    // Render default (Army)
     renderJobCodes('army');
   }
 
@@ -1248,10 +985,162 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
     const btn = document.getElementById('mobile-filter-btn');
     const sidebar = document.getElementById('filter-sidebar');
     if (btn && sidebar) {
+      btn.addEventListener('click', () => { sidebar.classList.toggle('mobile-open'); });
+    }
+  }
+
+  // ============================================================
+  // AUTH MODAL
+  // ============================================================
+  function setupAuthModal() {
+    const modal = document.getElementById('auth-modal');
+    if (!modal) return;
+
+    // Open modal triggers
+    document.querySelectorAll('[data-auth-trigger]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const mode = btn.getAttribute('data-auth-mode') || 'signup';
+        openAuthModal(mode);
+      });
+    });
+
+    // Close modal
+    modal.querySelector('.auth-modal-close')?.addEventListener('click', closeAuthModal);
+    modal.querySelector('.auth-modal-backdrop')?.addEventListener('click', closeAuthModal);
+
+    // Toggle between login/signup
+    modal.querySelector('.auth-toggle-link')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      const heading = modal.querySelector('.auth-modal-heading');
+      const toggleText = modal.querySelector('.auth-toggle-text');
+      const toggleLink = modal.querySelector('.auth-toggle-link');
+      const submitBtn = modal.querySelector('.auth-submit-btn');
+      if (heading.textContent.includes('Sign up')) {
+        heading.textContent = 'Log in to ClearedPath';
+        toggleText.textContent = "Don't have an account? ";
+        toggleLink.textContent = 'Sign up';
+        submitBtn.textContent = 'Log In';
+      } else {
+        heading.textContent = 'Sign up for ClearedPath';
+        toggleText.textContent = 'Already have an account? ';
+        toggleLink.textContent = 'Log in';
+        submitBtn.textContent = 'Create Account';
+      }
+    });
+
+    // Demo form submit
+    modal.querySelector('.auth-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      demoLogin();
+    });
+
+    // LinkedIn / Google demo buttons
+    modal.querySelectorAll('.auth-oauth-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        sidebar.classList.toggle('mobile-open');
+        demoLogin();
+      });
+    });
+  }
+
+  function openAuthModal(mode) {
+    const modal = document.getElementById('auth-modal');
+    if (!modal) return;
+    const heading = modal.querySelector('.auth-modal-heading');
+    const toggleText = modal.querySelector('.auth-toggle-text');
+    const toggleLink = modal.querySelector('.auth-toggle-link');
+    const submitBtn = modal.querySelector('.auth-submit-btn');
+    if (mode === 'login') {
+      heading.textContent = 'Log in to ClearedPath';
+      toggleText.textContent = "Don't have an account? ";
+      toggleLink.textContent = 'Sign up';
+      submitBtn.textContent = 'Log In';
+    } else {
+      heading.textContent = 'Sign up for ClearedPath';
+      toggleText.textContent = 'Already have an account? ';
+      toggleLink.textContent = 'Log in';
+      submitBtn.textContent = 'Create Account';
+    }
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeAuthModal() {
+    const modal = document.getElementById('auth-modal');
+    if (!modal) return;
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function demoLogin() {
+    isLoggedIn = true;
+    closeAuthModal();
+
+    // Update header
+    const headerActions = document.querySelector('.header-actions');
+    const loginLink = document.getElementById('header-login');
+    const signupBtn = document.getElementById('header-signup');
+    const userMenu = document.getElementById('header-user-menu');
+    if (loginLink) loginLink.style.display = 'none';
+    if (signupBtn) signupBtn.style.display = 'none';
+    if (userMenu) userMenu.style.display = 'flex';
+
+    // Re-render jobs with extra buttons
+    renderJobs();
+  }
+
+  function demoLogout() {
+    isLoggedIn = false;
+    const loginLink = document.getElementById('header-login');
+    const signupBtn = document.getElementById('header-signup');
+    const userMenu = document.getElementById('header-user-menu');
+    const dropdown = document.getElementById('user-dropdown');
+    if (loginLink) loginLink.style.display = '';
+    if (signupBtn) signupBtn.style.display = '';
+    if (userMenu) userMenu.style.display = 'none';
+    if (dropdown) dropdown.classList.remove('active');
+    renderJobs();
+  }
+
+  function setupUserMenu() {
+    const avatar = document.getElementById('user-avatar-btn');
+    const dropdown = document.getElementById('user-dropdown');
+    const logoutBtn = document.getElementById('logout-btn');
+    if (avatar && dropdown) {
+      avatar.addEventListener('click', () => {
+        dropdown.classList.toggle('active');
+      });
+      document.addEventListener('click', (e) => {
+        if (!avatar.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.classList.remove('active');
+        }
       });
     }
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        demoLogout();
+      });
+    }
+  }
+
+  // ============================================================
+  // INTERVIEW PREP TEMPLATE TOGGLE
+  // ============================================================
+  function setupInterviewDemo() {
+    // Toggle template messages in network intel section
+    const templateBtns = document.querySelectorAll('.template-btn');
+    templateBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        templateBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const templateType = btn.getAttribute('data-template');
+        document.querySelectorAll('.template-message').forEach(msg => {
+          msg.classList.remove('active');
+          if (msg.getAttribute('data-template') === templateType) msg.classList.add('active');
+        });
+      });
+    });
   }
 
   // ============================================================
@@ -1267,37 +1156,26 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
   // INIT
   // ============================================================
   function init() {
-    // Theme
     setTheme('dark');
     const themeBtn = document.getElementById('theme-toggle');
-    if (themeBtn) {
-      themeBtn.addEventListener('click', () => setTheme(theme === 'dark' ? 'light' : 'dark'));
-    }
+    if (themeBtn) themeBtn.addEventListener('click', () => setTheme(theme === 'dark' ? 'light' : 'dark'));
 
-    // Mobile nav
     const hamburger = document.getElementById('hamburger');
     if (hamburger) hamburger.addEventListener('click', toggleMobileNav);
+    document.querySelectorAll('.mobile-nav-link').forEach(link => { link.addEventListener('click', closeMobileNav); });
 
-    // Mobile nav links
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      link.addEventListener('click', closeMobileNav);
-    });
-
-    // All waitlist forms
     setupWaitlistForms();
-
-    // Jobs
     renderJobs();
     setupFilters();
     setupResumeTranslator();
     setupMobileFilter();
-
-    // New features
     setupResumeTabs();
     setupEPAAnalyzer();
     setupBranchTabs();
+    setupAuthModal();
+    setupUserMenu();
+    setupInterviewDemo();
 
-    // Scroll
     window.addEventListener('scroll', () => {
       updateActiveNav();
       startCounters();
@@ -1305,10 +1183,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
     }, { passive: true });
     updateActiveNav();
 
-    // Reveal setup
     setupReveal();
-
-    // Lucide icons init
     if (window.lucide) lucide.createIcons();
   }
 
