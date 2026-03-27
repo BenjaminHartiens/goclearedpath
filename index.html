@@ -64,6 +64,7 @@
       <a href="#jobs" class="nav-link">Jobs</a>
       <a href="#resume" class="nav-link">Resume</a>
       <a href="#salary" class="nav-link">Salary</a>
+      <a href="#pathways" class="nav-link">Pathways</a>
       <a href="#pricing" class="nav-link">Pricing</a>
     </nav>
 
@@ -89,6 +90,7 @@
   <a href="#jobs" class="mobile-nav-link">Jobs</a>
   <a href="#resume" class="mobile-nav-link">Resume Translator</a>
   <a href="#salary" class="mobile-nav-link">Salary Explorer</a>
+  <a href="#pathways" class="mobile-nav-link">Career Pathways</a>
   <a href="#pricing" class="mobile-nav-link">Pricing</a>
   <a href="#home" class="btn-primary" style="margin-top: 1rem; text-align:center; justify-content:center;">Join Waitlist</a>
 </nav>
@@ -467,7 +469,7 @@
 </section>
 
 <!-- ============================================================
-     RESUME SECTION
+     RESUME SECTION — Now with 3 Tabs
      ============================================================ -->
 <section id="resume" aria-label="AI Resume Translator">
   <div class="container">
@@ -475,41 +477,136 @@
     <h2 class="section-title">Resume Translator <span class="info-tooltip" data-tip="Paste your military experience and our AI converts military jargon into contractor-friendly language.">&#9432;</span></h2>
     <p class="section-sub">Military language → contractor-ready resume copy in under a minute. Stop losing interviews to jargon.</p>
 
-    <!-- Split-screen translator -->
-    <div class="resume-split">
-      <!-- Left: Input -->
-      <div class="resume-panel">
-        <div class="resume-panel-header">
-          <span class="resume-panel-title">Your Military Experience</span>
+    <!-- Tab Navigation -->
+    <div class="resume-tabs">
+      <button class="resume-tab active" data-tab="translate">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Translate Resume
+      </button>
+      <button class="resume-tab" data-tab="epa">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        EPA / BRAG Sheet
+      </button>
+      <button class="resume-tab" data-tab="jobcodes">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+        Military Job Codes
+      </button>
+    </div>
+
+    <!-- Tab 1: Translate Resume (existing) -->
+    <div class="resume-tab-content active" id="tab-translate">
+      <div class="resume-split">
+        <!-- Left: Input -->
+        <div class="resume-panel">
+          <div class="resume-panel-header">
+            <span class="resume-panel-title">Your Military Experience</span>
+          </div>
+          <textarea
+            id="resume-input"
+            class="resume-textarea"
+            placeholder="Paste your military duties, OER bullet points, or NCOER achievements here..."
+            aria-label="Military experience input"
+          ></textarea>
+          <div class="translate-footer">
+            <button id="translate-btn" class="btn-translate">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Translate Now
+            </button>
+            <span class="translate-time" id="translate-time">Avg: <span>47s</span></span>
+          </div>
         </div>
-        <textarea
-          id="resume-input"
-          class="resume-textarea"
-          placeholder="Paste your military duties, OER bullet points, or NCOER achievements here..."
-          aria-label="Military experience input"
-        ></textarea>
-        <div class="translate-footer">
-          <button id="translate-btn" class="btn-translate">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            Translate Now
-          </button>
-          <span class="translate-time" id="translate-time">Avg: <span>47s</span></span>
+
+        <!-- Right: Output -->
+        <div class="resume-panel">
+          <div class="resume-panel-header">
+            <span class="resume-panel-title">Contractor-Ready Resume</span>
+            <span class="premium-badge">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              AI Pro
+            </span>
+          </div>
+          <div id="resume-output" class="resume-output">
+            <span class="resume-output-placeholder">Translated output will appear here. Click "Translate Now" to run the demo.</span>
+          </div>
+          <div style="font-size:var(--text-xs);color:var(--text-faint);">Pro tier unlocks: unlimited translations, custom tone, ATS optimization, LinkedIn import</div>
         </div>
       </div>
+    </div>
 
-      <!-- Right: Output -->
-      <div class="resume-panel">
-        <div class="resume-panel-header">
-          <span class="resume-panel-title">Contractor-Ready Resume</span>
-          <span class="premium-badge">
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            AI Pro
-          </span>
+    <!-- Tab 2: EPA / BRAG Sheet Analyzer -->
+    <div class="resume-tab-content" id="tab-epa">
+      <div class="epa-split">
+        <!-- Left: Input -->
+        <div class="epa-input-panel">
+          <div class="epa-panel-header">
+            <span class="resume-panel-title">Evaluation Analyzer</span>
+          </div>
+
+          <div class="epa-select-group">
+            <label for="epa-type-select">Evaluation Type</label>
+            <select id="epa-type-select" class="epa-select">
+              <option value="ncoer">NCOER (Army)</option>
+              <option value="oer">OER (Army/Officer)</option>
+              <option value="epr">EPR / OPR (Air Force)</option>
+              <option value="eval">EVAL / FITREP (Navy/Marines)</option>
+              <option value="brag" selected>BRAG Sheet</option>
+            </select>
+          </div>
+
+          <textarea
+            id="epa-input"
+            class="resume-textarea epa-textarea"
+            placeholder="Paste your evaluation bullets, BRAG sheet content, or performance report here..."
+            aria-label="EPA / BRAG Sheet input"
+          ></textarea>
+          <p class="epa-helper">Don't worry about formatting — just paste the content as-is. We'll parse it.</p>
+
+          <div class="epa-actions">
+            <button id="epa-analyze-btn" class="btn-translate">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Analyze &amp; Recommend
+            </button>
+            <button id="epa-demo-btn" class="btn-epa-demo">
+              Load Demo BRAG Sheet
+            </button>
+          </div>
         </div>
-        <div id="resume-output" class="resume-output">
-          <span class="resume-output-placeholder">Translated output will appear here. Click "Translate Now" to run the demo.</span>
+
+        <!-- Right: Results -->
+        <div class="epa-results-panel" id="epa-results">
+          <div class="epa-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-faint);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            <p>Paste your evaluation content and click <strong>"Analyze &amp; Recommend"</strong> to see matched career paths, salaries, and hiring companies.</p>
+            <p style="color:var(--accent-cyan);font-size:var(--text-xs);margin-top:var(--space-2);">Or click "Load Demo BRAG Sheet" to see it in action.</p>
+          </div>
         </div>
-        <div style="font-size:var(--text-xs);color:var(--text-faint);">Pro tier unlocks: unlimited translations, custom tone, ATS optimization, LinkedIn import</div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Military Job Codes -->
+    <div class="resume-tab-content" id="tab-jobcodes">
+      <!-- Branch Selector Tabs -->
+      <div class="branch-tabs" id="branch-tabs">
+        <button class="branch-tab active" data-branch="army" style="--branch-color: #4b5320;">
+          <span class="branch-icon">★</span> Army
+        </button>
+        <button class="branch-tab" data-branch="navy" style="--branch-color: #000080;">
+          <span class="branch-icon">⚓</span> Navy
+        </button>
+        <button class="branch-tab" data-branch="airforce" style="--branch-color: #00308f;">
+          <span class="branch-icon">✦</span> Air Force
+        </button>
+        <button class="branch-tab" data-branch="marines" style="--branch-color: #c62828;">
+          <span class="branch-icon">⚔</span> Marines
+        </button>
+        <button class="branch-tab" data-branch="spaceforce" style="--branch-color: #1c2951;">
+          <span class="branch-icon">◆</span> Space Force
+        </button>
+      </div>
+
+      <!-- Job Code Grid - populated by JS -->
+      <div class="jobcode-grid" id="jobcode-grid">
+        <!-- Populated by JS -->
       </div>
     </div>
 
@@ -715,6 +812,243 @@
 </section>
 
 <!-- ============================================================
+     CAREER PATHWAYS SECTION (NEW)
+     ============================================================ -->
+<section id="pathways" aria-label="Career Pathways">
+  <div class="container">
+    <p class="section-label">Career Pathways</p>
+    <h2 class="section-title">Beyond the Beltway.<br>Your clearance opens doors everywhere.</h2>
+    <p class="section-sub">Top tech and cybersecurity companies actively recruit cleared professionals. Here's where your skills take you.</p>
+
+    <!-- Tier 1: Big Tech Featured Cards -->
+    <div class="pathway-tier1">
+      <!-- Microsoft -->
+      <div class="pathway-card pathway-large reveal" style="--company-color: #00a4ef;">
+        <div class="pathway-card-header">
+          <div class="pathway-company-name">Microsoft</div>
+          <div class="pathway-tags">
+            <span class="pathway-tag tag-skillbridge">SkillBridge Partner</span>
+            <span class="pathway-tag tag-veteran">Veteran Program</span>
+            <span class="pathway-tag tag-cleared">TS/SCI Cleared</span>
+          </div>
+        </div>
+        <div class="pathway-card-body">
+          <div class="pathway-program">
+            <strong>MSSA Program:</strong> 17-week cloud training for veterans
+          </div>
+          <div class="pathway-division">Microsoft Government · Azure Government Cloud</div>
+          <div class="pathway-roles">
+            <span>Cloud Security Engineer</span>
+            <span>Security Architect</span>
+            <span>Threat Intelligence Analyst</span>
+          </div>
+          <div class="pathway-salary">$130K – $220K+ <span class="pathway-stock">(with stock)</span></div>
+          <div class="pathway-locations">Reston, VA · Redmond, WA</div>
+        </div>
+        <a href="https://careers.microsoft.com/military" target="_blank" rel="noopener noreferrer" class="pathway-cta">
+          Explore Roles →
+        </a>
+      </div>
+
+      <!-- Google / Mandiant -->
+      <div class="pathway-card pathway-large reveal reveal-delay-1" style="--company-color: #4285f4;">
+        <div class="pathway-card-header">
+          <div class="pathway-company-name">Google Cloud / Mandiant</div>
+          <div class="pathway-tags">
+            <span class="pathway-tag tag-skillbridge">SkillBridge Partner</span>
+            <span class="pathway-tag tag-veteran">Veteran Program</span>
+            <span class="pathway-tag tag-cleared">TS/SCI Cleared</span>
+          </div>
+        </div>
+        <div class="pathway-card-body">
+          <div class="pathway-program">
+            <strong>Launchpad for Veterans:</strong> Free cloud certification + Mandiant consulting
+          </div>
+          <div class="pathway-division">Google Public Sector · Mandiant (IR & Threat Intel)</div>
+          <div class="pathway-roles">
+            <span>Security Consultant</span>
+            <span>Threat Intel Analyst</span>
+            <span>Red Team Operator</span>
+          </div>
+          <div class="pathway-salary">$140K – $250K+ <span class="pathway-stock">(with stock)</span></div>
+          <div class="pathway-locations">DC Metro</div>
+        </div>
+        <a href="https://cloud.google.com/veterans" target="_blank" rel="noopener noreferrer" class="pathway-cta">
+          Explore Roles →
+        </a>
+      </div>
+
+      <!-- CrowdStrike -->
+      <div class="pathway-card pathway-large reveal reveal-delay-2" style="--company-color: #ff0000;">
+        <div class="pathway-card-header">
+          <div class="pathway-company-name">CrowdStrike</div>
+          <div class="pathway-tags">
+            <span class="pathway-tag tag-skillbridge">SkillBridge Partner</span>
+            <span class="pathway-tag tag-veteran">Veteran Program</span>
+            <span class="pathway-tag tag-cleared">TS/SCI Cleared</span>
+          </div>
+        </div>
+        <div class="pathway-card-body">
+          <div class="pathway-program">
+            <strong>Veteran Hiring Initiative:</strong> CrowdStrike University
+          </div>
+          <div class="pathway-division">Endpoint Protection · Threat Intel · Incident Response</div>
+          <div class="pathway-roles">
+            <span>Threat Hunter</span>
+            <span>Incident Responder</span>
+            <span>Overwatch Analyst</span>
+          </div>
+          <div class="pathway-salary">$120K – $200K+ <span class="pathway-stock">(with stock)</span></div>
+          <div class="pathway-locations">Remote / Austin, TX</div>
+        </div>
+        <a href="https://crowdstrike.com/careers" target="_blank" rel="noopener noreferrer" class="pathway-cta">
+          Explore Roles →
+        </a>
+      </div>
+    </div>
+
+    <!-- Tier 2: Cyber Leaders -->
+    <div class="pathway-tier2">
+      <!-- Palo Alto Networks -->
+      <div class="pathway-card pathway-medium reveal" style="--company-color: #fa582d;">
+        <div class="pathway-card-header">
+          <div class="pathway-company-name">Palo Alto Networks</div>
+          <div class="pathway-tags">
+            <span class="pathway-tag tag-skillbridge">SkillBridge</span>
+            <span class="pathway-tag tag-veteran">Vet Friendly</span>
+          </div>
+        </div>
+        <div class="pathway-roles">
+          <span>Security Engineer</span>
+          <span>Unit 42 Consultant</span>
+          <span>Solutions Architect</span>
+        </div>
+        <div class="pathway-salary">$125K – $210K+</div>
+      </div>
+
+      <!-- Cloudflare -->
+      <div class="pathway-card pathway-medium reveal reveal-delay-1" style="--company-color: #f38020;">
+        <div class="pathway-card-header">
+          <div class="pathway-company-name">Cloudflare</div>
+          <div class="pathway-tags">
+            <span class="pathway-tag tag-remote">Remote Available</span>
+          </div>
+        </div>
+        <div class="pathway-roles">
+          <span>Security Engineer</span>
+          <span>Solutions Engineer</span>
+          <span>DDoS Mitigation</span>
+        </div>
+        <div class="pathway-salary">$120K – $190K+</div>
+      </div>
+
+      <!-- AWS -->
+      <div class="pathway-card pathway-medium reveal reveal-delay-2" style="--company-color: #ff9900;">
+        <div class="pathway-card-header">
+          <div class="pathway-company-name">Amazon Web Services</div>
+          <div class="pathway-tags">
+            <span class="pathway-tag tag-skillbridge">SkillBridge</span>
+            <span class="pathway-tag tag-veteran">Vet Program</span>
+          </div>
+        </div>
+        <div class="pathway-roles">
+          <span>Cloud Security Architect</span>
+          <span>Solutions Architect</span>
+          <span>Security Specialist</span>
+        </div>
+        <div class="pathway-salary">$130K – $230K+ <span class="pathway-stock">(with stock)</span></div>
+      </div>
+    </div>
+
+    <!-- Tier 3: Also Hiring -->
+    <div class="pathway-also-hiring">
+      <div class="pathway-also-label">Also Hiring Cleared Professionals</div>
+      <div class="pathway-badges-row">
+        <span class="pathway-badge-compact">Raytheon/RTX</span>
+        <span class="pathway-badge-compact">Splunk (Cisco)</span>
+        <span class="pathway-badge-compact">Fortinet</span>
+        <span class="pathway-badge-compact">Zscaler</span>
+        <span class="pathway-badge-compact">SentinelOne</span>
+        <span class="pathway-badge-compact">Tenable</span>
+        <span class="pathway-badge-compact">Recorded Future</span>
+        <span class="pathway-badge-compact">Trellix</span>
+        <span class="pathway-badge-compact pathway-badge-gov">CISA</span>
+      </div>
+    </div>
+
+    <!-- Career Tracks Progression -->
+    <div class="career-tracks">
+      <p class="section-label" style="margin-top:var(--space-10);">Career Tracks</p>
+      <h3 class="section-title" style="font-size:var(--text-2xl);">Your progression path</h3>
+
+      <div class="career-tracks-table">
+        <div class="career-track-header">
+          <div class="ct-col ct-label-col">Track</div>
+          <div class="ct-col ct-entry">Entry<br><span>$90K–$130K</span></div>
+          <div class="ct-col ct-mid">Mid<br><span>$130K–$180K</span></div>
+          <div class="ct-col ct-senior">Senior<br><span>$180K–$270K+</span></div>
+        </div>
+
+        <div class="career-track-row reveal">
+          <div class="ct-col ct-label-col">
+            <span class="ct-track-name" style="color:#ef4444;">Offensive Cyber</span>
+          </div>
+          <div class="ct-col ct-entry">Pen Tester / Red Team</div>
+          <div class="ct-arrow">→</div>
+          <div class="ct-col ct-mid">Senior Red Team Operator</div>
+          <div class="ct-arrow">→</div>
+          <div class="ct-col ct-senior">Red Team Lead / Principal</div>
+        </div>
+
+        <div class="career-track-row reveal reveal-delay-1">
+          <div class="ct-col ct-label-col">
+            <span class="ct-track-name" style="color:#3b82f6;">Defensive Cyber</span>
+          </div>
+          <div class="ct-col ct-entry">SOC Analyst / IR</div>
+          <div class="ct-arrow">→</div>
+          <div class="ct-col ct-mid">Senior IR / Threat Hunter</div>
+          <div class="ct-arrow">→</div>
+          <div class="ct-col ct-senior">DFIR Director / CISO</div>
+        </div>
+
+        <div class="career-track-row reveal reveal-delay-2">
+          <div class="ct-col ct-label-col">
+            <span class="ct-track-name" style="color:#f59e0b;">Cloud Security</span>
+          </div>
+          <div class="ct-col ct-entry">Cloud Security Engineer</div>
+          <div class="ct-arrow">→</div>
+          <div class="ct-col ct-mid">Senior Cloud Architect</div>
+          <div class="ct-arrow">→</div>
+          <div class="ct-col ct-senior">Principal Architect / VP</div>
+        </div>
+
+        <div class="career-track-row reveal reveal-delay-3">
+          <div class="ct-col ct-label-col">
+            <span class="ct-track-name" style="color:#22c55e;">Threat Intel</span>
+          </div>
+          <div class="ct-col ct-entry">Intel Analyst</div>
+          <div class="ct-arrow">→</div>
+          <div class="ct-col ct-mid">Senior Threat Analyst</div>
+          <div class="ct-arrow">→</div>
+          <div class="ct-col ct-senior">CTI Director</div>
+        </div>
+
+        <div class="career-track-row reveal reveal-delay-4">
+          <div class="ct-col ct-label-col">
+            <span class="ct-track-name" style="color:#a855f7;">GRC / Compliance</span>
+          </div>
+          <div class="ct-col ct-entry">Risk Analyst</div>
+          <div class="ct-arrow">→</div>
+          <div class="ct-col ct-mid">Compliance Manager</div>
+          <div class="ct-arrow">→</div>
+          <div class="ct-col ct-senior">CISO / VP Security</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      PRICING SECTION
      ============================================================ -->
 <section id="pricing" aria-label="Pricing">
@@ -808,7 +1142,7 @@
         <button class="btn-pricing btn-pricing-pro">Start Free Trial</button>
       </div>
 
-      <!-- Tactician Tier — NEW (price anchor) -->
+      <!-- Tactician Tier -->
       <div class="pricing-card reveal reveal-delay-2">
         <div class="pricing-tier-badge badge-tactician">Tactician</div>
         <div class="pricing-name">Advanced</div>
@@ -1013,6 +1347,7 @@
           <a href="#jobs">Job Feed</a>
           <a href="#resume">Resume Translator</a>
           <a href="#salary">Salary Explorer</a>
+          <a href="#pathways">Career Pathways</a>
           <a href="#pricing">Pricing</a>
         </div>
         <div class="footer-link-group">
