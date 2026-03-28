@@ -319,7 +319,7 @@
 
 .hero-inner {
   position: relative; z-index: 2;
-  padding: var(--space-14, 3.5rem) 0 var(--space-14, 3.5rem);
+  padding: var(--space-14, 3.5rem) 0 var(--space-6);
 }
 
 .hero-badge {
@@ -407,7 +407,7 @@
   gap: var(--space-1); padding: var(--space-6) 0;
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
-  margin-top: var(--space-10);
+  margin-top: var(--space-6);
 }
 @media (max-width: 768px) { .stats-row { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); } }
 
@@ -1236,7 +1236,7 @@ section { scroll-margin-top: 60px; }
 /* Stats section standalone */
 .stats-section {
   background: var(--bg-darkest);
-  padding: 0 0 var(--space-10);
+  padding: 0 0 var(--space-6);
 }
 
 /* Landing feature cards — clean grid */
