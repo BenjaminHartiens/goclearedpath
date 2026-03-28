@@ -579,6 +579,17 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
   // ============================================================
   // WAITLIST FORM
   // ============================================================
+  // ── WAITLIST CONFIG ──────────────────────────────────────────
+  // TO ACTIVATE REAL EMAIL COLLECTION:
+  // 1. Go to https://formspree.io and create a free account
+  // 2. Create a new form → copy the form ID (e.g., "xwpkgjqr")
+  // 3. Replace 'YOUR_FORMSPREE_ID' below with your actual form ID
+  // 4. All signups will be emailed to you AND stored in Formspree dashboard
+  // ─────────────────────────────────────────────────────────────
+  const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'; // <-- REPLACE THIS
+  const FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_ID}`;
+  const USE_REAL_COLLECTION = FORMSPREE_ID !== 'YOUR_FORMSPREE_ID';
+
   function handleWaitlistSubmit(e) {
     e.preventDefault();
     const form = e.target;
@@ -586,6 +597,16 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
     if (!input) return;
     const email = input.value.trim();
     if (!email || !email.includes('@')) return;
+
+    // Send email to Formspree if configured
+    if (USE_REAL_COLLECTION) {
+      fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'waitlist', timestamp: new Date().toISOString() })
+      }).catch(() => {}); // fire-and-forget, don't block UI
+    }
+
     waitlistEmails.push(email);
     waitlistCount++;
     document.querySelectorAll('.waitlist-counter .count').forEach(el => { el.textContent = waitlistCount; });
