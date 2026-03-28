@@ -500,7 +500,13 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
     });
     document.querySelectorAll('.nav-link').forEach(link => {
       link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+      const href = link.getAttribute('href') || '';
+      // Match both #section and features.html#section / index.html#section
+      if (href === `#${current}`) {
+        link.classList.add('active');
+      } else if (href.includes('#' + current) && document.getElementById(current)) {
+        link.classList.add('active');
+      }
     });
   }
 
@@ -529,7 +535,7 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
       countersAnimated = true;
       [
         { id: 'counter-jobs', end: 55, suffix: 'K+', prefix: '' },
-        { id: 'counter-sources', end: 6, suffix: '+', prefix: '' },
+        { id: 'counter-sources', end: 14, suffix: '', prefix: '' },
         { id: 'counter-salary', end: 131, suffix: 'K', prefix: '$' },
         { id: 'counter-speed', end: 47, suffix: 's', prefix: '' }
       ].forEach(c => {

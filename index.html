@@ -21,7 +21,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ClearedPath — The Truth Behind Cleared Careers</title>
-  <meta name="description" content="Ground News for Cleared Jobs. Fuse every cleared position from LinkedIn, ClearanceJobs, Indeed, and more. Real salaries. AI resume translator. ClearedPath Score.">
+  <meta name="description" content="LinkedIn + ClearanceJobs, Fused. See every cleared job from every source — with the salary they don't want you to know. Real salaries. AI resume translator. ClearedPath Score.">
 
   <!-- Fonts: Cabinet Grotesk + Satoshi -->
   <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800,900&f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
@@ -56,10 +56,10 @@
 
     <!-- Main Nav -->
     <nav class="main-nav" role="navigation" aria-label="Main navigation">
-      <a href="#jobs" class="nav-link">Jobs</a>
-      <a href="#resume" class="nav-link">Resume</a>
-      <a href="#salary" class="nav-link">Salary</a>
-      <a href="#pathways" class="nav-link">Pathways</a>
+      <a href="features.html#jobs" class="nav-link">Jobs</a>
+      <a href="features.html#resume" class="nav-link">Resume</a>
+      <a href="features.html#salary" class="nav-link">Salary</a>
+      <a href="features.html#pathways" class="nav-link">Pathways</a>
       <a href="#pricing" class="nav-link">Pricing</a>
     </nav>
 
@@ -98,10 +98,10 @@
 <!-- Mobile Nav -->
 <nav id="mobile-nav" class="mobile-nav" role="navigation" aria-label="Mobile navigation">
   <a href="#home" class="mobile-nav-link">Home</a>
-  <a href="#jobs" class="mobile-nav-link">Jobs</a>
-  <a href="#resume" class="mobile-nav-link">Resume Translator</a>
-  <a href="#salary" class="mobile-nav-link">Salary Explorer</a>
-  <a href="#pathways" class="mobile-nav-link">Career Pathways</a>
+  <a href="features.html#jobs" class="mobile-nav-link">Jobs</a>
+  <a href="features.html#resume" class="mobile-nav-link">Resume Translator</a>
+  <a href="features.html#salary" class="mobile-nav-link">Salary Explorer</a>
+  <a href="features.html#pathways" class="mobile-nav-link">Career Pathways</a>
   <a href="#pricing" class="mobile-nav-link">Pricing</a>
   <button class="btn-primary" style="margin-top: 1rem; text-align:center; justify-content:center;" data-auth-trigger data-auth-mode="signup">Sign Up Free</button>
 </nav>
@@ -149,9 +149,9 @@
 </div>
 
 <!-- ============================================================
-     HERO / HOME
+     HERO
      ============================================================ -->
-<section id="home" aria-label="Hero">
+<section id="home" class="landing-hero" aria-label="Hero">
   <div class="hero-grid-bg" aria-hidden="true"></div>
   <div class="hero-radial" aria-hidden="true"></div>
 
@@ -174,13 +174,7 @@
 
     <!-- Waitlist Form -->
     <form class="waitlist-form" novalidate>
-      <input
-        type="email"
-        class="waitlist-input"
-        placeholder="Enter your email address"
-        aria-label="Email address for waitlist"
-        required
-      >
+      <input type="email" class="waitlist-input" placeholder="Enter your email address" aria-label="Email address for waitlist" required>
       <button type="submit" class="btn-waitlist">Get Early Access — Free</button>
     </form>
 
@@ -201,15 +195,21 @@
     <div class="trust-strip">
       Trusted by cleared professionals from <strong>NSA</strong>, <strong>CIA</strong>, <strong>DIA</strong>, <strong>NGA</strong>, <strong>CACI</strong>, <strong>Booz Allen</strong>, <strong>Leidos</strong>
     </div>
+  </div>
+</section>
 
-    <!-- Stats Row -->
+<!-- ============================================================
+     STATS ROW
+     ============================================================ -->
+<section class="stats-section" aria-label="Platform statistics">
+  <div class="container">
     <div id="stats-section" class="stats-row">
       <div class="stat-item">
         <div class="stat-number" id="counter-jobs">55K+</div>
         <div class="stat-label">Active Cleared Jobs</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number" id="counter-sources">6+</div>
+        <div class="stat-number" id="counter-sources">14</div>
         <div class="stat-label">Sources Fused</div>
       </div>
       <div class="stat-item">
@@ -222,641 +222,95 @@
       </div>
     </div>
   </div>
-
-  <!-- ---- FEATURE SHOWCASE ---- -->
-  <div class="features-section">
-    <div class="container">
-      <p class="section-label">Why ClearedPath</p>
-      <h2 class="section-title">Built for the cleared community.<br>Not adapted for it.</h2>
-      <p class="section-sub">Every feature exists because someone with a clearance needed it and couldn't find it anywhere else.</p>
-
-      <div class="features-grid">
-        <!-- Large feature: Source Fusion -->
-        <div class="feature-card feature-large reveal">
-          <div>
-            <div class="feature-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
-            </div>
-            <h3 class="feature-title">Source Fusion</h3>
-            <p class="feature-desc">Like Ground News for cleared jobs. See exactly which platforms posted each role — and how many are talking about it. More sources = hotter opportunity.</p>
-            <div class="source-demo">
-              <span class="source-pill linkedin" style="background:rgba(0,119,181,0.15);border-color:rgba(0,119,181,0.4);color:#38bdf8;">LinkedIn</span>
-              <span class="source-pill clearancejobs" style="background:rgba(34,197,94,0.12);border-color:rgba(34,197,94,0.4);color:#4ade80;">ClearanceJobs</span>
-              <span class="source-pill indeed" style="background:rgba(232,72,59,0.12);border-color:rgba(232,72,59,0.4);color:#f87171;">Indeed</span>
-              <span class="source-pill company" style="background:rgba(168,85,247,0.12);border-color:rgba(168,85,247,0.4);color:#c084fc;">+11 more</span>
-            </div>
-          </div>
-          <div>
-            <div style="background:var(--bg-darkest);border-radius:var(--radius-lg);padding:var(--space-4);border:1px solid var(--border-subtle);">
-              <div style="font-size:var(--text-xs);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:var(--space-3);">ClearedPath Score Breakdown</div>
-              <div style="display:flex;flex-direction:column;gap:var(--space-2);">
-                <div>
-                  <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;"><span>Salary Transparency</span><span style="color:var(--accent-green);font-weight:700;">30%</span></div>
-                  <div style="height:4px;background:var(--bg-surface);border-radius:9999px;"><div style="height:100%;width:90%;background:var(--accent-green);border-radius:9999px;"></div></div>
-                </div>
-                <div>
-                  <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;"><span>Source Reliability</span><span style="color:var(--accent-cyan);font-weight:700;">25%</span></div>
-                  <div style="height:4px;background:var(--bg-surface);border-radius:9999px;"><div style="height:100%;width:75%;background:var(--accent-cyan);border-radius:9999px;"></div></div>
-                </div>
-                <div>
-                  <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;"><span>Recency</span><span style="color:var(--accent-amber);font-weight:700;">20%</span></div>
-                  <div style="height:4px;background:var(--bg-surface);border-radius:9999px;"><div style="height:100%;width:60%;background:var(--accent-amber);border-radius:9999px;"></div></div>
-                </div>
-                <div>
-                  <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;"><span>Clearance Verified</span><span style="color:#a855f7;font-weight:700;">15%</span></div>
-                  <div style="height:4px;background:var(--bg-surface);border-radius:9999px;"><div style="height:100%;width:45%;background:#a855f7;border-radius:9999px;"></div></div>
-                </div>
-                <div>
-                  <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--text-muted);margin-bottom:4px;"><span>Company Rating</span><span style="color:var(--text-faint);font-weight:700;">10%</span></div>
-                  <div style="height:4px;background:var(--bg-surface);border-radius:9999px;"><div style="height:100%;width:30%;background:var(--text-faint);border-radius:9999px;"></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Salary Intel -->
-        <div class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <h3 class="feature-title">Real Salary Intel</h3>
-          <p class="feature-desc">No more "Competitive." We show what's posted vs. what people actually take home — backed by real salary reports from cleared pros.</p>
-          <div class="salary-demo">
-            <div class="salary-demo-row">
-              <span class="salary-demo-label">Posted Range</span>
-              <span class="salary-demo-value" style="color:var(--text-muted);">$140K – $180K</span>
-            </div>
-            <div class="salary-demo-bar"><div class="salary-demo-fill" style="width:65%;background:var(--text-faint);"></div></div>
-            <div class="salary-demo-row" style="margin-top:var(--space-2);">
-              <span class="salary-demo-label">Real Median</span>
-              <span class="salary-demo-value">$172K</span>
-            </div>
-            <div class="salary-demo-bar"><div class="salary-demo-fill" style="width:83%;"></div></div>
-          </div>
-        </div>
-
-        <!-- AI Resume -->
-        <div class="feature-card reveal reveal-delay-2">
-          <div class="feature-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          </div>
-          <h3 class="feature-title">AI Resume Translator</h3>
-          <p class="feature-desc">Military jargon to contractor language in 47 seconds. 35N, OER, PCS, CCIR — all decoded so recruiters actually read your resume.</p>
-          <div style="margin-top:var(--space-3);padding:var(--space-3);background:var(--bg-darkest);border-radius:var(--radius-md);border:1px solid var(--border-subtle);">
-            <div style="font-size:var(--text-xs);color:var(--text-faint);margin-bottom:var(--space-1);">INPUT</div>
-            <div style="font-size:var(--text-xs);color:var(--accent-amber);font-family:monospace;">"Supervised CCIR development for 35N MOS..."</div>
-            <div style="font-size:var(--text-xs);color:var(--text-faint);margin:var(--space-1) 0;">↓ AI Translation</div>
-            <div style="font-size:var(--text-xs);color:var(--accent-green);font-family:monospace;">"Led Commander's Critical Information Requirements development as Intelligence Analyst..."</div>
-          </div>
-        </div>
-
-        <!-- Interview Prep feature card -->
-        <div class="feature-card reveal">
-          <div class="feature-icon" style="background:rgba(168,85,247,0.12);border-color:rgba(168,85,247,0.35);color:#a855f7;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-          </div>
-          <h3 class="feature-title">AI Interview Prep</h3>
-          <p class="feature-desc">Practice real cleared role interviews with AI. Get scored on communication, technical depth, and clearance awareness before you walk in.</p>
-          <span class="coming-soon-badge">Coming Soon</span>
-        </div>
-
-        <!-- Network Intel feature card -->
-        <div class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon" style="background:rgba(0,119,181,0.12);border-color:rgba(0,119,181,0.35);color:#0077b5;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
-          </div>
-          <h3 class="feature-title">Network Intel</h3>
-          <p class="feature-desc">Connect LinkedIn and instantly see who in your network works at the company posting the job. Get the inside scoop before you apply.</p>
-          <span class="coming-soon-badge">Coming Soon</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ---- HOW IT WORKS ---- -->
-  <div class="how-section">
-    <div class="container">
-      <p class="section-label">How It Works</p>
-      <h2 class="section-title">From search to offer<br>in three steps.</h2>
-      <div class="how-steps">
-        <div class="how-step reveal">
-          <div class="how-step-num" style="border-color:#22c55e;">1</div>
-          <h3>Connect &amp; Filter</h3>
-          <p>Set your clearance level, desired roles, and salary floor. We monitor 14+ sources around the clock so you don't have to.</p>
-        </div>
-        <div class="how-step reveal reveal-delay-1">
-          <div class="how-step-num" style="border-color:#3b82f6;">2</div>
-          <h3>See the Full Picture</h3>
-          <p>Every job gets a ClearedPath Score, real salary data, and source transparency — no more guessing what a job actually pays.</p>
-        </div>
-        <div class="how-step reveal reveal-delay-2">
-          <div class="how-step-num" style="border-color:#f97316;">3</div>
-          <h3>Apply with Confidence</h3>
-          <p>Translate your military resume in seconds. Know the real salary range, company reputation, and contract stability before you click apply.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ---- COMPARISON TABLE ---- -->
-  <div class="comparison-section">
-    <div class="container">
-      <p class="section-label">The Landscape</p>
-      <h2 class="section-title">Why not just use<br>ClearanceJobs or LinkedIn?</h2>
-      <div style="overflow-x:auto;">
-        <table class="comparison-table">
-          <thead>
-            <tr>
-              <th>Feature</th>
-              <th class="col-cp">ClearedPath</th>
-              <th>ClearanceJobs</th>
-              <th>LinkedIn</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Multi-source aggregation</td><td class="col-cp"><span class="check">✓ 14+ sources</span></td><td><span class="cross">✗ Single</span></td><td><span class="cross">✗ Single</span></td></tr>
-            <tr><td>Real salary data (not just posted)</td><td class="col-cp"><span class="check">✓ Posted vs. Actual</span></td><td><span class="partial">~ Basic ranges</span></td><td><span class="partial">~ Estimates only</span></td></tr>
-            <tr><td>ClearedPath Score (transparency)</td><td class="col-cp"><span class="check">✓ Every posting</span></td><td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td></tr>
-            <tr><td>AI Military Resume Translator</td><td class="col-cp"><span class="check">✓ 47-second AI</span></td><td><span class="cross">✗ None</span></td><td><span class="cross">✗ None</span></td></tr>
-            <tr><td>Source transparency per job</td><td class="col-cp"><span class="check">✓ Per-job circles</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
-            <tr><td>AI Interview Prep</td><td class="col-cp"><span class="check">✓ Role-specific</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
-            <tr><td>LinkedIn Network Intel</td><td class="col-cp"><span class="check">✓ Pro tier</span></td><td><span class="cross">✗</span></td><td><span class="partial">~ Manual</span></td></tr>
-            <tr><td>Bid intelligence (incumbents)</td><td class="col-cp"><span class="check">✓ Pro tier</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="inline-cta reveal">
-        <h3>Stop guessing. Start knowing.</h3>
-        <form class="waitlist-form inline-cta-form" novalidate>
-          <input type="email" class="waitlist-input" placeholder="Enter your email address" aria-label="Email for waitlist" required>
-          <button type="submit" class="btn-waitlist">Join Waitlist to Unlock</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- ---- SOCIAL PROOF ---- -->
-  <div class="proof-section">
-    <div class="container">
-      <div class="proof-inner">
-        <div class="proof-avatar" aria-hidden="true">B</div>
-        <div>
-          <p class="proof-quote">"I spent 9 years as a contractor at CACI and NSA. I watched people take $40K salary cuts because they didn't know what the job was really worth. ClearedPath fixes that."</p>
-          <p class="proof-attribution"><strong>Benjamin H.</strong> — Former CACI/NSA Contractor, TS/SCI/FSP · 9 years · Founder, ClearedPath</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </section>
 
 <!-- ============================================================
-     JOBS SECTION
+     3 FEATURE CARDS
      ============================================================ -->
-<section id="jobs" aria-label="Job Feed">
+<section class="landing-features" aria-label="Key features">
   <div class="container">
-    <div class="jobs-header">
-      <p class="section-label">Live Feed</p>
-      <h2 class="section-title">The Cleared Job Feed</h2>
-      <p class="section-sub" style="font-size:var(--text-base);color:var(--text-muted);margin-top:var(--space-2);">Every posting scored for transparency, salary accuracy, and source reliability. Updated continuously.</p>
+    <p class="section-label">Why ClearedPath</p>
+    <h2 class="section-title">Built for the cleared community.<br>Not adapted for it.</h2>
+    <p class="section-sub">Every feature exists because someone with a clearance needed it and couldn't find it anywhere else.</p>
+
+    <div class="landing-features-grid">
+      <!-- Source Fusion -->
+      <div class="landing-feature-card reveal">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+        </div>
+        <h3 class="feature-title">Source Fusion</h3>
+        <p class="feature-desc">Like Ground News for cleared jobs. See which platforms posted each role and how many sources are talking about it. 14+ sources fused into one feed.</p>
+        <a href="features.html#jobs" class="feature-learn-more">Learn more →</a>
+      </div>
+
+      <!-- Real Salaries -->
+      <div class="landing-feature-card reveal reveal-delay-1">
+        <div class="feature-icon" style="background:rgba(245,158,11,0.12);border-color:rgba(245,158,11,0.35);color:#f59e0b;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 class="feature-title">Real Salaries</h3>
+        <p class="feature-desc">No more "Competitive." We show what's posted vs. what people actually take home — backed by real salary reports from cleared professionals.</p>
+        <a href="features.html#salary" class="feature-learn-more">Learn more →</a>
+      </div>
+
+      <!-- AI Resume Translator -->
+      <div class="landing-feature-card reveal reveal-delay-2">
+        <div class="feature-icon" style="background:rgba(34,197,94,0.12);border-color:rgba(34,197,94,0.35);color:#22c55e;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h3 class="feature-title">AI Resume Translator</h3>
+        <p class="feature-desc">Military jargon to contractor language in 47 seconds. MOS codes, OER bullets, and acronyms — all decoded so recruiters actually read your resume.</p>
+        <a href="features.html#resume" class="feature-learn-more">Learn more →</a>
+      </div>
     </div>
+  </div>
+</section>
 
-    <button class="mobile-filter-btn" id="mobile-filter-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-      Filters
-    </button>
-
-    <div class="jobs-layout">
-      <!-- Filter Sidebar -->
-      <aside id="filter-sidebar" class="filter-sidebar" aria-label="Job filters">
-        <div class="filter-title">
-          Filter Jobs
-          <button id="reset-filters" class="btn-reset-filters" style="font-size:var(--text-xs);padding:var(--space-1) var(--space-3);">Reset</button>
-        </div>
-
-        <div class="filter-group">
-          <div class="filter-group-label">Clearance Level</div>
-          <div class="filter-options">
-            <div class="filter-option"><input type="checkbox" id="f-tssci-poly" class="filter-clearance" value="tssci-poly"><label for="f-tssci-poly">TS/SCI w/ Poly</label></div>
-            <div class="filter-option"><input type="checkbox" id="f-tssci-fsp" class="filter-clearance" value="tssci-fsp"><label for="f-tssci-fsp">TS/SCI w/ FSP</label></div>
-            <div class="filter-option"><input type="checkbox" id="f-tssci" class="filter-clearance" value="tssci"><label for="f-tssci">TS/SCI</label></div>
-            <div class="filter-option"><input type="checkbox" id="f-secret" class="filter-clearance" value="secret"><label for="f-secret">Secret</label></div>
-          </div>
-        </div>
-
-        <div class="filter-group">
-          <div class="filter-group-label">Location</div>
-          <div class="filter-options">
-            <div class="filter-option"><input type="checkbox" id="f-dc" class="filter-location" value="dc"><label for="f-dc">DC/MD/VA</label></div>
-            <div class="filter-option"><input type="checkbox" id="f-colorado" class="filter-location" value="colorado"><label for="f-colorado">Colorado</label></div>
-            <div class="filter-option"><input type="checkbox" id="f-texas" class="filter-location" value="texas"><label for="f-texas">Texas</label></div>
-          </div>
-        </div>
-
-        <div class="filter-group">
-          <div class="filter-group-label">Min ClearedPath Score</div>
-          <div class="filter-range">
-            <input type="range" id="filter-score" min="0" max="95" step="5" value="0" aria-label="Minimum ClearedPath Score">
-            <div class="filter-range-labels"><span>0</span><span>50</span><span>95+</span></div>
-          </div>
-          <div class="filter-score-val" id="filter-score-val">Min: 0+</div>
-        </div>
-
-        <button id="reset-filters-bottom" class="btn-reset-filters">Reset All Filters</button>
-      </aside>
-
-      <!-- Job List -->
+<!-- ============================================================
+     SOCIAL PROOF QUOTE
+     ============================================================ -->
+<section class="landing-proof" aria-label="Social proof">
+  <div class="container">
+    <div class="proof-inner">
+      <div class="proof-avatar" aria-hidden="true">B</div>
       <div>
-        <div class="jobs-count" id="jobs-count">Showing <span>8</span> cleared positions from <span>14</span> sources</div>
-        <div class="jobs-list" id="jobs-list">
-          <!-- Jobs rendered by JS -->
-        </div>
+        <p class="proof-quote">"I spent 9 years as a contractor at CACI and NSA. I watched people take $40K salary cuts because they didn't know what the job was really worth. ClearedPath fixes that."</p>
+        <p class="proof-attribution"><strong>Benjamin H.</strong> — Former CACI/NSA Contractor, TS/SCI/FSP · 9 years · Founder, ClearedPath</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     RESUME SECTION — 3 Tabs
+     HOW IT WORKS
      ============================================================ -->
-<section id="resume" aria-label="AI Resume Translator">
+<section class="landing-how" aria-label="How it works">
   <div class="container">
-    <p class="section-label">AI-Powered</p>
-    <h2 class="section-title">Resume Translator <span class="info-tooltip" data-tip="Paste your military experience and our AI converts military jargon into contractor-friendly language.">&#9432;</span></h2>
-    <p class="section-sub">Military language to contractor-ready resume copy in under a minute. Stop losing interviews to jargon.</p>
-
-    <div class="resume-tabs">
-      <button class="resume-tab active" data-tab="translate">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        Translate Resume
-      </button>
-      <button class="resume-tab" data-tab="epa">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-        EPA / BRAG Sheet
-      </button>
-      <button class="resume-tab" data-tab="jobcodes">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-        Military Job Codes
-      </button>
-    </div>
-
-    <!-- Tab 1: Translate Resume -->
-    <div class="resume-tab-content active" id="tab-translate">
-      <div class="resume-split">
-        <div class="resume-panel">
-          <div class="resume-panel-header">
-            <span class="resume-panel-title">Your Military Experience</span>
-          </div>
-          <textarea id="resume-input" class="resume-textarea" placeholder="Paste your military duties, OER bullet points, or NCOER achievements here..." aria-label="Military experience input"></textarea>
-          <div class="translate-footer">
-            <button id="translate-btn" class="btn-translate">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              Translate Now
-            </button>
-            <span class="translate-time" id="translate-time">Avg: <span>47s</span></span>
-          </div>
-        </div>
-        <div class="resume-panel">
-          <div class="resume-panel-header">
-            <span class="resume-panel-title">Contractor-Ready Resume</span>
-            <span class="premium-badge">
-              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              AI Pro
-            </span>
-          </div>
-          <div id="resume-output" class="resume-output">
-            <span class="resume-output-placeholder">Translated output will appear here. Click "Translate Now" to run the demo.</span>
-          </div>
-          <div style="font-size:var(--text-xs);color:var(--text-faint);">Pro tier unlocks: unlimited translations, custom tone, ATS optimization, LinkedIn import</div>
-        </div>
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title">From search to offer<br>in three steps.</h2>
+    <div class="how-steps">
+      <div class="how-step reveal">
+        <div class="how-step-num" style="border-color:#22c55e;">1</div>
+        <h3>Connect &amp; Filter</h3>
+        <p>Set your clearance level, desired roles, and salary floor. We monitor 14+ sources around the clock so you don't have to.</p>
       </div>
-    </div>
-
-    <!-- Tab 2: EPA / BRAG Sheet Analyzer -->
-    <div class="resume-tab-content" id="tab-epa">
-      <div class="epa-split">
-        <div class="epa-input-panel">
-          <div class="epa-panel-header"><span class="resume-panel-title">Evaluation Analyzer</span></div>
-          <div class="epa-select-group">
-            <label for="epa-type-select">Evaluation Type</label>
-            <select id="epa-type-select" class="epa-select">
-              <option value="ncoer">NCOER (Army)</option>
-              <option value="oer">OER (Army/Officer)</option>
-              <option value="epr">EPR / OPR (Air Force)</option>
-              <option value="eval">EVAL / FITREP (Navy/Marines)</option>
-              <option value="brag" selected>BRAG Sheet</option>
-            </select>
-          </div>
-          <textarea id="epa-input" class="resume-textarea epa-textarea" placeholder="Paste your evaluation bullets, BRAG sheet content, or performance report here..." aria-label="EPA / BRAG Sheet input"></textarea>
-          <p class="epa-helper">Don't worry about formatting — just paste the content as-is. We'll parse it.</p>
-          <div class="epa-actions">
-            <button id="epa-analyze-btn" class="btn-translate">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-              Analyze &amp; Recommend
-            </button>
-            <button id="epa-demo-btn" class="btn-epa-demo">Load Demo BRAG Sheet</button>
-          </div>
-        </div>
-        <div class="epa-results-panel" id="epa-results">
-          <div class="epa-placeholder">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-faint);"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-            <p>Paste your evaluation content and click <strong>"Analyze &amp; Recommend"</strong> to see matched career paths, salaries, and hiring companies.</p>
-            <p style="color:var(--accent-cyan);font-size:var(--text-xs);margin-top:var(--space-2);">Or click "Load Demo BRAG Sheet" to see it in action.</p>
-          </div>
-        </div>
+      <div class="how-step reveal reveal-delay-1">
+        <div class="how-step-num" style="border-color:#3b82f6;">2</div>
+        <h3>See the Full Picture</h3>
+        <p>Every job gets a ClearedPath Score, real salary data, and source transparency — no more guessing what a job actually pays.</p>
       </div>
-    </div>
-
-    <!-- Tab 3: Military Job Codes -->
-    <div class="resume-tab-content" id="tab-jobcodes">
-      <div class="branch-tabs" id="branch-tabs">
-        <button class="branch-tab active" data-branch="army" style="--branch-color: #4b5320;"><span class="branch-icon">★</span> Army</button>
-        <button class="branch-tab" data-branch="navy" style="--branch-color: #000080;"><span class="branch-icon">⚓</span> Navy</button>
-        <button class="branch-tab" data-branch="airforce" style="--branch-color: #00308f;"><span class="branch-icon">✦</span> Air Force</button>
-        <button class="branch-tab" data-branch="marines" style="--branch-color: #c62828;"><span class="branch-icon">⚔</span> Marines</button>
-        <button class="branch-tab" data-branch="spaceforce" style="--branch-color: #1c2951;"><span class="branch-icon">◆</span> Space Force</button>
-      </div>
-      <div class="jobcode-grid" id="jobcode-grid"></div>
-    </div>
-
-    <!-- Common Translations Reference -->
-    <div class="translations-table">
-      <p class="section-label">Reference Guide</p>
-      <h3 class="section-title" style="font-size:var(--text-2xl);">Common Military → Contractor Translations</h3>
-      <div class="translations-grid">
-        <div class="translation-card reveal"><div class="translation-from">MOS / Rate</div><div class="translation-mil">35N / 35P / 35Q</div><div class="translation-arrow">↓ Maps to</div><div class="translation-contractor">Intelligence Analyst / SIGINT Analyst / Cyber Intelligence Analyst</div></div>
-        <div class="translation-card reveal reveal-delay-1"><div class="translation-from">Performance Eval</div><div class="translation-mil">OER / NCOER</div><div class="translation-arrow">↓ Maps to</div><div class="translation-contractor">Annual Performance Review / Leadership Assessment</div></div>
-        <div class="translation-card reveal reveal-delay-2"><div class="translation-from">Assignment</div><div class="translation-mil">PCS Move</div><div class="translation-arrow">↓ Maps to</div><div class="translation-contractor">Geographic Relocation / Professional Development Transfer</div></div>
-        <div class="translation-card reveal"><div class="translation-from">Staff Section</div><div class="translation-mil">S2 / G2 / J2</div><div class="translation-arrow">↓ Maps to</div><div class="translation-contractor">Intelligence Division / Intelligence Directorate</div></div>
-        <div class="translation-card reveal reveal-delay-1"><div class="translation-from">Operations</div><div class="translation-mil">S3 / G3 / J3</div><div class="translation-arrow">↓ Maps to</div><div class="translation-contractor">Operations Division / Program Management Office</div></div>
-        <div class="translation-card reveal reveal-delay-2"><div class="translation-from">Planning Tool</div><div class="translation-mil">CCIR / PIR</div><div class="translation-arrow">↓ Maps to</div><div class="translation-contractor">Critical Information Requirements / Priority Intelligence Requirements</div></div>
-        <div class="translation-card reveal"><div class="translation-from">Mission Type</div><div class="translation-mil">ISR / SIGINT / HUMINT</div><div class="translation-arrow">↓ Maps to</div><div class="translation-contractor">Intelligence Surveillance Reconnaissance / Signals Intel / Human Intel</div></div>
-        <div class="translation-card reveal reveal-delay-1"><div class="translation-from">Security Protocol</div><div class="translation-mil">OPSEC</div><div class="translation-arrow">↓ Maps to</div><div class="translation-contractor">Operations Security / Information Security Compliance</div></div>
+      <div class="how-step reveal reveal-delay-2">
+        <div class="how-step-num" style="border-color:#f97316;">3</div>
+        <h3>Apply with Confidence</h3>
+        <p>Translate your military resume in seconds. Know the real salary range, company reputation, and contract stability before you click apply.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     SALARY SECTION
-     ============================================================ -->
-<section id="salary" aria-label="Salary Explorer">
-  <div class="container">
-    <div class="salary-header">
-      <p class="section-label">Intelligence</p>
-      <h2 class="section-title">Salary Explorer <span class="info-tooltip" data-tip="Real compensation data reported by cleared professionals — not estimates from job sites.">&#9432;</span></h2>
-      <p class="section-sub">Real compensation data from cleared professionals. Not estimates. Not ranges. What people actually get paid.</p>
-    </div>
-
-    <div id="salary-chart-section" class="salary-chart">
-      <h3 class="salary-chart-title">Average Salary by Clearance Level (2025–2026)</h3>
-      <div class="salary-bars">
-        <div class="salary-bar-row reveal"><div class="salary-bar-label">Secret</div><div class="salary-bar-track"><div class="salary-bar-fill secret" id="bar-secret" style="width:0">$93,748</div></div><div class="salary-bar-value">$93,748</div></div>
-        <div class="salary-bar-row reveal reveal-delay-1"><div class="salary-bar-label">TS/SCI</div><div class="salary-bar-track"><div class="salary-bar-fill tssci" id="bar-tssci" style="width:0">$131,907</div></div><div class="salary-bar-value">$131,907</div></div>
-        <div class="salary-bar-row reveal reveal-delay-2"><div class="salary-bar-label">TS/SCI + CI Poly</div><div class="salary-bar-track"><div class="salary-bar-fill ci-poly" id="bar-cipoly" style="width:0">$135,442</div></div><div class="salary-bar-value">$135,442</div></div>
-        <div class="salary-bar-row reveal reveal-delay-3"><div class="salary-bar-label">TS/SCI + Full Scope Poly</div><div class="salary-bar-track"><div class="salary-bar-fill fsp" id="bar-fsp" style="width:0">$148,314</div></div><div class="salary-bar-value" style="color:var(--accent-green)">$148,314</div></div>
-      </div>
-    </div>
-
-    <p class="section-label" style="margin-top:var(--space-8);">Top Markets</p>
-    <h3 class="section-title" style="font-size:var(--text-2xl);margin-bottom:var(--space-2);">Salary by Location</h3>
-    <div class="location-cards">
-      <div class="location-card reveal"><div class="location-city">Washington, DC</div><div class="location-salary">$149,398</div><div class="location-tag">TS/SCI average · #1 market</div></div>
-      <div class="location-card reveal reveal-delay-1"><div class="location-city">Colorado Springs</div><div class="location-salary">$140K avg</div><div class="location-tag">Space Command / NORAD hub</div></div>
-      <div class="location-card reveal reveal-delay-2"><div class="location-city">San Antonio, TX</div><div class="location-salary">$133K avg</div><div class="location-tag">Cyber Command / NSA Texas</div></div>
-      <div class="location-card reveal"><div class="location-city">Huntsville, AL</div><div class="location-salary">$130K avg</div><div class="location-tag">Army / Missile Defense</div></div>
-      <div class="location-card reveal reveal-delay-1"><div class="location-city">Tampa, FL</div><div class="location-salary">$124,654</div><div class="location-tag">SOCOM / CENTCOM hub</div></div>
-    </div>
-
-    <div class="top-roles">
-      <p class="section-label">Top Earners</p>
-      <h3 class="section-title" style="font-size:var(--text-2xl);margin-bottom:var(--space-2);">Highest Paying Cleared Roles</h3>
-      <div class="top-roles-grid">
-        <div class="role-card reveal"><div><div class="role-name">Zero Trust Engineer</div><div class="role-range">TS/SCI + FSP required</div></div><div class="role-top-salary">$270K+</div></div>
-        <div class="role-card reveal reveal-delay-1"><div><div class="role-name">Security Architect</div><div class="role-range">TS/SCI + Poly</div></div><div class="role-top-salary">$270K+</div></div>
-        <div class="role-card reveal"><div><div class="role-name">Cloud Security Engineer</div><div class="role-range">TS/SCI required</div></div><div class="role-top-salary">$220K</div></div>
-        <div class="role-card reveal reveal-delay-1"><div><div class="role-name">Software Engineer (TS/SCI)</div><div class="role-range">TS/SCI avg</div></div><div class="role-top-salary">$148K</div></div>
-        <div class="role-card reveal"><div><div class="role-name">Senior Cyber Analyst</div><div class="role-range">TS/SCI range</div></div><div class="role-top-salary">$175K</div></div>
-      </div>
-    </div>
-
-    <div class="salary-report-cta reveal">
-      <h3>Know what you're worth.</h3>
-      <p>Report your salary anonymously and unlock full percentile breakdowns, company-specific data, and negotiation scripts.</p>
-      <button class="btn-amber">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-        Report Your Salary (Anonymous)
-      </button>
-      <p style="font-size:var(--text-xs);color:var(--text-faint);margin-top:var(--space-2);margin-bottom:0;">Premium unlocks: 25th/50th/75th/90th percentile, company breakdowns, negotiation scripts</p>
-    </div>
-
-    <div class="inline-cta reveal">
-      <h3>Know your real market value.</h3>
-      <form class="waitlist-form inline-cta-form" novalidate>
-        <input type="email" class="waitlist-input" placeholder="Enter your email address" aria-label="Email for waitlist" required>
-        <button type="submit" class="btn-waitlist">Join Waitlist to Unlock</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     CAREER PATHWAYS SECTION
-     ============================================================ -->
-<section id="pathways" aria-label="Career Pathways">
-  <div class="container">
-    <p class="section-label">Career Pathways</p>
-    <h2 class="section-title">Beyond the Beltway.<br>Your clearance opens doors everywhere.</h2>
-    <p class="section-sub">Top tech and cybersecurity companies actively recruit cleared professionals. Here's where your skills take you.</p>
-
-    <div class="pathway-tier1">
-      <div class="pathway-card pathway-large reveal" style="--company-color: #00a4ef;"><div class="pathway-card-header"><div class="pathway-company-name">Microsoft</div><div class="pathway-tags"><span class="pathway-tag tag-skillbridge">SkillBridge Partner</span><span class="pathway-tag tag-veteran">Veteran Program</span><span class="pathway-tag tag-cleared">TS/SCI Cleared</span></div></div><div class="pathway-card-body"><div class="pathway-program"><strong>MSSA Program:</strong> 17-week cloud training for veterans</div><div class="pathway-division">Microsoft Government · Azure Government Cloud</div><div class="pathway-roles"><span>Cloud Security Engineer</span><span>Security Architect</span><span>Threat Intelligence Analyst</span></div><div class="pathway-salary">$130K – $220K+ <span class="pathway-stock">(with stock)</span></div><div class="pathway-locations">Reston, VA · Redmond, WA</div></div><a href="https://careers.microsoft.com/military" target="_blank" rel="noopener noreferrer" class="pathway-cta">Explore Roles →</a></div>
-      <div class="pathway-card pathway-large reveal reveal-delay-1" style="--company-color: #4285f4;"><div class="pathway-card-header"><div class="pathway-company-name">Google Cloud / Mandiant</div><div class="pathway-tags"><span class="pathway-tag tag-skillbridge">SkillBridge Partner</span><span class="pathway-tag tag-veteran">Veteran Program</span><span class="pathway-tag tag-cleared">TS/SCI Cleared</span></div></div><div class="pathway-card-body"><div class="pathway-program"><strong>Launchpad for Veterans:</strong> Free cloud certification + Mandiant consulting</div><div class="pathway-division">Google Public Sector · Mandiant (IR & Threat Intel)</div><div class="pathway-roles"><span>Security Consultant</span><span>Threat Intel Analyst</span><span>Red Team Operator</span></div><div class="pathway-salary">$140K – $250K+ <span class="pathway-stock">(with stock)</span></div><div class="pathway-locations">DC Metro</div></div><a href="https://cloud.google.com/veterans" target="_blank" rel="noopener noreferrer" class="pathway-cta">Explore Roles →</a></div>
-      <div class="pathway-card pathway-large reveal reveal-delay-2" style="--company-color: #ff0000;"><div class="pathway-card-header"><div class="pathway-company-name">CrowdStrike</div><div class="pathway-tags"><span class="pathway-tag tag-skillbridge">SkillBridge Partner</span><span class="pathway-tag tag-veteran">Veteran Program</span><span class="pathway-tag tag-cleared">TS/SCI Cleared</span></div></div><div class="pathway-card-body"><div class="pathway-program"><strong>Veteran Hiring Initiative:</strong> CrowdStrike University</div><div class="pathway-division">Endpoint Protection · Threat Intel · Incident Response</div><div class="pathway-roles"><span>Threat Hunter</span><span>Incident Responder</span><span>Overwatch Analyst</span></div><div class="pathway-salary">$120K – $200K+ <span class="pathway-stock">(with stock)</span></div><div class="pathway-locations">Remote / Austin, TX</div></div><a href="https://crowdstrike.com/careers" target="_blank" rel="noopener noreferrer" class="pathway-cta">Explore Roles →</a></div>
-    </div>
-
-    <div class="pathway-tier2">
-      <div class="pathway-card pathway-medium reveal" style="--company-color: #fa582d;"><div class="pathway-card-header"><div class="pathway-company-name">Palo Alto Networks</div><div class="pathway-tags"><span class="pathway-tag tag-skillbridge">SkillBridge</span><span class="pathway-tag tag-veteran">Vet Friendly</span></div></div><div class="pathway-roles"><span>Security Engineer</span><span>Unit 42 Consultant</span><span>Solutions Architect</span></div><div class="pathway-salary">$125K – $210K+</div></div>
-      <div class="pathway-card pathway-medium reveal reveal-delay-1" style="--company-color: #f38020;"><div class="pathway-card-header"><div class="pathway-company-name">Cloudflare</div><div class="pathway-tags"><span class="pathway-tag tag-remote">Remote Available</span></div></div><div class="pathway-roles"><span>Security Engineer</span><span>Solutions Engineer</span><span>DDoS Mitigation</span></div><div class="pathway-salary">$120K – $190K+</div></div>
-      <div class="pathway-card pathway-medium reveal reveal-delay-2" style="--company-color: #ff9900;"><div class="pathway-card-header"><div class="pathway-company-name">Amazon Web Services</div><div class="pathway-tags"><span class="pathway-tag tag-skillbridge">SkillBridge</span><span class="pathway-tag tag-veteran">Vet Program</span></div></div><div class="pathway-roles"><span>Cloud Security Architect</span><span>Solutions Architect</span><span>Security Specialist</span></div><div class="pathway-salary">$130K – $230K+ <span class="pathway-stock">(with stock)</span></div></div>
-    </div>
-
-    <div class="pathway-also-hiring">
-      <div class="pathway-also-label">Also Hiring Cleared Professionals</div>
-      <div class="pathway-badges-row">
-        <span class="pathway-badge-compact">Raytheon/RTX</span><span class="pathway-badge-compact">Splunk (Cisco)</span><span class="pathway-badge-compact">Fortinet</span><span class="pathway-badge-compact">Zscaler</span><span class="pathway-badge-compact">SentinelOne</span><span class="pathway-badge-compact">Tenable</span><span class="pathway-badge-compact">Recorded Future</span><span class="pathway-badge-compact">Trellix</span><span class="pathway-badge-compact pathway-badge-gov">CISA</span>
-      </div>
-    </div>
-
-    <div class="career-tracks">
-      <p class="section-label" style="margin-top:var(--space-10);">Career Tracks</p>
-      <h3 class="section-title" style="font-size:var(--text-2xl);">Your progression path</h3>
-      <div class="career-tracks-table">
-        <div class="career-track-header"><div class="ct-col ct-label-col">Track</div><div class="ct-col ct-entry">Entry<br><span>$90K–$130K</span></div><div class="ct-col ct-mid">Mid<br><span>$130K–$180K</span></div><div class="ct-col ct-senior">Senior<br><span>$180K–$270K+</span></div></div>
-        <div class="career-track-row reveal"><div class="ct-col ct-label-col"><span class="ct-track-name" style="color:#ef4444;">Offensive Cyber</span></div><div class="ct-col ct-entry">Pen Tester / Red Team</div><div class="ct-arrow">→</div><div class="ct-col ct-mid">Senior Red Team Operator</div><div class="ct-arrow">→</div><div class="ct-col ct-senior">Red Team Lead / Principal</div></div>
-        <div class="career-track-row reveal reveal-delay-1"><div class="ct-col ct-label-col"><span class="ct-track-name" style="color:#3b82f6;">Defensive Cyber</span></div><div class="ct-col ct-entry">SOC Analyst / IR</div><div class="ct-arrow">→</div><div class="ct-col ct-mid">Senior IR / Threat Hunter</div><div class="ct-arrow">→</div><div class="ct-col ct-senior">DFIR Director / CISO</div></div>
-        <div class="career-track-row reveal reveal-delay-2"><div class="ct-col ct-label-col"><span class="ct-track-name" style="color:#f59e0b;">Cloud Security</span></div><div class="ct-col ct-entry">Cloud Security Engineer</div><div class="ct-arrow">→</div><div class="ct-col ct-mid">Senior Cloud Architect</div><div class="ct-arrow">→</div><div class="ct-col ct-senior">Principal Architect / VP</div></div>
-        <div class="career-track-row reveal reveal-delay-3"><div class="ct-col ct-label-col"><span class="ct-track-name" style="color:#22c55e;">Threat Intel</span></div><div class="ct-col ct-entry">Intel Analyst</div><div class="ct-arrow">→</div><div class="ct-col ct-mid">Senior Threat Analyst</div><div class="ct-arrow">→</div><div class="ct-col ct-senior">CTI Director</div></div>
-        <div class="career-track-row reveal reveal-delay-4"><div class="ct-col ct-label-col"><span class="ct-track-name" style="color:#a855f7;">GRC / Compliance</span></div><div class="ct-col ct-entry">Risk Analyst</div><div class="ct-arrow">→</div><div class="ct-col ct-mid">Compliance Manager</div><div class="ct-arrow">→</div><div class="ct-col ct-senior">CISO / VP Security</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     AI INTERVIEW PREP SECTION
-     ============================================================ -->
-<section id="interview-prep" aria-label="AI Interview Prep">
-  <div class="container">
-    <p class="section-label">Interview Prep</p>
-    <h2 class="section-title">Practice before you walk in.</h2>
-    <p class="section-sub">Our AI interviewer simulates real cleared role interviews — technical questions, behavioral scenarios, and classified-safe responses. Get scored and improve before the real thing.</p>
-
-    <div class="interview-split reveal">
-      <!-- Left: Mock interview UI -->
-      <div class="interview-demo-card">
-        <div class="interview-demo-header">
-          <div class="interview-ai-avatar">AI</div>
-          <div>
-            <div class="interview-ai-name">ClearedPath Interviewer</div>
-            <div class="interview-ai-role">Senior Cyber Security Analyst — Booz Allen</div>
-          </div>
-          <span class="coming-soon-badge" style="margin-left:auto;">Coming Soon — Pro Tier</span>
-        </div>
-
-        <div class="interview-chat">
-          <div class="chat-bubble chat-ai">
-            <p>Describe your experience with SIGINT collection operations and how you'd apply that in a contractor environment.</p>
-          </div>
-          <div class="chat-bubble chat-user">
-            <p class="chat-user-placeholder">Your response would go here...</p>
-          </div>
-        </div>
-
-        <div class="interview-scores">
-          <div class="interview-score-item">
-            <span class="interview-score-label">Communication</span>
-            <div class="interview-score-bar"><div class="interview-score-fill" style="width:80%;background:var(--accent-cyan);"></div></div>
-            <span class="interview-score-val" style="color:var(--accent-cyan);">8/10</span>
-          </div>
-          <div class="interview-score-item">
-            <span class="interview-score-label">Technical Depth</span>
-            <div class="interview-score-bar"><div class="interview-score-fill" style="width:90%;background:var(--accent-green);"></div></div>
-            <span class="interview-score-val" style="color:var(--accent-green);">9/10</span>
-          </div>
-          <div class="interview-score-item">
-            <span class="interview-score-label">Clearance Awareness</span>
-            <div class="interview-score-bar"><div class="interview-score-fill" style="width:100%;background:var(--accent-amber);"></div></div>
-            <span class="interview-score-val" style="color:var(--accent-amber);">10/10</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Feature bullets -->
-      <div class="interview-features">
-        <ul class="interview-feature-list">
-          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Role-specific questions pulled from real cleared job postings</li>
-          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Behavioral + technical interview simulation</li>
-          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Scored feedback on communication, technical depth, and clearance awareness</li>
-          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Practice unlimited times (Pro tier)</li>
-          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Recording playback + coaching notes (Tactician tier)</li>
-        </ul>
-        <p class="interview-cta-note">Join the waitlist to be first in line when interview prep launches.</p>
-        <form class="waitlist-form" novalidate style="max-width:400px;">
-          <input type="email" class="waitlist-input" placeholder="Your email" aria-label="Email for waitlist" required>
-          <button type="submit" class="btn-waitlist">Join Waitlist</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     LINKEDIN NETWORK INTEL SECTION
-     ============================================================ -->
-<section id="network-intel" aria-label="Network Intel">
-  <div class="container">
-    <p class="section-label">Network Intel</p>
-    <h2 class="section-title">Your network is your clearance.</h2>
-    <p class="section-sub">Connect your LinkedIn and instantly see who in your network works at the same company posting the job. Get the inside scoop before you apply.</p>
-
-    <div class="network-split reveal">
-      <!-- Left: Demo -->
-      <div class="network-demo-card">
-        <div class="network-demo-header">
-          <span class="network-connection-count">3 connections at Booz Allen Hamilton</span>
-        </div>
-
-        <div class="network-profiles">
-          <div class="network-profile">
-            <div class="network-avatar" style="background:linear-gradient(135deg,#0077b5,#004e7c);">JM</div>
-            <div class="network-profile-info">
-              <strong>John M.</strong> — Senior Analyst
-              <span class="network-degree">2nd connection</span>
-            </div>
-            <button class="network-reach-btn">Reach Out</button>
-          </div>
-          <div class="network-profile">
-            <div class="network-avatar" style="background:linear-gradient(135deg,#0077b5,#004e7c);">SK</div>
-            <div class="network-profile-info">
-              <strong>Sarah K.</strong> — Hiring Manager
-              <span class="network-degree">1st connection</span>
-            </div>
-            <button class="network-reach-btn">Reach Out</button>
-          </div>
-          <div class="network-profile">
-            <div class="network-avatar" style="background:linear-gradient(135deg,#0077b5,#004e7c);">DP</div>
-            <div class="network-profile-info">
-              <strong>David P.</strong> — Team Lead
-              <span class="network-degree">3rd connection</span>
-            </div>
-            <button class="network-reach-btn">Reach Out</button>
-          </div>
-        </div>
-
-        <!-- Template Toggle -->
-        <div class="template-toggle">
-          <button class="template-btn active" data-template="warm">Warm Intro</button>
-          <button class="template-btn" data-template="info">Info Request</button>
-          <button class="template-btn" data-template="direct">Direct Interest</button>
-        </div>
-
-        <div class="template-message active" data-template="warm">
-          <p>"Hi Sarah, I noticed the Senior Cyber Security Analyst position at Booz Allen. As a fellow TS/SCI professional transitioning from military service, I'd love to learn more about the team. Would you be open to a quick conversation?"</p>
-        </div>
-        <div class="template-message" data-template="info">
-          <p>"Hi Sarah, I'm researching opportunities at Booz Allen. Could you share any insights about the team culture and what the day-to-day looks like for cleared analysts? No pressure — just trying to make an informed decision."</p>
-        </div>
-        <div class="template-message" data-template="direct">
-          <p>"Hi Sarah, I'm actively interviewing for the Senior Cyber Security Analyst role at Booz Allen. With 9 years of TS/SCI experience at NSA, I believe I'd be a strong fit. Would you be willing to put in a referral?"</p>
-        </div>
-
-        <p class="network-privacy">🔒 We never post on your behalf. Your search stays private.</p>
-      </div>
-
-      <!-- Right: Feature bullets -->
-      <div class="network-features">
-        <ul class="interview-feature-list">
-          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> See 1st, 2nd, and 3rd degree connections at hiring companies</li>
-          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Pre-written outreach templates tailored to cleared professionals</li>
-          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> "Warm intro" requests through mutual connections</li>
-          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Company insider insights (team culture, clearance process, interview tips)</li>
-          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> All messages keep your job search confidential until you're ready</li>
-        </ul>
-        <button class="btn-linkedin-connect" style="margin-top:var(--space-4);">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          Connect LinkedIn
-        </button>
-        <p class="network-privacy" style="margin-top:var(--space-2);">We never post on your behalf. Your search stays private.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     PRICING SECTION
+     PRICING
      ============================================================ -->
 <section id="pricing" aria-label="Pricing">
   <div class="container">
@@ -875,10 +329,8 @@
         <ul class="pricing-features">
           <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Job feed from 3 sources</li>
           <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> ClearedPath Score on all jobs</li>
-          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Basic salary ranges (median only)</li>
+          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Basic salary ranges</li>
           <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 1 resume translation/month</li>
-          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 1 mock interview/month</li>
-          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Weekly digest email alerts</li>
           <li class="pricing-feature dim"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Full salary breakdowns</li>
           <li class="pricing-feature dim"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Bid intelligence</li>
         </ul>
@@ -892,15 +344,14 @@
         <div class="pricing-name">Pro</div>
         <div class="pricing-price">$29<span>/mo</span></div>
         <div class="pricing-sub">Or $249/year — <span class="save">Save $99</span></div>
-        <div class="pricing-trial">7-day free trial · Less than a cup of coffee a day</div>
+        <div class="pricing-trial">7-day free trial</div>
         <ul class="pricing-features">
           <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> ALL 14+ sources fused</li>
-          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Full salary breakdown (all percentiles)</li>
+          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Full salary breakdown</li>
           <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Unlimited resume translations</li>
-          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Unlimited interviews + AI feedback</li>
+          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Unlimited AI interviews</li>
           <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Real-time alerts (SMS + email)</li>
-          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Company intel + team reviews</li>
-          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Bid intelligence (who's incumbent)</li>
+          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Bid intelligence</li>
         </ul>
         <button class="btn-pricing btn-pricing-pro" data-auth-trigger data-auth-mode="signup">Start Free Trial</button>
       </div>
@@ -913,11 +364,10 @@
         <div class="pricing-sub">Or $449/year — <span class="save">Save $139</span></div>
         <ul class="pricing-features">
           <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Everything in Operator</li>
-          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Priority job alerts (SMS within 5 min)</li>
-          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Interview recording playback + coaching notes</li>
+          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Priority SMS alerts (5 min)</li>
+          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Interview coaching notes</li>
           <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Contract rebid alerts</li>
-          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Negotiation coaching scripts</li>
-          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Quarterly salary benchmarking reports</li>
+          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Negotiation scripts</li>
         </ul>
         <button class="btn-pricing btn-pricing-tactician" data-auth-trigger data-auth-mode="signup">Upgrade to Tactician</button>
       </div>
@@ -933,9 +383,7 @@
           <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Full API access</li>
           <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Bulk resume translations</li>
           <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Recruiter sourcing tools</li>
-          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Custom analytics dashboard</li>
           <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Dedicated account manager</li>
-          <li class="pricing-feature"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Priority support (SLA)</li>
         </ul>
         <button class="btn-pricing btn-pricing-enterprise">Contact Sales</button>
       </div>
@@ -945,74 +393,7 @@
 </section>
 
 <!-- ============================================================
-     SOCIAL PROOF / TESTIMONIALS
-     ============================================================ -->
-<section class="social-proof-section" aria-label="Social proof">
-  <div class="container">
-    <p class="section-label">From the Community</p>
-    <h2 class="section-title" style="text-align:center;">Real talk from cleared professionals.</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card reveal">
-        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testimonial-text">"I spent 6 months checking LinkedIn and ClearanceJobs separately every morning. This does in one view what took me an hour a day."</p>
-        <div class="testimonial-author"><div class="testimonial-avatar" style="border-color:#f97316;">M.R.</div><div><strong>Former 35F</strong> <span class="badge-color-indicator" style="background:#f97316;"></span><br><span style="color:var(--text-faint);font-size:var(--text-xs);">TS/SCI &bull; Transitioned to Booz Allen</span></div></div>
-      </div>
-      <div class="testimonial-card reveal reveal-delay-1">
-        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testimonial-text">"The salary transparency alone is worth it. Found out I was being underpaid by $22K compared to the real median for my role."</p>
-        <div class="testimonial-author"><div class="testimonial-avatar" style="border-color:#22c55e;">J.K.</div><div><strong>Cyber Analyst</strong> <span class="badge-color-indicator" style="background:#22c55e;"></span><br><span style="color:var(--text-faint);font-size:var(--text-xs);">TS/SCI w/ Poly &bull; Fort Meade</span></div></div>
-      </div>
-      <div class="testimonial-card reveal reveal-delay-2">
-        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testimonial-text">"Resume translator turned my OER bullets and 35N jargon into language recruiters actually understand. Got 3 interviews in 2 weeks."</p>
-        <div class="testimonial-author"><div class="testimonial-avatar" style="border-color:#f97316;">S.T.</div><div><strong>Transitioning E-7</strong> <span class="badge-color-indicator" style="background:#f97316;"></span><br><span style="color:var(--text-faint);font-size:var(--text-xs);">Secret &bull; Moving to contractor</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     CLEARANCE ROI CALCULATOR
-     ============================================================ -->
-<section class="roi-section" aria-label="Clearance ROI Calculator">
-  <div class="container">
-    <div class="roi-inner">
-      <div class="roi-text">
-        <p class="section-label">Know Your Worth</p>
-        <h2 class="section-title">Clearance ROI Calculator</h2>
-        <p class="section-sub">See how much your clearance is really worth. Enter your current details and find out if you're being paid what the market says you deserve.</p>
-      </div>
-      <div class="roi-calculator">
-        <div class="roi-input-group">
-          <label for="roi-clearance">Clearance Level</label>
-          <select id="roi-clearance" class="roi-select">
-            <option value="secret">Secret</option>
-            <option value="tssci" selected>TS/SCI</option>
-            <option value="tssci-ci">TS/SCI + CI Poly</option>
-            <option value="tssci-fsp">TS/SCI + Full Scope Poly</option>
-          </select>
-        </div>
-        <div class="roi-input-group">
-          <label for="roi-current">Current Salary ($)</label>
-          <input type="number" id="roi-current" class="roi-input" placeholder="120000" value="120000">
-        </div>
-        <button class="btn-primary roi-btn" id="roi-calculate" style="width:100%;justify-content:center;">Calculate My Gap</button>
-        <div id="roi-result" class="roi-result">
-          <div class="roi-result-label">Your Market Value</div>
-          <div class="roi-result-value" id="roi-market-value">$131,907</div>
-          <div class="roi-result-gap" id="roi-gap">
-            <span class="roi-gap-label">You're leaving on the table:</span>
-            <span class="roi-gap-amount" id="roi-gap-amount">$11,907/year</span>
-          </div>
-          <div class="roi-result-note">Based on 2025-2026 cleared salary data from 1,773+ defense contractors.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     FINAL CTA BANNER
+     FINAL CTA
      ============================================================ -->
 <section class="final-cta-section" aria-label="Final call to action">
   <div class="container">
@@ -1048,24 +429,17 @@
         </a>
         <p class="footer-tagline">The Truth Behind Cleared Careers.<br>Real jobs. Real salaries. Built by someone who lived it.</p>
         <p class="footer-built">Built by a 9-year CACI/NSA cleared contractor.</p>
-        <div class="footer-badge-colors">
-          <span style="color:#22c55e;">For Contractors</span>
-          <span style="color:#94a3b8;">·</span>
-          <span style="color:#3b82f6;">Government</span>
-          <span style="color:#94a3b8;">·</span>
-          <span style="color:#f97316;">Military</span>
-        </div>
       </div>
 
       <div class="footer-links">
         <div class="footer-link-group">
           <h4>Platform</h4>
-          <a href="#jobs">Job Feed</a>
-          <a href="#resume">Resume Translator</a>
-          <a href="#salary">Salary Explorer</a>
-          <a href="#pathways">Career Pathways</a>
-          <a href="#interview-prep">Interview Prep</a>
-          <a href="#network-intel">Network Intel</a>
+          <a href="features.html#jobs">Job Feed</a>
+          <a href="features.html#resume">Resume Translator</a>
+          <a href="features.html#salary">Salary Explorer</a>
+          <a href="features.html#pathways">Career Pathways</a>
+          <a href="features.html#interview-prep">Interview Prep</a>
+          <a href="features.html#network-intel">Network Intel</a>
           <a href="#pricing">Pricing</a>
         </div>
         <div class="footer-link-group">
@@ -1096,13 +470,6 @@
 
 <!-- App Script -->
 <script src="app.js"></script>
-
-<!-- Reset button duplicate handler -->
-<script>
-  document.getElementById('reset-filters-bottom')?.addEventListener('click', function() {
-    document.getElementById('reset-filters')?.click();
-  });
-</script>
 
 </body>
 </html>

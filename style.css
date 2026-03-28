@@ -1217,4 +1217,125 @@ section { scroll-margin-top: 60px; }
   .section-title { font-size: var(--text-3xl); }
   .pathway-tier1 { grid-template-columns: 1fr; }
   .pathway-tier2 { grid-template-columns: 1fr; }
+  .landing-features-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   LANDING PAGE — NEW STRUCTURE
+   ============================================ */
+
+/* Landing hero mirrors #home but as a class */
+.landing-hero {
+  padding-top: 60px;
+  padding-bottom: var(--space-8);
+  background: var(--bg-darkest);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Stats section standalone */
+.stats-section {
+  background: var(--bg-darkest);
+  padding: 0 0 var(--space-10);
+}
+
+/* Landing feature cards — clean grid */
+.landing-features {
+  padding: var(--space-16) 0;
+  background: var(--bg-dark);
+}
+
+.landing-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-10);
+}
+
+.landing-feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+}
+.landing-feature-card:hover {
+  border-color: var(--accent-cyan-border);
+  box-shadow: var(--shadow-glow-cyan);
+  transform: translateY(-4px);
+}
+.landing-feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+.landing-feature-card:hover::before { opacity: 1; }
+
+.landing-feature-card .feature-icon {
+  margin-bottom: var(--space-5);
+}
+.landing-feature-card .feature-title {
+  margin-bottom: var(--space-3);
+}
+.landing-feature-card .feature-desc {
+  margin-bottom: var(--space-4);
+  line-height: 1.7;
+}
+
+.feature-learn-more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--accent-cyan);
+  transition: gap var(--transition-fast);
+}
+.feature-learn-more:hover {
+  gap: var(--space-2);
+}
+
+/* Landing proof (social proof quote) */
+.landing-proof {
+  padding: var(--space-12) 0;
+  background: var(--bg-darkest);
+}
+
+/* Landing how it works */
+.landing-how {
+  padding: var(--space-16) 0;
+  background: var(--bg-dark);
+}
+
+/* ============================================
+   FEATURES PAGE HERO
+   ============================================ */
+
+.features-page-hero {
+  padding: calc(60px + var(--space-16)) 0 var(--space-12);
+  background: var(--bg-darkest);
+  position: relative;
+  overflow: hidden;
+}
+
+.features-page-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-5);
+}
+
+@media (max-width: 768px) {
+  .features-page-headline { font-size: clamp(1.75rem, 6vw, 2.5rem); }
 }
