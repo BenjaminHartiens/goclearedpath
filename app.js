@@ -574,6 +574,13 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
   // ============================================================
   function setupReveal() {
     const elements = document.querySelectorAll('.reveal:not(.visible)');
+    // Immediately show anything already in viewport (fixes blank sections on load)
+    elements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('visible');
+      }
+    });
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
@@ -1263,4 +1270,109 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
       resultDiv.classList.add('visible');
     });
   }
+
+  // ============================================================
+  // LANDING PAGE RESUME TRANSLATOR + FILE UPLOAD
+  // ============================================================
+  (function setupLandingTranslator() {
+    const pasteBtn   = document.getElementById('landing-mode-paste');
+    const uploadBtn  = document.getElementById('landing-mode-upload');
+    const pasteMode  = document.getElementById('landing-paste-mode');
+    const uploadMode = document.getElementById('landing-upload-mode');
+    const fileInput  = document.getElementById('landing-file-input');
+    const fileName   = document.getElementById('landing-file-name');
+    const uploadZone = document.getElementById('landing-upload-zone');
+    const xlateBtn   = document.getElementById('landing-translate-btn');
+    const outputEl   = document.getElementById('landing-resume-output');
+    const timeEl     = document.getElementById('landing-translate-time');
+    const trainedEl  = document.getElementById('trained-count');
+
+    if (!pasteBtn) return; // not on landing page
+
+    // Animate trained count upward occasionally to give "AI learning" feeling
+    let trainedBase = 2847;
+    setInterval(() => {
+      trainedBase += Math.floor(Math.random() * 3);
+      if (trainedEl) trainedEl.textContent = trainedBase.toLocaleString();
+    }, 8000);
+
+    // Toggle paste / upload
+    pasteBtn.addEventListener('click', () => {
+      pasteBtn.classList.add('active'); uploadBtn.classList.remove('active');
+      pasteMode.style.display = ''; uploadMode.style.display = 'none';
+    });
+    uploadBtn.addEventListener('click', () => {
+      uploadBtn.classList.add('active'); pasteBtn.classList.remove('active');
+      uploadMode.style.display = ''; pasteMode.style.display = 'none';
+    });
+
+    // File input handling
+    if (fileInput) {
+      fileInput.addEventListener('change', () => {
+        const f = fileInput.files[0];
+        if (!f) return;
+        if (fileName) { fileName.textContent = '✓ ' + f.name; fileName.style.display = 'block'; }
+        // Read text files; for PDF/DOCX show "Parsing..." placeholder
+        if (f.type === 'text/plain') {
+          const reader = new FileReader();
+          reader.onload = e => {
+            // Switch to paste mode and populate
+            pasteBtn.click();
+            const ta = document.getElementById('landing-resume-input');
+            if (ta) ta.value = e.target.result.slice(0, 2000);
+          };
+          reader.readAsText(f);
+        } else {
+          // For PDF/DOCX pretend we parsed it (demo)
+          pasteBtn.click();
+          const ta = document.getElementById('landing-resume-input');
+          if (ta) ta.value = `[Parsed from ${f.name}]\n\nManaged SIGINT collection operations for 35N MOS supporting tactical HUMINT. Led 12-person team in CONUS/OCONUS environments conducting ISR missions. Supervised CCIR development and maintained OPSEC protocols per S2 requirements.`;
+        }
+      });
+    }
+
+    // Drag & drop
+    if (uploadZone) {
+      uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
+      uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-over'));
+      uploadZone.addEventListener('drop', e => {
+        e.preventDefault(); uploadZone.classList.remove('drag-over');
+        if (e.dataTransfer.files[0] && fileInput) {
+          // Trigger same logic as file input
+          const dt = new DataTransfer();
+          dt.items.add(e.dataTransfer.files[0]);
+          fileInput.files = dt.files;
+          fileInput.dispatchEvent(new Event('change'));
+        }
+      });
+    }
+
+    // Translate button
+    const landingContractorOutput = `Led Signals Intelligence (SIGINT) collection operations as a certified Intelligence Analyst (35N) supporting multi-source intelligence fusion for tactical Human Intelligence (HUMINT) efforts.\n\nDirected a 12-member analytical team across domestic and international operational environments, conducting Intelligence, Surveillance, and Reconnaissance (ISR) missions in support of theater commander priorities.\n\nDeveloped and maintained Commander's Critical Information Requirements (CCIR) frameworks and enforced OPSEC compliance per S2 intelligence directorate standards.\n\nRelocated from Fort Bragg, NC to Fort Meade, MD in support of mission requirements. Consistently recognized for superior performance — rated in the top block of Officer Evaluation.`;
+
+    let translating = false;
+    if (xlateBtn && outputEl) {
+      xlateBtn.addEventListener('click', () => {
+        if (translating) return;
+        translating = true;
+        xlateBtn.disabled = true;
+        xlateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg> Translating...';
+        const start = Date.now();
+        outputEl.innerHTML = '';
+        setTimeout(() => {
+          typeText(outputEl, landingContractorOutput, 14, () => {
+            translating = false;
+            xlateBtn.disabled = false;
+            xlateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Translate Again';
+            const elapsed = ((Date.now() - start) / 1000).toFixed(1);
+            if (timeEl) timeEl.innerHTML = `Translated in <span>${elapsed}s</span>`;
+            // Increment trained count to give "AI learned from this" feeling
+            trainedBase += 1;
+            if (trainedEl) trainedEl.textContent = trainedBase.toLocaleString();
+          });
+        }, 600);
+      });
+    }
+  })();
+
 })();

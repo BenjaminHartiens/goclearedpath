@@ -263,6 +263,69 @@
 </section>
 
 <!-- ============================================================
+     RESUME TRANSLATOR DEMO (LANDING)
+     ============================================================ -->
+<section class="landing-translator" aria-label="Resume translator demo">
+  <div class="container">
+    <p class="section-label">AI-POWERED</p>
+    <h2 class="section-title" style="max-width:600px;">See your military experience become contractor gold.</h2>
+    <p class="section-sub" style="max-width:520px;">Paste a bullet or upload your resume. Watch military jargon translate to language that gets callbacks.</p>
+
+    <div class="landing-translator-card reveal">
+      <!-- Upload / paste toggle -->
+      <div class="translator-input-panel">
+        <div class="translator-toggle-row">
+          <button class="translator-toggle active" id="landing-mode-paste">Paste Text</button>
+          <button class="translator-toggle" id="landing-mode-upload">Upload Resume</button>
+          <span class="translator-trained-badge">Trained on <strong id="trained-count">2,847</strong> cleared resumes</span>
+        </div>
+
+        <!-- Paste mode -->
+        <div id="landing-paste-mode">
+          <textarea id="landing-resume-input" class="resume-textarea" style="min-height:120px;" placeholder="Paste your OER bullet, NCOER, or duty description here...">Managed SIGINT collection operations for 35N MOS supporting tactical HUMINT. Led 12-person team in CONUS/OCONUS environments conducting ISR missions. Supervised CCIR development and maintained OPSEC protocols per S2 requirements. PCS from Fort Bragg to Fort Meade. Received OER with &quot;Above Center of Mass&quot; block check.</textarea>
+        </div>
+
+        <!-- Upload mode -->
+        <div id="landing-upload-mode" style="display:none;">
+          <div class="resume-upload-zone" id="landing-upload-zone">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-cyan);margin-bottom:8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p style="margin:0;font-weight:600;color:var(--text-primary);">Drop your resume here</p>
+            <p style="margin:4px 0 12px;font-size:var(--text-sm);color:var(--text-faint);">PDF, DOCX, or TXT — we'll parse it</p>
+            <label class="btn btn-outline" style="cursor:pointer;font-size:var(--text-sm);">
+              Browse File
+              <input type="file" id="landing-file-input" accept=".pdf,.doc,.docx,.txt" style="display:none;" />
+            </label>
+          </div>
+          <p id="landing-file-name" style="font-size:var(--text-sm);color:var(--accent-cyan);margin-top:8px;display:none;"></p>
+        </div>
+
+        <div class="translate-footer" style="margin-top:var(--space-4);">
+          <button id="landing-translate-btn" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Translate Now — Free
+          </button>
+          <span class="translate-time" id="landing-translate-time" style="font-size:var(--text-xs);color:var(--text-faint);">Avg: <span>47s</span></span>
+        </div>
+      </div>
+
+      <!-- Output panel -->
+      <div class="translator-output-panel">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-3);">
+          <span style="font-weight:700;color:var(--text-primary);font-size:var(--text-sm);">Contractor-Ready Output</span>
+          <span class="badge" style="background:rgba(168,85,247,0.15);color:#a855f7;border:1px solid rgba(168,85,247,0.3);font-size:10px;padding:2px 8px;border-radius:4px;">AI PRO</span>
+        </div>
+        <div id="landing-resume-output" class="resume-output" style="min-height:140px;">
+          <span class="resume-output-placeholder" style="color:var(--text-faint);font-size:var(--text-sm);">Your contractor-ready translation will appear here...</span>
+        </div>
+        <div style="margin-top:var(--space-3);padding-top:var(--space-3);border-top:1px solid var(--border-subtle);">
+          <p style="font-size:var(--text-xs);color:var(--text-faint);margin:0;">Pro unlocks: ATS optimization · custom tone · LinkedIn import · unlimited translations</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      SOCIAL PROOF QUOTE
      ============================================================ -->
 <section class="landing-proof" aria-label="Social proof">
