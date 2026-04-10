@@ -1,5 +1,61 @@
-// ClearedPath — App JS (Polished + Source Fusion Circles + Auth + Interview Prep + Network Intel)
+// GoClearedPath — App JS
 // All state stored in memory variables (no browser storage APIs used).
+
+// ================================================================
+// SUPABASE CONFIG — PASTE YOUR VALUES HERE
+// 1. Go to supabase.com → New Project → Settings → API
+// 2. Copy "Project URL" and paste below as SUPABASE_URL
+// 3. Copy "anon/public" key and paste below as SUPABASE_KEY
+// 4. Run this SQL in Supabase SQL Editor to create the tables:
+//
+//    CREATE TABLE waitlist (
+//      id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+//      email text UNIQUE NOT NULL,
+//      source text DEFAULT 'waitlist',
+//      created_at timestamptz DEFAULT now()
+//    );
+//
+//    CREATE TABLE translations (
+//      id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+//      created_at timestamptz DEFAULT now()
+//    );
+//
+//    -- Allow public inserts (anon key)
+//    ALTER TABLE waitlist ENABLE ROW LEVEL SECURITY;
+//    CREATE POLICY "allow_insert" ON waitlist FOR INSERT TO anon WITH CHECK (true);
+//    CREATE POLICY "allow_count" ON waitlist FOR SELECT TO anon USING (true);
+//    ALTER TABLE translations ENABLE ROW LEVEL SECURITY;
+//    CREATE POLICY "allow_insert" ON translations FOR INSERT TO anon WITH CHECK (true);
+//    CREATE POLICY "allow_count" ON translations FOR SELECT TO anon USING (true);
+// ================================================================
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';   // e.g. https://xyzxyz.supabase.co
+const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY'; // starts with eyJ...
+const SUPABASE_ACTIVE = SUPABASE_URL !== 'YOUR_SUPABASE_URL';
+
+async function sbInsert(table, data) {
+  if (!SUPABASE_ACTIVE) return null;
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`,
+                 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify(data)
+    });
+    return res.ok;
+  } catch(e) { return null; }
+}
+
+async function sbCount(table) {
+  if (!SUPABASE_ACTIVE) return null;
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?select=id`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`,
+                 'Prefer': 'count=exact', 'Range': '0-0' }
+    });
+    const range = res.headers.get('content-range');
+    return range ? parseInt(range.split('/')[1]) : null;
+  } catch(e) { return null; }
+}
 
 (function() {
   'use strict';
@@ -603,7 +659,7 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
   const FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_ID}`;
   const USE_REAL_COLLECTION = FORMSPREE_ID !== 'YOUR_FORMSPREE_ID';
 
-  function handleWaitlistSubmit(e) {
+  async function handleWaitlistSubmit(e) {
     e.preventDefault();
     const form = e.target;
     const input = form.querySelector('input[type="email"]');
@@ -611,18 +667,26 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
     const email = input.value.trim();
     if (!email || !email.includes('@')) return;
 
-    // Send email to Formspree if configured
+    // Save to Supabase (primary) + Formspree (backup)
+    sbInsert('waitlist', { email, source: 'waitlist' }).catch(() => {});
     if (USE_REAL_COLLECTION) {
       fetch(FORMSPREE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email: email, source: 'waitlist', timestamp: new Date().toISOString() })
-      }).catch(() => {}); // fire-and-forget, don't block UI
+        body: JSON.stringify({ email, source: 'waitlist', timestamp: new Date().toISOString() })
+      }).catch(() => {});
     }
 
     waitlistEmails.push(email);
     waitlistCount++;
     document.querySelectorAll('.waitlist-counter .count').forEach(el => { el.textContent = waitlistCount; });
+    // Refresh live count from Supabase
+    sbCount('waitlist').then(n => {
+      if (n !== null) {
+        waitlistCount = n;
+        document.querySelectorAll('.waitlist-counter .count').forEach(el => { el.textContent = n; });
+      }
+    });
     const successEl = form.nextElementSibling;
     if (successEl && successEl.classList.contains('waitlist-success')) {
       form.style.display = 'none'; successEl.classList.add('show');
@@ -915,7 +979,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
         translateBtn.textContent = 'Translating...';
         const startTime = Date.now();
         setTimeout(() => {
-          typeText(outputEl, contractorOutput, 12, () => {
+          typeText(outputEl, contractorOutput, 4, () => {
             resumeTranslating = false;
             translateBtn.classList.remove('loading');
             translateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> Translate Again';
@@ -924,7 +988,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
               timeEl.innerHTML = `Translated in <span>${elapsed}s</span>`;
             }
           });
-        }, 800);
+        // instant
       });
     }
   }
@@ -972,7 +1036,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
           renderEPAResults(results);
           analyzeBtn.classList.remove('loading');
           analyzeBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Re-Analyze';
-        }, 600);
+        // instant
       });
     }
   }
@@ -1191,6 +1255,21 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
   // ============================================================
   function init() {
     setTheme('dark');
+
+    // Pull live counts from Supabase on page load
+    sbCount('waitlist').then(n => {
+      if (n !== null && n > 0) {
+        waitlistCount = n;
+        document.querySelectorAll('.waitlist-counter .count').forEach(el => { el.textContent = n; });
+      }
+    });
+    sbCount('translations').then(n => {
+      if (n !== null && n > 0) {
+        const trainedEl = document.getElementById('trained-count');
+        if (trainedEl) trainedEl.textContent = (2847 + n).toLocaleString();
+      }
+    });
+
     const themeBtn = document.getElementById('theme-toggle');
     if (themeBtn) themeBtn.addEventListener('click', () => setTheme(theme === 'dark' ? 'light' : 'dark'));
 
@@ -1360,7 +1439,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
         const start = Date.now();
         outputEl.innerHTML = '';
         setTimeout(() => {
-          typeText(outputEl, landingContractorOutput, 14, () => {
+          typeText(outputEl, landingContractorOutput, 4, () => {
             translating = false;
             xlateBtn.disabled = false;
             xlateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Translate Again';
@@ -1369,8 +1448,9 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
             // Increment trained count to give "AI learned from this" feeling
             trainedBase += 1;
             if (trainedEl) trainedEl.textContent = trainedBase.toLocaleString();
+            sbInsert('translations', {}).catch(() => {});
           });
-        }, 600);
+        // instant
       });
     }
   })();
