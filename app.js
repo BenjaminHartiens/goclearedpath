@@ -1383,7 +1383,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
     const timeEl     = document.getElementById('landing-translate-time');
     const trainedEl  = document.getElementById('trained-count');
 
-    if (!pasteBtn) return; // not on landing page
+    if (!xlateBtn || !outputEl) return; // not on landing page
 
     // Animate trained count upward occasionally to give "AI learning" feeling
     let trainedBase = 2847;
