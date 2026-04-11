@@ -978,17 +978,16 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
         translateBtn.classList.add('loading');
         translateBtn.textContent = 'Translating...';
         const startTime = Date.now();
-        setTimeout(() => {
-          typeText(outputEl, contractorOutput, 4, () => {
-            resumeTranslating = false;
-            translateBtn.classList.remove('loading');
-            translateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> Translate Again';
-            if (timeEl) {
-              const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-              timeEl.innerHTML = `Translated in <span>${elapsed}s</span>`;
-            }
-          });
-        // instant
+        outputEl.innerHTML = '';
+        typeText(outputEl, contractorOutput, 4, () => {
+          resumeTranslating = false;
+          translateBtn.classList.remove('loading');
+          translateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> Translate Again';
+          if (timeEl) {
+            const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+            timeEl.innerHTML = `Translated in <span>${elapsed}s</span>`;
+          }
+        });
       });
     }
   }
@@ -1031,12 +1030,10 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
         if (!text) return;
         analyzeBtn.classList.add('loading');
         analyzeBtn.textContent = 'Analyzing...';
-        setTimeout(() => {
-          const results = analyzeEPA(text);
-          renderEPAResults(results);
-          analyzeBtn.classList.remove('loading');
-          analyzeBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Re-Analyze';
-        // instant
+        const results = analyzeEPA(text);
+        renderEPAResults(results);
+        analyzeBtn.classList.remove('loading');
+        analyzeBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Re-Analyze';
       });
     }
   }
@@ -1438,19 +1435,16 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
         xlateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg> Translating...';
         const start = Date.now();
         outputEl.innerHTML = '';
-        setTimeout(() => {
-          typeText(outputEl, landingContractorOutput, 4, () => {
-            translating = false;
-            xlateBtn.disabled = false;
-            xlateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Translate Again';
-            const elapsed = ((Date.now() - start) / 1000).toFixed(1);
-            if (timeEl) timeEl.innerHTML = `Translated in <span>${elapsed}s</span>`;
-            // Increment trained count to give "AI learned from this" feeling
-            trainedBase += 1;
-            if (trainedEl) trainedEl.textContent = trainedBase.toLocaleString();
-            sbInsert('translations', {}).catch(() => {});
-          });
-        // instant
+        typeText(outputEl, landingContractorOutput, 4, () => {
+          translating = false;
+          xlateBtn.disabled = false;
+          xlateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Translate Again';
+          const elapsed = ((Date.now() - start) / 1000).toFixed(1);
+          if (timeEl) timeEl.innerHTML = `Translated in <span>${elapsed}s</span>`;
+          trainedBase += 1;
+          if (trainedEl) trainedEl.textContent = trainedBase.toLocaleString();
+          sbInsert('translations', {}).catch(() => {});
+        });
       });
     }
   })();
