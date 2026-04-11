@@ -32,6 +32,26 @@ const SUPABASE_URL = 'YOUR_SUPABASE_URL';   // e.g. https://xyzxyz.supabase.co
 const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY'; // starts with eyJ...
 const SUPABASE_ACTIVE = SUPABASE_URL !== 'YOUR_SUPABASE_URL';
 
+// Apply tracking — logs every application click for monetization data
+window.trackApply = function(btn) {
+  const jobId = btn.getAttribute('data-job-id');
+  const jobTitle = decodeURIComponent(btn.getAttribute('data-job-title') || '');
+  const company = decodeURIComponent(btn.getAttribute('data-company') || '');
+  // Store in Supabase applications table (fire and forget)
+  sbInsert('applications', { job_id: jobId, job_title: jobTitle, company, applied_at: new Date().toISOString() }).catch(() => {});
+  // Visual feedback
+  btn.textContent = '✓ Applied';
+  btn.classList.add('btn-applied');
+  btn.disabled = true;
+  // Open job source (rootSource or company site) in new tab
+  const card = btn.closest('.job-card');
+  const jobIdNum = parseInt(jobId);
+  // Find the job data to get rootSource
+  const job = (typeof jobs !== 'undefined' ? jobs : []).find(j => j.id === jobIdNum);
+  const url = job && job.rootSource ? 'https://' + job.rootSource : '#';
+  if (url !== '#') window.open(url, '_blank', 'noopener');
+};
+
 async function sbInsert(table, data) {
   if (!SUPABASE_ACTIVE) return null;
   try {
@@ -859,20 +879,16 @@ Supervised 12 SIGINT analysts across 3 watch rotations providing 24/7 intelligen
         </div>
         ${sourcesHTML}
         ${contractHTML}
-        <div class="salary-panel">
-          <div class="salary-panel-row">
-            <span class="salary-row-label">Posted</span>
-            <span class="salary-posted-val">${job.postedSalary}</span>
-          </div>
-          <div class="salary-panel-row">
-            <span class="salary-row-label">Real Median</span>
-            <span class="salary-real-val">${job.realSalary} median</span>
-          </div>
-          <div class="salary-comparison-track">
-            <div class="salary-comparison-fill salary-real-fill" style="width: ${salaryPct}%"></div>
-          </div>
+        <div class="salary-bar-row">
+          <span class="salary-bar-posted">${job.postedSalary}</span>
+          <span class="salary-bar-divider">→</span>
+          <span class="salary-bar-real" data-tip="Real median salary reported by cleared professionals in this role."><strong>${job.realSalary}</strong> actual</span>
+          <div class="salary-bar-track"><div class="salary-bar-fill" style="width:${salaryPct}%;"></div></div>
         </div>
-        ${badgesHTML ? `<div class="job-badges">${badgesHTML}</div>` : ''}
+        <div class="job-card-footer">
+          ${badgesHTML ? `<div class="job-badges">${badgesHTML}</div>` : '<span></span>'}
+          <button class="btn-apply" data-job-id="${job.id}" data-job-title="${encodeURIComponent(job.title)}" data-company="${encodeURIComponent(job.company)}" onclick="trackApply(this)">Apply Now</button>
+        </div>
         ${loggedInExtras}
       </div>
     `;
@@ -955,11 +971,15 @@ Developed Commander's Critical Information Requirements (CCIR) and enforced Oper
 Completed professional development relocation from Fort Liberty (formerly Ft. Bragg) to Fort Meade, MD. Received "Exceeds Standards" performance review equivalent (OER above center of mass).`;
 
   function typeText(el, text, speed, onDone) {
-    el.textContent = '';
+    el.innerHTML = '';
     el.classList.add('typing');
+    // Use <pre> so \n renders as visible line breaks
+    const pre = document.createElement('pre');
+    pre.style.cssText = 'white-space:pre-wrap;font-family:inherit;font-size:var(--text-sm);margin:0;color:var(--accent-green, #4ade80);line-height:1.7;';
+    el.appendChild(pre);
     let i = 0;
     function type() {
-      if (i < text.length) { el.textContent += text[i]; i++; setTimeout(type, speed); }
+      if (i < text.length) { pre.textContent += text[i]; i++; setTimeout(type, speed); }
       else { el.classList.remove('typing'); if (onDone) onDone(); }
     }
     type();
