@@ -1411,27 +1411,50 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
       uploadMode.style.display = ''; pasteMode.style.display = 'none';
     });
 
-    // File input handling
+    // File input handling — real PDF/DOCX/TXT parsing
+    async function parseFile(f) {
+      const name = f.name.toLowerCase();
+      if (f.type === 'text/plain' || name.endsWith('.txt')) {
+        return new Promise(resolve => {
+          const reader = new FileReader();
+          reader.onload = e => resolve(e.target.result.slice(0, 5000));
+          reader.readAsText(f);
+        });
+      }
+      if (name.endsWith('.pdf')) {
+        if (!window.pdfjsLib) return '[PDF parsing unavailable — please paste your text instead]';
+        const ab = await f.arrayBuffer();
+        const pdf = await pdfjsLib.getDocument({ data: ab }).promise;
+        let text = '';
+        for (let i = 1; i <= Math.min(pdf.numPages, 5); i++) {
+          const pg = await pdf.getPage(i);
+          const content = await pg.getTextContent();
+          text += content.items.map(s => s.str).join(' ') + '\n';
+        }
+        return text.trim().slice(0, 5000);
+      }
+      if (name.endsWith('.docx') || name.endsWith('.doc')) {
+        if (!window.mammoth) return '[DOCX parsing unavailable — please paste your text instead]';
+        const ab = await f.arrayBuffer();
+        const result = await mammoth.extractRawText({ arrayBuffer: ab });
+        return result.value.trim().slice(0, 5000);
+      }
+      return null;
+    }
+
     if (fileInput) {
-      fileInput.addEventListener('change', () => {
+      fileInput.addEventListener('change', async () => {
         const f = fileInput.files[0];
         if (!f) return;
-        if (fileName) { fileName.textContent = '✓ ' + f.name; fileName.style.display = 'block'; }
-        // Read text files; for PDF/DOCX show "Parsing..." placeholder
-        if (f.type === 'text/plain') {
-          const reader = new FileReader();
-          reader.onload = e => {
-            // Switch to paste mode and populate
-            pasteBtn.click();
-            const ta = document.getElementById('landing-resume-input');
-            if (ta) ta.value = e.target.result.slice(0, 2000);
-          };
-          reader.readAsText(f);
-        } else {
-          // For PDF/DOCX pretend we parsed it (demo)
+        if (fileName) { fileName.textContent = '\u23F3 Parsing ' + f.name + '...'; fileName.style.display = 'block'; }
+        const text = await parseFile(f);
+        if (text) {
           pasteBtn.click();
           const ta = document.getElementById('landing-resume-input');
-          if (ta) ta.value = `[Parsed from ${f.name}]\n\nManaged SIGINT collection operations for 35N MOS supporting tactical HUMINT. Led 12-person team in CONUS/OCONUS environments conducting ISR missions. Supervised CCIR development and maintained OPSEC protocols per S2 requirements.`;
+          if (ta) ta.value = text;
+          if (fileName) fileName.textContent = '\u2713 ' + f.name + ' (' + text.length + ' chars parsed)';
+        } else {
+          if (fileName) fileName.textContent = '\u26A0 Could not parse — please paste your text';
         }
       });
     }
