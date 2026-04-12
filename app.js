@@ -1009,13 +1009,12 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
           }
           // Store translation pair for AI training dataset
           const inputVal = inputEl ? inputEl.value.trim() : '';
-          sbInsert('resumes', {
+          sbInsert('translations', {
             military_input: inputVal || null,
             contractor_output: contractorOutput,
             source: 'features_page',
             created_at: new Date().toISOString()
           }).catch(() => {});
-          sbInsert('translations', {}).catch(() => {});
         });
       });
     }
@@ -1434,10 +1433,15 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
         return text.trim().slice(0, 5000);
       }
       if (name.endsWith('.docx') || name.endsWith('.doc')) {
-        if (!window.mammoth) return '[DOCX parsing unavailable — please paste your text instead]';
-        const ab = await f.arrayBuffer();
-        const result = await mammoth.extractRawText({ arrayBuffer: ab });
-        return result.value.trim().slice(0, 5000);
+        if (!window.mammoth) return null;
+        try {
+          const ab = await f.arrayBuffer();
+          const result = await mammoth.extractRawText({ arrayBuffer: ab });
+          const text = result.value.trim().slice(0, 5000);
+          // If mammoth returned basically nothing, the format was too complex
+          if (text.length < 50) return null;
+          return text;
+        } catch(e) { return null; }
       }
       return null;
     }
@@ -1454,7 +1458,11 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
           if (ta) ta.value = text;
           if (fileName) fileName.textContent = '\u2713 ' + f.name + ' (' + text.length + ' chars parsed)';
         } else {
-          if (fileName) fileName.textContent = '\u26A0 Could not parse — please paste your text';
+          if (fileName) fileName.textContent = '\u26A0 Couldn\'t read this file — please paste your text in the box below';
+          // Switch to paste mode so they can paste manually
+          pasteBtn.click();
+          const ta = document.getElementById('landing-resume-input');
+          if (ta) { ta.value = ''; ta.placeholder = 'Paste your resume text here...'; ta.focus(); }
         }
       });
     }
@@ -1498,13 +1506,12 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
         if (trainedEl) trainedEl.textContent = trainedBase.toLocaleString();
         // Store full translation pair for AI training dataset
         const inputText = document.getElementById('landing-resume-input')?.value?.trim() || '';
-        sbInsert('resumes', {
+        sbInsert('translations', {
           military_input: inputText || null,
           contractor_output: landingContractorOutput,
           source: 'landing_page',
           created_at: new Date().toISOString()
         }).catch(() => {});
-        sbInsert('translations', {}).catch(() => {});
       });
     });
   }
