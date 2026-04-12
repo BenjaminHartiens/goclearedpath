@@ -1446,27 +1446,27 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
     // Translate button
     const landingContractorOutput = `Led Signals Intelligence (SIGINT) collection operations as a certified Intelligence Analyst (35N) supporting multi-source intelligence fusion for tactical Human Intelligence (HUMINT) efforts.\n\nDirected a 12-member analytical team across domestic and international operational environments, conducting Intelligence, Surveillance, and Reconnaissance (ISR) missions in support of theater commander priorities.\n\nDeveloped and maintained Commander's Critical Information Requirements (CCIR) frameworks and enforced OPSEC compliance per S2 intelligence directorate standards.\n\nRelocated from Fort Bragg, NC to Fort Meade, MD in support of mission requirements. Consistently recognized for superior performance — rated in the top block of Officer Evaluation.`;
 
-    let translating = false;
-    if (xlateBtn && outputEl) {
-      xlateBtn.addEventListener('click', () => {
-        if (translating) return;
-        translating = true;
-        xlateBtn.disabled = true;
-        xlateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg> Translating...';
-        const start = Date.now();
-        outputEl.innerHTML = '';
-        typeText(outputEl, landingContractorOutput, 4, () => {
-          translating = false;
-          xlateBtn.disabled = false;
-          xlateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Translate Again';
-          const elapsed = ((Date.now() - start) / 1000).toFixed(1);
-          if (timeEl) timeEl.innerHTML = `Translated in <span>${elapsed}s</span>`;
-          trainedBase += 1;
-          if (trainedEl) trainedEl.textContent = trainedBase.toLocaleString();
-          sbInsert('translations', {}).catch(() => {});
-        });
+    // Use exact same pattern as working features-page translator
+    let landingTranslating = false;
+    xlateBtn.addEventListener('click', () => {
+      if (landingTranslating) return;
+      landingTranslating = true;
+      xlateBtn.classList.add('loading');
+      xlateBtn.textContent = 'Translating...';
+      const startTime = Date.now();
+      typeText(outputEl, landingContractorOutput, 6, () => {
+        landingTranslating = false;
+        xlateBtn.classList.remove('loading');
+        xlateBtn.textContent = 'Translate Again';
+        if (timeEl) {
+          const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+          timeEl.innerHTML = `Translated in <span>${elapsed}s</span>`;
+        }
+        trainedBase += 1;
+        if (trainedEl) trainedEl.textContent = trainedBase.toLocaleString();
+        sbInsert('translations', {}).catch(() => {});
       });
-    }
+    });
   })();
 
 })();
