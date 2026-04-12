@@ -1370,7 +1370,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
   // ============================================================
   // LANDING PAGE RESUME TRANSLATOR + FILE UPLOAD
   // ============================================================
-  (function setupLandingTranslator() {
+  function setupLandingTranslator() {
     const pasteBtn   = document.getElementById('landing-mode-paste');
     const uploadBtn  = document.getElementById('landing-mode-upload');
     const pasteMode  = document.getElementById('landing-paste-mode');
@@ -1467,6 +1467,8 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
         sbInsert('translations', {}).catch(() => {});
       });
     });
-  })();
+  }
+
+  setupLandingTranslator();
 
 })();
