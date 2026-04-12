@@ -1439,6 +1439,19 @@ section { scroll-margin-top: 60px; }
   margin: 0;
 }
 
+.feedback-link {
+  background: none;
+  border: none;
+  color: var(--accent-cyan);
+  font-size: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-family: inherit;
+}
+.feedback-link:hover { opacity: 0.8; }
+
 .feature-arrow {
   color: var(--accent-cyan);
   font-size: var(--text-lg);

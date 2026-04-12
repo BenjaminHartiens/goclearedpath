@@ -1471,4 +1471,36 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
 
   setupLandingTranslator();
 
+  // ============================================================
+  // FEEDBACK MODAL
+  // ============================================================
+  (function setupFeedback() {
+    const openBtn   = document.getElementById('open-feedback');
+    const closeBtn  = document.getElementById('close-feedback');
+    const modal     = document.getElementById('feedback-modal');
+    const form      = document.getElementById('feedback-form');
+    const success   = document.getElementById('feedback-success');
+    if (!openBtn || !modal) return;
+
+    const open  = () => { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; };
+    const close = () => { modal.style.display = 'none'; document.body.style.overflow = ''; };
+
+    openBtn.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const email = document.getElementById('feedback-email').value.trim();
+      const type  = document.getElementById('feedback-type').value;
+      const text  = document.getElementById('feedback-text').value.trim();
+      if (!text) return;
+      sbInsert('feedback', { email: email || null, type: type || null, message: text, created_at: new Date().toISOString() }).catch(() => {});
+      form.style.display = 'none';
+      success.style.display = 'block';
+      setTimeout(close, 2500);
+    });
+  })();
+
 })();
