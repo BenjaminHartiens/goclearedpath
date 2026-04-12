@@ -970,12 +970,12 @@ Developed Commander's Critical Information Requirements (CCIR) and enforced Oper
 
 Completed professional development relocation from Fort Liberty (formerly Ft. Bragg) to Fort Meade, MD. Received "Exceeds Standards" performance review equivalent (OER above center of mass).`;
 
-  function typeText(el, text, speed, onDone) {
+// typeText is global so all translator sections can access it
+  window.typeText = function typeText(el, text, speed, onDone) {
     el.innerHTML = '';
     el.classList.add('typing');
-    // Use <pre> so \n renders as visible line breaks
     const pre = document.createElement('pre');
-    pre.style.cssText = 'white-space:pre-wrap;font-family:inherit;font-size:var(--text-sm);margin:0;color:var(--accent-green, #4ade80);line-height:1.7;';
+    pre.style.cssText = 'white-space:pre-wrap;font-family:inherit;font-size:var(--text-sm);margin:0;color:var(--text-primary);line-height:1.7;';
     el.appendChild(pre);
     let i = 0;
     function type() {
@@ -983,7 +983,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
       else { el.classList.remove('typing'); if (onDone) onDone(); }
     }
     type();
-  }
+  };
 
   function setupResumeTranslator() {
     const inputEl = document.getElementById('resume-input');
