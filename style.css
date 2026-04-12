@@ -1236,12 +1236,12 @@ section { scroll-margin-top: 60px; }
 /* Stats section standalone */
 .stats-section {
   background: var(--bg-darkest);
-  padding: 0 0 var(--space-6);
+  padding: 0 0 var(--space-2);
 }
 
 /* Landing feature cards — clean grid */
 .landing-features {
-  padding: var(--space-8) 0 var(--space-12);
+  padding: var(--space-4) 0 var(--space-10);
   background: var(--bg-dark);
 }
 
