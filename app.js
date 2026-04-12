@@ -1495,8 +1495,8 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
       const email = document.getElementById('feedback-email').value.trim();
       const type  = document.getElementById('feedback-type').value;
       const text  = document.getElementById('feedback-text').value.trim();
-      if (!text) return;
-      sbInsert('feedback', { email: email || null, type: type || null, message: text, created_at: new Date().toISOString() }).catch(() => {});
+      if (!text || !email) return;
+      sbInsert('feedback', { email, type: type || null, message: text, created_at: new Date().toISOString() }).catch(() => {});
       form.style.display = 'none';
       success.style.display = 'block';
       setTimeout(close, 2500);
