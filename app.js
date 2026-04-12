@@ -29,7 +29,7 @@
 //    CREATE POLICY "allow_count" ON translations FOR SELECT TO anon USING (true);
 // ================================================================
 const SUPABASE_URL = 'https://anrxgzhegtphkkdfssgn.supabase.co';   // e.g. https://xyzxyz.supabase.co
-const SUPABASE_KEY = 'sb_publishable_dVb_3OGS-CK6Fo4cJkG5Lg_3S_HcOKV'; // starts with eyJ...
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFucnhnemhlZ3RwaGtrZGZzc2duIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5NTYxNDQsImV4cCI6MjA5MTUzMjE0NH0.sYsir_wnW3JfYiulo2psL08g8aAaNcB-bEa1LwKU1h4'; // starts with eyJ...
 const SUPABASE_ACTIVE = SUPABASE_URL !== 'YOUR_SUPABASE_URL';
 
 // Apply tracking — logs every application click for monetization data
