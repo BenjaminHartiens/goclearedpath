@@ -1007,6 +1007,15 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
             const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
             timeEl.innerHTML = `Translated in <span>${elapsed}s</span>`;
           }
+          // Store translation pair for AI training dataset
+          const inputVal = inputEl ? inputEl.value.trim() : '';
+          sbInsert('resumes', {
+            military_input: inputVal || null,
+            contractor_output: contractorOutput,
+            source: 'features_page',
+            created_at: new Date().toISOString()
+          }).catch(() => {});
+          sbInsert('translations', {}).catch(() => {});
         });
       });
     }
@@ -1464,6 +1473,14 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
         }
         trainedBase += 1;
         if (trainedEl) trainedEl.textContent = trainedBase.toLocaleString();
+        // Store full translation pair for AI training dataset
+        const inputText = document.getElementById('landing-resume-input')?.value?.trim() || '';
+        sbInsert('resumes', {
+          military_input: inputText || null,
+          contractor_output: landingContractorOutput,
+          source: 'landing_page',
+          created_at: new Date().toISOString()
+        }).catch(() => {});
         sbInsert('translations', {}).catch(() => {});
       });
     });
