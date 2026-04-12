@@ -28,8 +28,8 @@
 //    CREATE POLICY "allow_insert" ON translations FOR INSERT TO anon WITH CHECK (true);
 //    CREATE POLICY "allow_count" ON translations FOR SELECT TO anon USING (true);
 // ================================================================
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';   // e.g. https://xyzxyz.supabase.co
-const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY'; // starts with eyJ...
+const SUPABASE_URL = 'https://anrxgzhegtphkkdfssgn.supabase.co';   // e.g. https://xyzxyz.supabase.co
+const SUPABASE_KEY = 'sb_publishable_dVb_3OGS-CK6Fo4cJkG5Lg_3S_HcOKV'; // starts with eyJ...
 const SUPABASE_ACTIVE = SUPABASE_URL !== 'YOUR_SUPABASE_URL';
 
 // Apply tracking — logs every application click for monetization data
