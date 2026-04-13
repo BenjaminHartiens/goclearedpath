@@ -61,8 +61,12 @@ async function sbInsert(table, data) {
                  'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
       body: JSON.stringify(data)
     });
+    if (!res.ok) {
+      const err = await res.text();
+      console.warn(`[GCP] Supabase insert failed (${table}):`, res.status, err);
+    }
     return res.ok;
-  } catch(e) { return null; }
+  } catch(e) { console.warn('[GCP] Supabase insert error:', e); return null; }
 }
 
 async function sbCount(table) {
@@ -996,7 +1000,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
         if (resumeTranslating) return;
         resumeTranslating = true;
         // Capture input NOW before animation starts
-        const capturedInput = (inputEl ? inputEl.value.trim() : '') || null;
+        const capturedInput = (inputEl ? inputEl.value.trim() : '') || '[demo example]';
         translateBtn.classList.add('loading');
         translateBtn.textContent = 'Translating...';
         const startTime = Date.now();
@@ -1012,8 +1016,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
           sbInsert('translations', {
             military_input: capturedInput,
             contractor_output: contractorOutput,
-            source: 'features_page',
-            created_at: new Date().toISOString()
+            source: 'features_page'
           }).catch(() => {});
         });
       });
@@ -1492,7 +1495,7 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
       if (landingTranslating) return;
       landingTranslating = true;
       // Capture input NOW before animation starts
-      const capturedInput = document.getElementById('landing-resume-input')?.value?.trim() || null;
+      const capturedInput = document.getElementById('landing-resume-input')?.value?.trim() || '[demo example]';
       xlateBtn.classList.add('loading');
       xlateBtn.textContent = 'Translating...';
       const startTime = Date.now();
