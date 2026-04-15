@@ -319,7 +319,7 @@
 
 .hero-inner {
   position: relative; z-index: 2;
-  padding: var(--space-14, 3.5rem) 0 var(--space-6);
+  padding: var(--space-14, 3.5rem) 0 var(--space-2);
 }
 
 .hero-badge {
@@ -1236,7 +1236,7 @@ section { scroll-margin-top: 60px; }
 /* Stats section standalone */
 .stats-section {
   background: var(--bg-darkest);
-  padding: 0 0 var(--space-2);
+  padding: 0;
 }
 
 /* Landing feature cards — clean grid */
@@ -1388,12 +1388,13 @@ section { scroll-margin-top: 60px; }
 
 /* Stacked feature rows */
 .landing-features-stack {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: var(--space-3);
   margin-top: var(--space-8);
-  max-width: 680px;
+  max-width: 100%;
 }
+@media (max-width: 640px) { .landing-features-stack { grid-template-columns: 1fr; } }
 
 .landing-feature-row {
   display: flex;
