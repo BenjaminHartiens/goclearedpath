@@ -1522,6 +1522,41 @@ Completed professional development relocation from Fort Liberty (formerly Ft. Br
   setupLandingTranslator();
 
   // ============================================================
+  // REFERRAL BOX — show after hero waitlist signup
+  // ============================================================
+  (function setupReferral() {
+    const referralBox  = document.getElementById('referral-box');
+    const copyBtn      = document.getElementById('copy-referral');
+    const linkInput    = document.getElementById('referral-link');
+    const liBtn        = document.getElementById('share-linkedin');
+    const fbBtn        = document.getElementById('share-facebook');
+    if (!referralBox) return;
+
+    // Show referral box when hero form submits successfully
+    const heroForm = document.querySelector('.waitlist-form');
+    if (heroForm) {
+      heroForm.addEventListener('submit', () => {
+        setTimeout(() => { referralBox.style.display = 'block'; }, 600);
+      });
+    }
+
+    // Copy link
+    if (copyBtn && linkInput) {
+      copyBtn.addEventListener('click', () => {
+        linkInput.select();
+        navigator.clipboard?.writeText(linkInput.value).catch(() => document.execCommand('copy'));
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => { copyBtn.textContent = 'Copy Link'; }, 2000);
+      });
+    }
+
+    // LinkedIn share
+    const shareText = encodeURIComponent('Found this tool for cleared professionals — fuses 14 job sources, shows the real salary, and translates military resumes in 60 seconds. Free: https://goclearedpath.com #securityclearance #tssci #veterantransition');
+    if (liBtn) liBtn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://goclearedpath.com')}`;
+    if (fbBtn) fbBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://goclearedpath.com')}&quote=${shareText}`;
+  })();
+
+  // ============================================================
   // FEEDBACK MODAL
   // ============================================================
   (function setupFeedback() {

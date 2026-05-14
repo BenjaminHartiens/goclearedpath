@@ -178,10 +178,23 @@
       <button type="submit" class="btn-waitlist">Get Early Access — Free</button>
     </form>
 
-    <!-- Success state -->
-    <div class="waitlist-success">
+    <!-- Success state with referral -->
+    <div class="waitlist-success" id="hero-waitlist-success">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
       You're on the list! We'll notify you when your access is ready.
+    </div>
+    <div class="referral-box" id="referral-box" style="display:none;">
+      <p class="referral-headline">&#127881; You're in. Move up the list by sharing with one cleared colleague.</p>
+      <p class="referral-sub">Every person you refer bumps your priority access. Most people know at least 3 people who need this.</p>
+      <div class="referral-share-row">
+        <input type="text" class="referral-link-input" id="referral-link" readonly value="https://goclearedpath.com" />
+        <button class="btn-copy" id="copy-referral">Copy Link</button>
+      </div>
+      <div class="referral-share-buttons">
+        <a class="referral-share-btn referral-linkedin" id="share-linkedin" href="#" target="_blank" rel="noopener">Share on LinkedIn</a>
+        <a class="referral-share-btn referral-facebook" id="share-facebook" href="#" target="_blank" rel="noopener">Share on Facebook</a>
+      </div>
+      <p class="referral-fine">Or copy your personal link above and share it anywhere.</p>
     </div>
 
     <p class="hero-trust-line">No spam. Unsubscribe anytime. &nbsp;·&nbsp; <button class="feedback-link" id="open-feedback">Share feedback or ideas</button></p>
