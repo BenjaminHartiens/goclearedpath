@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intel Hub — GoClearedPath | Clearance Intelligence for Transitioning Military</title>
+  <meta name="description" content="Everything you need to know about your security clearance when leaving the military. How long it lasts, travel rules, drug questions, what risks it and more.">
+
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800,900&f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ── Intel Hub specific styles ── */
+    .intel-hero {
+      background: var(--bg-darkest);
+      padding: 100px 0 var(--space-12);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .intel-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(0,212,255,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .intel-tagline {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: var(--radius-full);
+      padding: 5px 14px;
+      margin-bottom: var(--space-4);
+    }
+    .intel-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+      font-weight: 900;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: var(--space-4);
+    }
+    .intel-hero h1 span { color: var(--accent-cyan); }
+    .intel-hero-sub {
+      font-size: var(--text-lg);
+      color: var(--text-muted);
+      max-width: 580px;
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+    }
+    .intel-disclaimer {
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.25);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4) var(--space-5);
+      display: flex;
+      gap: var(--space-3);
+      align-items: flex-start;
+      max-width: 680px;
+      margin-top: var(--space-4);
+    }
+    .intel-disclaimer-icon { color: #f59e0b; font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+    .intel-disclaimer p { font-size: var(--text-sm); color: var(--text-muted); margin: 0; line-height: 1.6; }
+    .intel-disclaimer strong { color: #f59e0b; }
+
+    /* ── Category nav ── */
+    .intel-nav {
+      background: var(--bg-dark);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 56px;
+      z-index: 90;
+    }
+    .intel-nav-inner {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 0 var(--space-4);
+    }
+    .intel-nav-inner::-webkit-scrollbar { display: none; }
+    .intel-nav-link {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-4) var(--space-4);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color var(--transition-fast), border-color var(--transition-fast);
+    }
+    .intel-nav-link:hover, .intel-nav-link.active {
+      color: var(--accent-cyan);
+      border-bottom-color: var(--accent-cyan);
+    }
+
+    /* ── Main content ── */
+    .intel-body {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    /* ── Category sections ── */
+    .intel-section {
+      padding: var(--space-14) 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .intel-section:nth-child(even) { background: var(--bg-darkest); }
+    .intel-section-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: var(--space-2);
+    }
+    .intel-section-title {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: 900;
+      color: var(--text-primary);
+      letter-spacing: -0.025em;
+      margin-bottom: var(--space-3);
+    }
+    .intel-section-intro {
+      font-size: var(--text-base);
+      color: var(--text-muted);
+      max-width: 620px;
+      line-height: 1.7;
+      margin-bottom: var(--space-8);
+    }
+
+    /* ── Q&A Cards ── */
+    .intel-qa-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      max-width: 860px;
+    }
+    .intel-qa-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: border-color var(--transition-base);
+    }
+    .intel-qa-card:hover { border-color: var(--accent-cyan-border); }
+    .intel-qa-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-5) var(--space-6);
+      cursor: pointer;
+      user-select: none;
+    }
+    .intel-qa-question-text {
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .intel-qa-chevron {
+      flex-shrink: 0;
+      color: var(--accent-cyan);
+      transition: transform var(--transition-fast);
+    }
+    .intel-qa-card.open .intel-qa-chevron { transform: rotate(180deg); }
+    .intel-qa-answer {
+      display: none;
+      padding: 0 var(--space-6) var(--space-5);
+      border-top: 1px solid var(--border-subtle);
+    }
+    .intel-qa-card.open .intel-qa-answer { display: block; }
+    .intel-qa-answer p {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin: var(--space-4) 0 var(--space-2);
+    }
+    .intel-qa-answer ul, .intel-qa-answer ol {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      line-height: 1.8;
+      padding-left: var(--space-5);
+      margin: var(--space-2) 0;
+    }
+    .intel-qa-answer li { margin-bottom: var(--space-1); }
+    .intel-qa-answer strong { color: var(--text-primary); }
+    .intel-qa-answer .answer-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-3);
+      margin-top: var(--space-3);
+    }
+    .tag-green { background: rgba(34,197,94,0.12); color: #22c55e; border: 1px solid rgba(34,197,94,0.25); }
+    .tag-amber { background: rgba(245,158,11,0.12); color: #f59e0b; border: 1px solid rgba(245,158,11,0.25); }
+    .tag-red   { background: rgba(239,68,68,0.12);  color: #ef4444; border: 1px solid rgba(239,68,68,0.25); }
+    .tag-cyan  { background: rgba(0,212,255,0.10);  color: var(--accent-cyan); border: 1px solid rgba(0,212,255,0.2); }
+
+    /* ── Quick reference table ── */
+    .intel-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--text-sm);
+      margin-top: var(--space-6);
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--border-card);
+      max-width: 860px;
+    }
+    .intel-table th {
+      background: var(--bg-darkest);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: var(--space-3) var(--space-5);
+      text-align: left;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .intel-table td {
+      padding: var(--space-4) var(--space-5);
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    .intel-table tr:last-child td { border-bottom: none; }
+    .intel-table tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+    .intel-table td strong { color: var(--text-primary); }
+
+    /* ── Callout boxes ── */
+    .intel-callout {
+      background: rgba(0,212,255,0.06);
+      border: 1px solid rgba(0,212,255,0.2);
+      border-left: 4px solid var(--accent-cyan);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5) var(--space-6);
+      margin: var(--space-6) 0;
+      max-width: 860px;
+    }
+    .intel-callout p { font-size: var(--text-sm); color: var(--text-muted); line-height: 1.7; margin: 0; }
+    .intel-callout strong { color: var(--accent-cyan); }
+    .intel-callout-warn {
+      background: rgba(245,158,11,0.06);
+      border-color: rgba(245,158,11,0.2);
+      border-left-color: #f59e0b;
+    }
+    .intel-callout-warn p { color: var(--text-muted); }
+    .intel-callout-warn strong { color: #f59e0b; }
+
+    /* ── CTA banner ── */
+    .intel-cta {
+      background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(14,165,233,0.04));
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-10) var(--space-10);
+      text-align: center;
+      margin: var(--space-12) auto 0;
+      max-width: 640px;
+    }
+    .intel-cta h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 900;
+      color: var(--text-primary);
+      margin-bottom: var(--space-3);
+      letter-spacing: -0.025em;
+    }
+    .intel-cta p {
+      font-size: var(--text-base);
+      color: var(--text-muted);
+      margin-bottom: var(--space-6);
+    }
+
+    @media (max-width: 768px) {
+      .intel-hero { padding: 80px 0 var(--space-8); }
+      .intel-qa-grid { gap: var(--space-3); }
+      .intel-cta { padding: var(--space-8) var(--space-6); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo" aria-label="GoClearedPath Home">
+      <svg aria-hidden="true" width="32" height="38" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="4" width="30" height="33" rx="3" fill="none" stroke="#22c55e" stroke-width="2"/>
+        <circle cx="16" cy="3" r="2" fill="#22c55e"/>
+        <line x1="16" y1="1" x2="16" y2="4" stroke="#22c55e" stroke-width="1.5"/>
+        <text x="16" y="24" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="900" fill="currentColor">CP</text>
+        <circle cx="23" cy="30" r="2.5" fill="#22c55e"/>
+      </svg>
+      <span class="logo-text">Go<span>ClearedPath</span></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="features.html#jobs" class="nav-link">Jobs</a>
+      <a href="features.html#resume" class="nav-link">Resume</a>
+      <a href="features.html#salary" class="nav-link">Salary</a>
+      <a href="intel.html" class="nav-link" style="color:var(--accent-cyan);">Intel Hub</a>
+      <a href="features.html#pathways" class="nav-link">Pathways</a>
+      <a href="index.html#pricing" class="nav-link">Pricing</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="index.html" class="btn btn-primary">Sign Up Free</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <a href="features.html#jobs" class="mobile-nav-link">Jobs</a>
+    <a href="features.html#resume" class="mobile-nav-link">Resume</a>
+    <a href="features.html#salary" class="mobile-nav-link">Salary</a>
+    <a href="intel.html" class="mobile-nav-link">Intel Hub</a>
+    <a href="features.html#pathways" class="mobile-nav-link">Pathways</a>
+    <a href="index.html#pricing" class="mobile-nav-link">Pricing</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="intel-hero">
+  <div class="container">
+    <div class="intel-tagline">Returning Information into Intelligence</div>
+    <h1>Your Clearance.<br><span>Know What You Have.</span></h1>
+    <p class="intel-hero-sub">
+      Getting out of the military with a security clearance is one of the most valuable career assets in America. Most people don't know the rules, the risks, or the window they have to use it. This is the guide we wish existed.
+    </p>
+    <div class="intel-disclaimer">
+      <div class="intel-disclaimer-icon">⚠</div>
+      <p><strong>Important:</strong> This is general guidance based on publicly available information and community knowledge. It is not legal advice. Clearance rules vary by agency and individual circumstances. Always consult your Security Officer, FSO, or a cleared attorney for decisions that affect your clearance eligibility.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STICKY CATEGORY NAV -->
+<nav class="intel-nav" aria-label="Intel Hub categories">
+  <div class="intel-nav-inner container">
+    <a href="#validity" class="intel-nav-link">⏱ Clearance Validity</a>
+    <a href="#travel" class="intel-nav-link">✈️ Travel Rules</a>
+    <a href="#drugs" class="intel-nav-link">🚫 Drug Use</a>
+    <a href="#risks" class="intel-nav-link">⚡ What Risks It</a>
+    <a href="#school" class="intel-nav-link">🎓 School & GI Bill</a>
+    <a href="#money" class="intel-nav-link">💰 Your Value</a>
+    <a href="#contacts" class="intel-nav-link">🌐 Foreign Contacts</a>
+    <a href="#transition" class="intel-nav-link">🎖️ Transition Tips</a>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+
+  <!-- ── SECTION 1: CLEARANCE VALIDITY ── -->
+  <section class="intel-section" id="validity">
+    <div class="container">
+      <div class="intel-section-label">Clearance Validity After Separation</div>
+      <h2 class="intel-section-title">How long do you have?</h2>
+      <p class="intel-section-intro">When you leave the military, your clearance goes into a holding pattern — not expired, but on a clock. The window is shorter than most people think.</p>
+
+      <table class="intel-table">
+        <thead>
+          <tr>
+            <th>Clearance Level</th>
+            <th>Investigation Cycle</th>
+            <th>Window After Separation</th>
+            <th>What Happens If You Miss It</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Confidential</strong></td>
+            <td>Every 15 years</td>
+            <td>24 months to reaffiliate</td>
+            <td>Full reinvestigation required</td>
+          </tr>
+          <tr>
+            <td><strong>Secret</strong></td>
+            <td>Every 10 years</td>
+            <td>24 months to reaffiliate</td>
+            <td>Full reinvestigation required</td>
+          </tr>
+          <tr>
+            <td><strong>Top Secret (TS)</strong></td>
+            <td>Every 5 years</td>
+            <td>24 months to reaffiliate</td>
+            <td>Full reinvestigation required</td>
+          </tr>
+          <tr>
+            <td><strong>TS/SCI</strong></td>
+            <td>Every 5 years</td>
+            <td>24 months to reaffiliate</td>
+            <td>Access must be reestablished by new agency</td>
+          </tr>
+          <tr>
+            <td><strong>TS/SCI w/ Poly</strong></td>
+            <td>Every 5 years + poly</td>
+            <td>24 months to reaffiliate</td>
+            <td>Poly may need to be retaken — varies by agency</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="intel-callout" style="margin-top: var(--space-6);">
+        <p><strong>The 24-month rule:</strong> You have 24 months from separation to get into a new cleared position (federal civilian, contractor, or another government role). If you go past 24 months without an affiliation, your clearance eligibility is archived and you essentially start over. The investigation itself may still be within its cycle — but without a sponsor (employer), the clearance isn't usable.</p>
+      </div>
+
+      <div class="intel-qa-grid" style="margin-top: var(--space-6);">
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">Does my clearance expire the day I separate?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-green">✓ No — you have a window</span>
+            <p>No. Your clearance <strong>doesn't expire at separation</strong> — it goes inactive. When you leave the military, your Security Manager deaffiliates your profile in DISS (Defense Information System for Security, formerly JPAS). A 24-month countdown begins. During this period, a new employer can pick up your clearance and reaffiliate you without a new investigation, as long as the underlying investigation hasn't expired.</p>
+            <p>Think of it like a driver's license that's deactivated but not expired. Someone else (your new employer's FSO) has to turn it back on. The key is not letting the 24 months lapse.</p>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">If I only have 8 months left on my investigation cycle, do I only have 8 months to find a job?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-amber">⚠ It depends — check your investigation date</span>
+            <p>This is one of the most misunderstood clearance questions. The 24-month window applies to your <strong>affiliation window</strong> — but separately, your underlying investigation has its own expiration (5 years for TS, 10 years for Secret). If your investigation expires before you find a new job, the employer will need to submit you for a new investigation even if you're within 24 months.</p>
+            <p>Example: You separated in January 2026 with a TS investigation completed in March 2022. Your investigation expires March 2027. If you're not in a cleared position by then, the employer must submit a new investigation — which can take months to a year.</p>
+            <p><strong>Action item:</strong> Before you separate, ask your Security Manager for your investigation date. Know the two clocks you're racing: 24-month affiliation window AND your investigation expiration.</p>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">Can I get an interim clearance quickly while waiting for a full investigation?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-green">✓ Usually yes</span>
+            <p>If your clearance has lapsed and your employer submits a new investigation, many employers can grant an <strong>interim clearance in 2-4 weeks</strong>. This lets you start work at Secret level and below while awaiting the full investigation. SCI access typically requires the full investigation to complete.</p>
+            <p>Having a prior clearance significantly speeds the process because your background history is already in the system. New applicants with no prior clearance can wait 12+ months. Veterans with recent clean histories often clear in weeks to months.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 2: TRAVEL ── -->
+  <section class="intel-section" id="travel">
+    <div class="container">
+      <div class="intel-section-label">Foreign Travel</div>
+      <h2 class="intel-section-title">Can I travel internationally?</h2>
+      <p class="intel-section-intro">Yes — but it's not as simple as buying a ticket. Travel is one of the most common ways cleared professionals unknowingly create problems. Here's how to do it right.</p>
+
+      <div class="intel-callout">
+        <p><strong>The Golden Rule:</strong> Foreign travel is not prohibited. It is a <em>reportable event</em>. These are very different things. The problem isn't going to Canada — it's going without telling your FSO first. When in doubt, report. Report before you go, and debrief when you return.</p>
+      </div>
+
+      <div class="intel-qa-grid">
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">Do I need to report travel to every country, including Canada and Mexico?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-amber">⚠ Yes — all international travel</span>
+            <p><strong>Yes. All international travel must be reported</strong> — including day trips to Tijuana and weekend trips to Toronto. Under SEAD 3, any travel beyond US borders is a reportable event, regardless of how friendly the destination is.</p>
+            <p>Report to your FSO (Facility Security Officer) or Security Manager <strong>before you go</strong>. After you return, you'll be debriefed. Keep a simple travel log: country, arrival date, departure date, purpose, any significant contacts. Many experienced cleared professionals keep a spreadsheet.</p>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">Which countries are actually off-limits or high-risk?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-red">⚠ Avoid these — serious risk to clearance</span>
+            <p><strong>Countries to avoid entirely:</strong> Russia, China, North Korea, Iran, Cuba, Venezuela, Ukraine (active conflict zone), Cuba, Nigeria, and any country under US sanctions.</p>
+            <p><strong>Gray zone countries (require extra scrutiny):</strong> Pakistan, any "-stan" country (Kazakhstan, Uzbekistan, etc.), Turkey, Egypt, and countries with active intelligence services known to target Americans.</p>
+            <p><strong>Safest destinations:</strong> Five Eyes countries — UK, Canada, Australia, New Zealand — plus Ireland, the Nordic countries, Japan, South Korea, and Western Europe generally.</p>
+            <p>Note: Some agencies have additional restrictions beyond the baseline. NSA, CIA, and DIA employees may face tighter travel restrictions than DoD contractors. Always check with your FSO for your specific situation.</p>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">What happens if I travel without reporting?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-red">✗ Serious — this is a clearance killer</span>
+            <p>Failing to report foreign travel is a <strong>personal conduct violation (Guideline E)</strong>. It's not the travel itself that revokes clearances — it's the failure to report. Adjudicators treat unreported travel as evidence of poor judgment and potential deception, which raises serious concerns about trustworthiness.</p>
+            <p>If you realize you forgot to report a trip, <strong>self-report immediately</strong>. Proactive disclosure is mitigating. Getting caught not reporting is not.</p>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">I'm separated — do travel rules still apply to me?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-green">✓ Modified rules apply</span>
+            <p>After separation and before rejoining a cleared employer, you have <strong>more freedom to travel</strong> because you no longer have an active FSO or reporting obligation. However, when you apply for a new cleared position, you will be asked about all international travel in the past 7 years on your SF-86.</p>
+            <p>Travel during the gap is not prohibited, but <strong>travel to sanctioned or adversarial countries during this period can still be used against you in the adjudication process</strong>. Use the gap to travel — just avoid the bad actors list.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 3: DRUGS ── -->
+  <section class="intel-section" id="drugs">
+    <div class="container">
+      <div class="intel-section-label">Drug Use</div>
+      <h2 class="intel-section-title">What about marijuana and other drugs?</h2>
+      <p class="intel-section-intro">This is the most common question in the cleared community post-separation. The answer is more nuanced than most people think — and more dangerous than most people assume.</p>
+
+      <div class="intel-callout intel-callout-warn">
+        <p><strong>Bottom line:</strong> Marijuana is still a Schedule I controlled substance under federal law. State legalization does not change federal clearance standards. DCSA adjudicates under federal law — period. If you plan to return to cleared work, treat marijuana as if it's still fully illegal everywhere.</p>
+      </div>
+
+      <div class="intel-qa-grid">
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">Can I use marijuana after I separate if it's legal in my state?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-red">✗ Risky — read this carefully</span>
+            <p>Technically, once you're separated and your clearance is inactive, you are not a "covered individual" under the clearance reporting requirements. So using marijuana while separated is not a reportable violation in real time.</p>
+            <p><strong>However:</strong> When you apply for a new cleared position, your SF-86 asks about drug use. If you used marijuana during the gap — even in a legal state — you must disclose it. Recent use (within 1-2 years) is a significant red flag under Guideline H (Drug Involvement).</p>
+            <p>The DCSA has issued guidance that recent marijuana use is not an <em>automatic</em> disqualification, but adjudicators will look at: frequency of use, how long ago, whether you knew it was federally illegal (you did — you had a clearance), and your stated intent to abstain.</p>
+            <p><strong>The math:</strong> If you plan to return to cleared work within 2 years, don't use. The risk to your clearance eligibility far outweighs the benefit. If you're genuinely leaving cleared work for good, that's a different calculation.</p>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">What about medical marijuana? I have a valid prescription.</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-red">✗ Same result — federal law applies</span>
+            <p>A state medical marijuana card provides zero protection in federal clearance adjudication. <strong>There is no "legal" marijuana under federal law</strong>, so there is no "legal" use in the eyes of DCSA — regardless of your state, your prescription, or your medical need.</p>
+            <p>If you have a medical condition that is being managed with marijuana and you want to return to cleared work, speak with a cleared attorney about how to present this in your SF-86. Honest disclosure with context and a stated plan for alternative treatment is your best path.</p>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">What about alcohol? Other prescription drugs?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-amber">⚠ Context dependent</span>
+            <p><strong>Alcohol:</strong> Social drinking is fine. The concern is DUIs, alcohol-related incidents, or patterns of excessive use. One DUI can be mitigated; a pattern of incidents or a diagnosis of alcohol abuse/dependence is much more serious (Guideline G).</p>
+            <p><strong>Prescription medications:</strong> Taking prescribed medications is not a clearance issue. The concern arises if prescription medication causes impaired judgment, if you're taking medications prescribed to someone else, or if there's misuse. Mental health medications specifically are evaluated under Guideline I — seeking mental health treatment is generally not disqualifying, and adjudicators are supposed to evaluate whether treatment <em>mitigates</em> the underlying concern.</p>
+            <p><strong>Illegal drugs:</strong> Any illegal drug use under federal law is Guideline H territory. Cocaine, heroin, MDMA, and similar drugs are serious concerns. Experimental use years in the past can be mitigated; recent or recurring use generally cannot.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 4: WHAT RISKS IT ── -->
+  <section class="intel-section" id="risks">
+    <div class="container">
+      <div class="intel-section-label">Clearance Risks</div>
+      <h2 class="intel-section-title">What can cost you your clearance?</h2>
+      <p class="intel-section-intro">DCSA evaluates clearance eligibility using 13 Adjudicative Guidelines. These are the things that can get your clearance suspended or revoked — whether you're active or have been out for years.</p>
+
+      <table class="intel-table">
+        <thead>
+          <tr>
+            <th>Guideline</th>
+            <th>What It Covers</th>
+            <th>Risk Level</th>
+            <th>Common Examples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>A — Allegiance</strong></td>
+            <td>Loyalty to the US</td>
+            <td><span class="answer-tag tag-red" style="margin:0;">Critical</span></td>
+            <td>Terrorism, espionage, treason</td>
+          </tr>
+          <tr>
+            <td><strong>B — Foreign Influence</strong></td>
+            <td>Ties to foreign nationals</td>
+            <td><span class="answer-tag tag-red" style="margin:0;">High</span></td>
+            <td>Foreign spouse/family, unreported contacts</td>
+          </tr>
+          <tr>
+            <td><strong>C — Foreign Preference</strong></td>
+            <td>Ties to foreign country</td>
+            <td><span class="answer-tag tag-amber" style="margin:0;">Moderate</span></td>
+            <td>Dual citizenship, foreign passport use</td>
+          </tr>
+          <tr>
+            <td><strong>E — Personal Conduct</strong></td>
+            <td>Honesty &amp; integrity</td>
+            <td><span class="answer-tag tag-red" style="margin:0;">High</span></td>
+            <td>Lying on SF-86, omissions, deception</td>
+          </tr>
+          <tr>
+            <td><strong>F — Financial</strong></td>
+            <td>Debt, financial stability</td>
+            <td><span class="answer-tag tag-amber" style="margin:0;">Moderate</span></td>
+            <td>Excessive debt, delinquencies, bankruptcy</td>
+          </tr>
+          <tr>
+            <td><strong>G — Alcohol</strong></td>
+            <td>Alcohol misuse</td>
+            <td><span class="answer-tag tag-amber" style="margin:0;">Moderate</span></td>
+            <td>DUIs, alcohol-related incidents, diagnosis</td>
+          </tr>
+          <tr>
+            <td><strong>H — Drug Involvement</strong></td>
+            <td>Illegal drug use</td>
+            <td><span class="answer-tag tag-red" style="margin:0;">High</span></td>
+            <td>Marijuana, cocaine, prescription misuse</td>
+          </tr>
+          <tr>
+            <td><strong>J — Criminal Conduct</strong></td>
+            <td>Criminal history</td>
+            <td><span class="answer-tag tag-red" style="margin:0;">High</span></td>
+            <td>Arrests, charges, convictions (even old)</td>
+          </tr>
+          <tr>
+            <td><strong>K — Security Violations</strong></td>
+            <td>Mishandling classified info</td>
+            <td><span class="answer-tag tag-red" style="margin:0;">Critical</span></td>
+            <td>Unauthorized disclosure, spillage, misuse</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="intel-qa-grid" style="margin-top: var(--space-8);">
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">Financial debt — how much is too much?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-amber">⚠ Context and pattern matter more than amount</span>
+            <p>There's no magic debt number that automatically revokes a clearance. What adjudicators look for is: a <strong>pattern of irresponsible financial behavior</strong>, delinquent accounts, judgments, garnishments, or unexplained wealth. A large mortgage is fine. Unpaid collections, multiple maxed credit cards, or unexplained financial stress raise concerns (you could be vulnerable to coercion).</p>
+            <p><strong>Mitigation:</strong> Taking proactive steps — setting up payment plans, addressing collections, being on a debt management plan — is significantly mitigating. Hiding it is not. If you're struggling financially, address it head-on and document your plan.</p>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">What if I was arrested but never convicted?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-amber">⚠ Still reportable — disclose it</span>
+            <p>Under Guideline J, <strong>any allegation of criminal conduct must be reported regardless of whether charges were filed or you were convicted</strong>. Arrests, charges, DUIs — even if dismissed or expunged — need to be disclosed on your SF-86. The question asks about charges, not just convictions.</p>
+            <p>Not disclosing an arrest that investigators find in your background check is far more damaging than the arrest itself. Adjudicators expect imperfection — they don't expect deception.</p>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">What about mental health treatment? Will therapy hurt my clearance?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-green">✓ Usually not — seeking help is mitigating</span>
+            <p>This is one of the most damaging myths in the cleared community. <strong>Seeking mental health treatment is generally not disqualifying and is often mitigating.</strong> The concern under Guideline I is a pattern of behavior that indicates unreliable judgment — not the act of seeking help.</p>
+            <p>DCSA and DoD have actively worked to de-stigmatize mental health treatment for cleared professionals. Therapy for PTSD, anxiety, depression — these are common among veterans and are not automatic disqualifiers. The key is whether the condition is being treated and managed.</p>
+            <p><strong>What IS a concern:</strong> An untreated severe condition, a pattern of behavior caused by a mental health condition that affects judgment, or refusing to follow a treatment plan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 5: SCHOOL & GI BILL ── -->
+  <section class="intel-section" id="school">
+    <div class="container">
+      <div class="intel-section-label">Education & GI Bill</div>
+      <h2 class="intel-section-title">Can I go to school while maintaining my clearance?</h2>
+      <p class="intel-section-intro">Yes — and many cleared contractors do exactly this. The GI Bill and your clearance can absolutely coexist. Here's what to know.</p>
+
+      <div class="intel-qa-grid">
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">Can I use my GI Bill and work as a cleared contractor at the same time?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-green">✓ Yes — very common</span>
+            <p><strong>Yes, absolutely.</strong> Many cleared contractors use their Post-9/11 GI Bill to pursue degrees or certifications while working full-time as cleared contractors. Your GI Bill benefits are yours — using them doesn't affect your clearance.</p>
+            <p>Popular combination: Work as a cleared contractor (maintaining your clearance through active employment), take evening or online classes using GI Bill, complete a cybersecurity or intelligence-related degree that increases your value and clearance salary. Win-win.</p>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">What about studying abroad? Will that hurt my clearance?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-amber">⚠ Reportable and creates complications</span>
+            <p>Studying abroad is allowed, but it comes with complexity. Every country you visit must be reported. If you develop close, continuing friendships with foreign nationals while studying abroad, those contacts may need to be reported on future SF-86 renewals. Foreign bank accounts opened while abroad must also be reported.</p>
+            <p>Additionally, if you study in a country with a known intelligence threat (China, Russia, Iran, etc.), this will receive additional scrutiny in any future investigation. Studying in the UK, Australia, or Western Europe is much less of a concern than studying in Beijing.</p>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">What certifications should I get to increase my cleared salary?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-cyan">💡 Highest ROI certifications for cleared professionals</span>
+            <p>These are the certifications that produce the highest salary increases for TS/SCI cleared professionals:</p>
+            <ol>
+              <li><strong>CISSP</strong> (Certified Information Systems Security Professional) — Industry gold standard. Adds $20-30K+ to cyber salaries. Requires 5 years experience.</li>
+              <li><strong>CISA</strong> (Certified Information Systems Auditor) — Excellent for GRC/compliance roles.</li>
+              <li><strong>AWS Solutions Architect</strong> — Cloud + cleared is one of the hottest combos right now. $150K+ common.</li>
+              <li><strong>Security+</strong> — DoD 8570/8140 baseline requirement. Get this first if you don't have it.</li>
+              <li><strong>CEH</strong> (Certified Ethical Hacker) — For cyber operations and red team roles.</li>
+              <li><strong>PMP</strong> — For cleared program management. Significant salary premium for cleared PMs.</li>
+            </ol>
+            <p>Use your GI Bill or COOL (Credentialing Opportunities Online) to pay for these — both can cover certification costs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 6: YOUR VALUE ── -->
+  <section class="intel-section" id="money">
+    <div class="container">
+      <div class="intel-section-label">What You're Worth</div>
+      <h2 class="intel-section-title">How much is your clearance actually worth?</h2>
+      <p class="intel-section-intro">Your security clearance is one of the scarcest credentials in America. Here's what the market actually pays — because most people don't know.</p>
+
+      <table class="intel-table">
+        <thead>
+          <tr>
+            <th>Clearance Level</th>
+            <th>Median Annual Salary</th>
+            <th>Premium Over Secret</th>
+            <th>Typical Roles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Secret</strong></td>
+            <td>$89,000</td>
+            <td>Baseline</td>
+            <td>IT support, logistics, some intel roles</td>
+          </tr>
+          <tr>
+            <td><strong>Top Secret (TS)</strong></td>
+            <td>$118,000</td>
+            <td>+$29K</td>
+            <td>All-source analyst, systems admin, cyber</td>
+          </tr>
+          <tr>
+            <td><strong>TS/SCI</strong></td>
+            <td>$131,907</td>
+            <td>+$43K</td>
+            <td>SIGINT analyst, cyber, senior intel roles</td>
+          </tr>
+          <tr>
+            <td><strong>TS/SCI w/ FSP</strong></td>
+            <td>$148,314</td>
+            <td>+$59K</td>
+            <td>NSA/DIA/CYBERCOM contractor roles</td>
+          </tr>
+          <tr>
+            <td><strong>TS/SCI w/ CI Poly</strong></td>
+            <td>$162,000</td>
+            <td>+$73K</td>
+            <td>CIA-adjacent, FBI, DIA senior roles</td>
+          </tr>
+          <tr>
+            <td><strong>TS/SCI w/ Full Scope Poly</strong></td>
+            <td>$175,000+</td>
+            <td>+$86K</td>
+            <td>NSA, top-tier IC contractor positions</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="intel-callout" style="margin-top: var(--space-6);">
+        <p><strong>The Poly Premium:</strong> Adding a polygraph to a TS/SCI clearance adds an average of <strong>$16,407-$43,000 per year</strong> in compensation depending on the poly type. If you hold a polygraph, never negotiate without anchoring to this premium separately from your base role salary.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 7: FOREIGN CONTACTS ── -->
+  <section class="intel-section" id="contacts">
+    <div class="container">
+      <div class="intel-section-label">Foreign Contacts & Relationships</div>
+      <h2 class="intel-section-title">My family/spouse/friends are from another country. Am I in trouble?</h2>
+      <p class="intel-section-intro">Foreign contacts don't automatically disqualify you. But they must be disclosed and managed correctly. This is one of the most common sources of clearance complications.</p>
+
+      <div class="intel-qa-grid">
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">My spouse is a foreign national. Can I still hold a clearance?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-amber">⚠ Yes, but it's evaluated carefully</span>
+            <p><strong>Yes, people with foreign national spouses hold clearances.</strong> It's not automatic disqualification. It is, however, a significant factor that adjudicators will examine closely under Guideline B (Foreign Influence).</p>
+            <p>What matters most: The spouse's country of origin (ally vs. adversary), whether they hold or could hold a clearance themselves (or could be pressured by a foreign government), and whether you've been fully transparent about the relationship on your SF-86.</p>
+            <p>A spouse from Canada, UK, Australia, or a NATO-allied country presents much less concern than a spouse from Russia, China, or Iran. Full disclosure and cooperation during the investigation is essential.</p>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">I met someone while deployed. Do I have to report them?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-amber">⚠ Depends on the relationship</span>
+            <p>Under SEAD 3, the reporting threshold for foreign contacts requires all three:</p>
+            <ol>
+              <li>You know the person's name and nationality</li>
+              <li>You've shared personal information (not just public info)</li>
+              <li>The contact is recurring or expected to recur</li>
+            </ol>
+            <p>A local shopkeeper you bought something from once: no need to report. A colleague you deployed with who you still stay in touch with: report. Someone you dated while overseas: report. A one-time encounter with no ongoing contact: generally not reportable.</p>
+            <p>When in doubt, report. The cost of over-reporting is low. The cost of under-reporting can be your clearance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 8: TRANSITION TIPS ── -->
+  <section class="intel-section" id="transition">
+    <div class="container">
+      <div class="intel-section-label">Transition Checklist</div>
+      <h2 class="intel-section-title">Before you out-process: what to do</h2>
+      <p class="intel-section-intro">Most service members leave information on the table during out-processing. These are the things to do before your final day.</p>
+
+      <div class="intel-qa-grid">
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">The 10 things to do before your final day</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <ol>
+              <li><strong>Ask your Security Manager for your investigation date.</strong> Know exactly when your TS/SCI investigation was completed so you know how much of your 5-year cycle is remaining.</li>
+              <li><strong>Get a copy of your VMET (Verification of Military Experience and Training).</strong> This document translates your military training into civilian education equivalents. Available on dodtap.mil. Critical for contractor applications.</li>
+              <li><strong>Attend TAP employment workshops.</strong> Mandatory, but actually useful. The DoL Employment Workshop covers resume writing, salary negotiation, and interview skills.</li>
+              <li><strong>Apply to cleared contractor positions before you separate.</strong> Many companies can submit your clearance paperwork while you're still active duty. Don't wait until day one of civilian life.</li>
+              <li><strong>Start your LinkedIn profile now.</strong> Begin connecting with cleared recruiters, former colleagues moving to contracting, and defense industry professionals 6 months before separation.</li>
+              <li><strong>Know your MOS/rate/AFSC civilian equivalents.</strong> Use GoClearedPath's military job code database to see what your military experience translates to in the contractor world.</li>
+              <li><strong>Research your salary before accepting any offer.</strong> Use GoClearedPath's salary data to know what your clearance level actually commands in the market.</li>
+              <li><strong>Apply for VA disability rating before you separate.</strong> This can take months. File early. Disability rating affects VA loan eligibility, compensation, and more — and doesn't affect your clearance eligibility.</li>
+              <li><strong>Don't take the first offer.</strong> Cleared companies need you more than you need them right now. 70,000+ more cleared positions than people to fill them. You have leverage.</li>
+              <li><strong>Maintain your clearance by staying employed in cleared work.</strong> The worst thing you can do is let 24 months lapse. Even a part-time cleared contractor position keeps the clock from running out.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">What's the difference between sub and prime contracts — and why does it matter?</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-cyan">💡 Affects your job security</span>
+            <p><strong>Prime contractor:</strong> The company won the government contract directly. Your employer IS the prime. When the contract ends or is recompeted, you're at the top of the food chain.</p>
+            <p><strong>Subcontractor:</strong> Your employer is working under the prime. When the prime's contract is recompeted or ends, your position is at higher risk — even if you're performing well. You can be cut when the prime cuts costs or switches sub teams.</p>
+            <p><strong>Why it matters:</strong> A sub position on a contract with 8 months left is significantly more volatile than a prime position on a 5-year IDIQ. Always know which one you're taking. GoClearedPath shows Sub vs. Prime status on every job card.</p>
+          </div>
+        </div>
+
+        <div class="intel-qa-card">
+          <div class="intel-qa-question">
+            <span class="intel-qa-question-text">Can I negotiate my salary as a contractor? I've never done this before.</span>
+            <svg class="intel-qa-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="intel-qa-answer">
+            <span class="answer-tag tag-green">✓ Yes — and you have more leverage than you think</span>
+            <p><strong>Absolutely negotiate.</strong> The contractor world is not like the military pay chart — there's no fixed scale. Salaries for the same role at the same clearance level can vary $20-40K between companies. The company that makes you an offer wants you. Use that.</p>
+            <p><strong>Starting tactics from the FBI playbook:</strong></p>
+            <ul>
+              <li>Never give your number first. Ask: "What's the budgeted range for this role?"</li>
+              <li>Once they give a number, use <em>mirroring</em>: repeat their last few words as a question — "That's the max for this position?" — forces them to elaborate.</li>
+              <li>Anchor to market data: "Based on current market data for TS/SCI with FSP in this area, I was expecting something closer to $148K."</li>
+              <li>Treat your poly separately: "I understand the base offer for the role. Given that I also hold an FSP, I'd want to discuss the poly premium."</li>
+              <li>Silence is your weapon: after stating your number, stop talking. The next person who speaks is losing ground.</li>
+            </ul>
+            <p>GoClearedPath's AI Interview Coach includes a full salary negotiation simulation using these FBI-trained tactics. Practice before the real call.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final CTA -->
+      <div class="intel-cta">
+        <h2>Ready to put your clearance to work?</h2>
+        <p>Find every cleared job from 14 sources, see what your clearance actually pays, and prepare to negotiate the number you deserve.</p>
+        <a href="index.html" class="btn btn-primary" style="font-size:var(--text-base);padding:14px 32px;">Get Early Access — Free</a>
+        <p style="font-size:var(--text-xs);color:var(--text-faint);margin-top:var(--space-3);margin-bottom:0;">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="margin-bottom:var(--space-3);">
+          <svg aria-hidden="true" width="28" height="34" viewBox="0 0 32 38" fill="none"><rect x="1" y="4" width="30" height="33" rx="3" fill="none" stroke="#22c55e" stroke-width="2"/><circle cx="16" cy="3" r="2" fill="#22c55e"/><line x1="16" y1="1" x2="16" y2="4" stroke="#22c55e" stroke-width="1.5"/><text x="16" y="24" text-anchor="middle" font-family="system-ui,sans-serif" font-size="11" font-weight="900" fill="currentColor">CP</text><circle cx="23" cy="30" r="2.5" fill="#22c55e"/></svg>
+          <span class="logo-text">Go<span>ClearedPath</span></span>
+        </a>
+        <p style="font-size:var(--text-sm);color:var(--text-faint);max-width:260px;line-height:1.6;">Returning Information into Intelligence. Real jobs. Real salaries. Built by someone who lived it.</p>
+        <p style="font-size:var(--text-xs);color:var(--text-faint);margin-top:var(--space-2);">Built by a 9-year CACI/NSA cleared contractor.</p>
+        <div class="footer-badge-row" style="display:flex;gap:var(--space-2);margin-top:var(--space-3);">
+          <span style="font-size:11px;color:#22c55e;font-weight:700;">For Contractors</span>
+          <span style="color:var(--text-faint);">·</span>
+          <span style="font-size:11px;color:#3b82f6;font-weight:700;">Government</span>
+          <span style="color:var(--text-faint);">·</span>
+          <span style="font-size:11px;color:#f97316;font-weight:700;">Military</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-link-group">
+          <h4>Platform</h4>
+          <a href="features.html#jobs">Job Feed</a>
+          <a href="features.html#resume">Resume Translator</a>
+          <a href="features.html#salary">Salary Explorer</a>
+          <a href="features.html#pathways">Career Pathways</a>
+          <a href="intel.html">Intel Hub</a>
+          <a href="index.html#pricing">Pricing</a>
+        </div>
+        <div class="footer-link-group">
+          <h4>Community</h4>
+          <a href="index.html">Waitlist</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer">X / Twitter</a>
+        </div>
+        <div class="footer-link-group">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Use</a>
+          <a href="index.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025–2026 GoClearedPath. All rights reserved. Not affiliated with any government agency.</p>
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" style="font-size:var(--text-xs);color:var(--text-faint);">Created with Perplexity Computer</a>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+  // Intel Hub accordion
+  document.querySelectorAll('.intel-qa-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const card = q.closest('.intel-qa-card');
+      const isOpen = card.classList.contains('open');
+      document.querySelectorAll('.intel-qa-card.open').forEach(c => c.classList.remove('open'));
+      if (!isOpen) card.classList.add('open');
+    });
+  });
+
+  // Active nav link highlighting
+  const sections = document.querySelectorAll('.intel-section[id]');
+  const navLinks = document.querySelectorAll('.intel-nav-link');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.intel-nav-link[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
